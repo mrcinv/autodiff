@@ -989,10 +989,14 @@ functions.
  \subsection{Control structures}\label{sec:control}
  
  Until now, we restricted ourselves to operations, that change the memories' content. Along side assignment statements, we know control statements (ex. statements \texttt{if},
-  \texttt{for}, \texttt{while}, ...). Control statements don't directly influence values of variables, but change the execution tree of the program. This of course affects the derivative. But, for a certain set of input variables, the execution of the program will always be the same. This is why we interpret control structures as a definition of a spline.
+  \texttt{for}, \texttt{while}, ...). Control statements don't directly
+  influence values of variables, but change the execution tree of the program.
+  This of course affects the derivative. But, for a certain set of input
+  variables, the execution of the program will always be the same. This is why
+  we interpret control structures as a piecewise-definition of a map (as a spline).
   
  Each control structure divides the space of parameters into different domains, in which the execution of the program is always the same. The entire program divides the space of all possible parameters to a finite set of domains $\{\Omega_i;\quad i=1,\ldots
-  k\}$, where the programs' execution is always the same. As such, a program may in general be defined as a spline. For $\vec{x}\in\VV$
+  k\}$, where the programs' execution is always the same. As such, a program may in general be piecewise-defined. For $\vec{x}\in\VV$
  \begin{equation}
    \label{eq:zlrprk_splosno}
    P(\vec{x}) =
@@ -1003,7 +1007,7 @@ functions.
      P_{n_kk}\circ P_{(n_k-1)k}\circ\ldots P_{1k}(\vec{x});&\quad \vec{x}\in\Omega_k\\
    \end{cases}
  \end{equation}
- The operator $e^\D$ (at some point) of a program $P$, is of course dependent on initial parameters $\vec{x}$, and can also be expressed as a spline, inside domains $\Omega_i$
+ The operator $e^\D$ (at some point) of a program $P$, is of course dependent on initial parameters $\vec{x}$, and can also be expressed piecewise inside domains $\Omega_i$
  \begin{equation}
    \label{eq:Dzlrprk_splosno}
    e^\D P({\vec{x}}) =
@@ -1015,7 +1019,7 @@ functions.
    \end{cases}
  \end{equation}
 
- Problems with differentiability which might have occurred on the edge of domains $\partial\Omega_i$, were removed from the realm of possibilities by the way our theory has been constructed.
+ Problems with differentiability which might  occurre on the boundary of the domains $\partial\Omega_i$, are removed from the realm of possibilities by the way our theory has been constructed.
 
 
  \begin{izrek}\label{izr:diferentiableOnDomain}
@@ -1044,7 +1048,11 @@ Cardinality of the set of domains $\Omega=\{\Omega_i\}$ equals $\lvert\{\Omega_i
 Iterators, that do not change exit conditions within its' body, do not cause branching.
 \end{opomba}
 
-It follows from Claim $\ref{izr:st.zlepkov}$, that the complexity of naive implementations of methods presented in Sections $\ref{sec:Vrsta}$ and $\ref{sec:FTP}$ to splines are exponential in the number of branching points (if we were to treat each domain $\Omega_i$ by itself). But, with correct application of Theorems developed in this paper, we may drastically reduce this down to linear. This is the subject of study in this section.
+It follows from Claim $\ref{izr:st.zlepkov}$, that the complexity of naive
+implementations of methods presented in Sections $\ref{sec:Vrsta}$ and
+$\ref{sec:FTP}$ to piecewise-defined maps are exponential in the number of
+branching points (if we were to treat each domain $\Omega_i$ by itself). But,
+with correct application of the theorems developed in this paper, we may drastically reduce this down to linear. This is the subject of study in this section.
 \vspace{10px}
 
 \tikzstyle{decision} = [diamond, draw, fill=black!5, 
@@ -1344,7 +1352,7 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
 
    Let 
    $$T=T_n\circ T_{n-1}\circ\cdots\circ T_1$$
-   for simplicity, but it could just as easily be a spline as in $\eqref{eq:zlrprk_splosno}$ (by a specific $T_i$ containing a control structure, as shown in Section \ref{sec:control}). Here $T_i=\varepsilon_k\circ\ldots \varepsilon_1$, is a conceptual step in the procedure.
+   for simplicity, but it could just as easily be piecewise-differentiable as in $\eqref{eq:zlrprk_splosno}$ (by a specific $T_i$ containing a control structure, as shown in Section \ref{sec:control}). Here $T_i=\varepsilon_k\circ\ldots \varepsilon_1$, is a conceptual step in the procedure.
   
    
    \begin{definicija}[Activity profile]
@@ -1470,7 +1478,7 @@ Let
 \begin{equation}
 P=P_n\circ P_{n-1}\circ\cdots\circ P_1
 \end{equation}
-be the procedure representing the system \footnote{the program could just as easily be a spline as in $\eqref{eq:zlrprk_splosno}$, by a specific $P_i$ containing a control structure}, with $P_i=p_k\circ\cdots\circ p_1$ being the conceptual step treated by heuristic $H$. Again, we let $P^i_k=P_i\circ\cdots\circ P_k$. Directions are usually modeled by first derivatives, and attractions by second derivatives, so lets assume the heuristic $H$ employs both. 
+be the procedure representing the system \footnote{the program could just as easily be piecewise-defined as in $\eqref{eq:zlrprk_splosno}$, by a specific $P_i$ containing a control structure}, with $P_i=p_k\circ\cdots\circ p_1$ being the conceptual step treated by heuristic $H$. Again, we let $P^i_k=P_i\circ\cdots\circ P_k$. Directions are usually modeled by first derivatives, and attractions by second derivatives, so lets assume the heuristic $H$ employs both. 
 Assuming $H$ needs to be once differentiable, with itself containing first and second derivatives of $P$, we need to employ the operator $e^\D_3$. Using Corollary \ref{cor:extraxtDerivatives}, once differentiable first and second derivatives with respect to parameters $p$ are extracted by
 \begin{equation}
 P^{i\prime}_1=\proj_{\{1,\D\}}\left(\phi\circ e^{\D_{p}}_3(P^i_1)\right)\in\dP_1
