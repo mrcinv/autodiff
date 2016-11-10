@@ -226,6 +226,7 @@ One can consider the differentiability of the derivative itself $\D P$ by
 looking at it as a map \eqref{eq:odvod_preslikava}. This leads to the definition
 of the higher derivatives.
 \begin{definicija}[higher derivatives]
+  \label{def:higher_derivatives}
   Let $P:V\to U$ be a map from vector space $V$ to vector space $U$. 
 The derivative $\D^k P$ of order $k$ of the map $P$ is the map
 \begin{eqnarray}\label{eq:partial}
@@ -301,10 +302,10 @@ ignoring the free memory.
 The derivative of the effective map is of interest, when we speak about
 differentiability of computer programs. 
 \begin{definicija}[Automatically differentiable programs]
-  A program $P:\VV\to \VV$ is \emph{automatically differentiable} if there exist an embedding
-  $O_P\otimes I_P^*\hookrightarrow F_P$ of the space $O_P\otimes I_P^*$ into
-  the free space $F_P$, and a program $\D P:\VV\to \VV$, such that its effective
-  map is the map
+  \label{def:program_derivative}
+  A program $P:\VV\to \VV$ is \emph{automatically differentiable} if there exist
+  an embedding of the space $O_P\otimes I_P^*$ into the free space $F_P$, and a program $\D P:\VV\to \VV$,
+  such that its effective map is the map
   \begin{equation}
     \label{eq:program_derivative}
     P_e\oplus \D P_e:I_P\rightarrow O_P\oplus (O_P\otimes I^*).
@@ -314,33 +315,22 @@ differentiability of computer programs.
 If a program $P:\VV\to \VV$ is automatically differentiable then it is also
 differentiable as a map $\VV\to\VV$. However only the derivative of program's
 effective map can be implemented as a program, since the memory space is limited to $\VV$. 
-
-Putting memory considerations aside, we propose an universal model of the memory
-for differentiable programs.
-\begin{definicija}
-Let $(\VV,\F)$ be an Euclidean virtual machine and let  
-
-\begin{equation}
-\VV_\infty = \VV\otimes T(\VV^*) = \VV\oplus
-(\VV\otimes\VV^*)\oplus\ldots,\label{eq:virtual-memory}
-\end{equation}
-where $T(\VV^*)$ is the tensor algebra of the dual space $\VV^*$.
-We call $\VV_\infty$ the \emph{differentiable virtual memory} of a virtual
-computing machine $(\VV,\F)$.
+\begin{definicija}[Higher derivatives of the programs]
+  \label{def:program_derivative_higher}
+  A program $P:\VV\to \VV$ is \emph{automatically differentiable of order $k$}
+  if there exist a program $\sumd_k P:\VV\to \VV$,
+  such that its effective map is the map
+  \begin{equation}
+    \label{eq:program_derivative_higher}
+    P_e\oplus \D P_e\oplus \ldots \D^k P_e:I_P\rightarrow O_P\oplus \left(O_P\otimes I^*\right)\oplus\ldots \left( O_P\otimes \left( I_p^*\right)^{k\otimes} \right).
+  \end{equation}
 \end{definicija}
-The term virtual memory is used as it is only possible to embed certain subspaces of $\VV_\infty$ into memory space $\VV$, making it similar to
-virtual memory as a memory management technique.  
-
-We can extend each program $P:\VV\to \VV$ to the map on universal memory space
-$\VV_\infty$ by setting the first component in the direct sum
-\eqref{eq:virtual-memory} to $P$,
-and all other components to zero.
-
-\subsection{Tensor algebra representation}
-In order to apply the definition of derivative of a program to higher
-derivatives, we make use of the tensor algebra.
-Let $P:V\to U$ be a map on vector spaces. Motivated by the definition of higher
-derivatives, we define a sequence of vector spaces with
+To be able to differentiate a program to the $k$-th order, we have to calculate
+and save all the derivatives of the orders $k$ and less.
+\subsection{Tensor algebra expansion of the virtual memory space}
+Let $P:V\to U$ be a map on vector spaces. Motivated by the definitions
+\ref{def:program_derivative} and  \ref{def:program_derivative_higher}, we define
+virtual memory for differentiable programs  as a sequence of vector spaces with
 recursive formula
 \begin{eqnarray}
   \label{eq:universal_space}
