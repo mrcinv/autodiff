@@ -375,16 +375,7 @@ universal memory space $\VV_\infty$ by setting the first component in the direct
 derivatives $\D^k P$ can be also seen as mapping $\VV$ to $\VV_\infty$ by
 setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
 and all others to zero. 
-
-\section{Operational calculus on programming spaces}\label{sec:operational}
 \subsection{Differentiable programming spaces}
-
-The derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
- T(\VV^*)$\footnote{the operator $\D$ may be defined partially for other maps as
-   well.}. We denote this operator $\D$. If we look at a map $P:\VV\to \VV$ as a map
- to $U\otimes T(V^*)$, then the image of $P$ by operator $\D$ is the first
- derivative, while the higher order derivatives are just powers of operator $\D$
- applied to $P$. 
 
 Let us define the following function spaces.
  \begin{equation}\label{eq:F^n}
@@ -394,28 +385,20 @@ Let us define the following function spaces.
  \begin{equation}\label{eq:F_n}
  	\F_n=\{f:\VV\to \VV\otimes T_n(\VV^*)\}
  \end{equation}
-All of these function spaces are subspaces of $\F_\infty=\{f:\VV\to \VV\otimes
-T(\VV^*)\}$. The space $\F_n$ is direct a sum of $\F^k$ for $k\le n$ and $\F_n<\F_m$ if $n<m$. We
-have an increasing sequence of function spaces
-\begin{equation}
-  \label{eq:flag_function_space}
-  \F_0<\F_1<\ldots<\F_n<\ldots
-\end{equation}
+All of these function spaces are can be seen as subspaces of $\F_\infty=\{f:\VV\to \VV\otimes
+T(\VV^*)\}$. The space $\F_n$ is direct a sum of $\F^k$ for $k\le n$ and
+$\F_n<\F_m$ if $n<m$.  
 
-We define the differential operator as
-\begin{equation}\label{eq:dd}
-	\partial^k=\sum_{\forall_{i,\alpha}}\frac{\partial^k}{\partial
-	    x_{\alpha_1}\ldots \partial x_{\alpha_k}}\e_i\otimes
-	  dx_{\alpha_1}\otimes\ldots \otimes dx_{\alpha_k}.
-\end{equation}
-Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F^n}$
+The derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
+ T(\VV^*)$\footnote{the operator $\D$ may be defined partially for other maps as
+   well.}. We denote this operator $\D$. If we look at a map $P:\VV\to \VV$ as a map
+ to $U\otimes T(V^*)$, then the image of $P$ by operator $\D$ is the first
+ derivative, while the higher order derivatives are just powers of operator $\D$
+ applied to $P$. Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F^n}$
  \begin{equation}\label{eq:toFn+k}
  \D^k:\F^n\to\F^{n+k}
  \end{equation}
  
- \begin{trditev}\label{izr:linearnaNeodvisnost}
-  The set $\DD^n=\{\partial^k;\quad 0\le k\le n\}$ represents linearly independent vectors over a field $K$.
- \end{trditev}
  
  \begin{definicija}\label{def:dP}
  	A \emph{differentiable programming space} $\dP_0$ is any subspace of $\F_0$ such that
@@ -431,9 +414,9 @@ Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F^n}$
 	\begin{equation}\label{eq:P_n}
 	 		\D^k\dP_0\subset\dP_0\otimes T(\VV^*)
 	 	\end{equation}
-for any $k\in\mathbb{N}$.
+for any $k\in\mathbb{N}$. If all elements of $\dP_0$ are analytic, than so are the elements of $\dP_n$.
 \end{izrek}
-\begin{proof} By definition \ref{def:dP}
+\begin{proof} By Definition \ref{def:dP}
 $$\D\dP_0\subset\dP_0\otimes T(\VV^*)$$
 	Induction step is trivial. For all 	$\forall_{P\in\dP_0}$,
   $\D^n\dP_0\subset\dP_0\otimes T(\VV^*)$, where
@@ -446,36 +429,8 @@ $$\D\dP_0\subset\dP_0\otimes T(\VV^*)$$
 	$$\D^{n+1}\dP_0\subset\dP_0\otimes T(\VV^*)$$
 \end{proof}
 
- \begin{corollary}\label{izr:dP}
-	A programming space $\dP_0\otimes T(\VV^*)=\{P:\VV\to \VV\otimes T(\VV^*)\}$, is closed under the differential operator $\D^k$.
- \end{corollary}
- \begin{proof}
- 	 By $\eqref{eq:P_n}$ and the symmetric nature of the operator $\D$, for each $k$ there exists an isomorphism
- 	 	\begin{equation}
- 	 		\dP_0\to\D^k\dP_0
- 	 	\end{equation}
- \end{proof}
-
-By Corollary $\ref{izr:dP}$ we may represent calculation of derivatives of the map $P:\VV\to \VV$, with only one mapping. We define the geometric series
- 
- \begin{equation}\label{eq:DD}
-  	\sumd_n = 1+\D +\D^2 +\ldots + \D^n 
-  \end{equation}
-  
-  
-  \begin{equation}
-  	\sumd_n=\sum\limits_{n=0}^{n}\sum_{\forall_{i,\alpha}}\frac{\partial^n}{\partial
-  		    x_{\alpha_1}\ldots \partial x_{\alpha_k}}\e_i\otimes
-  		  dx_{\alpha_1}\otimes\ldots \otimes dx_{\alpha_k} , x_i\in \VV_{j\in\JJ}
-  \end{equation}
-  
-  By Theorem $\ref{izr:linearnaNeodvisnost}$ the operator $\sumd_n$ is unique and prescribes the map $P: \VV\to \VV$ with a map $\sumd_k:\VV\to
-\VV\otimes T(\VV^*)$, composed of the map itself and all derivatives of order $n\le k$. The image $\sumd_kP(\x)$ is a multitensor of order $k$, which is a direct sum of the maps value and all derivatives of order $n\le k$, all evaluated at the point $\x$:
-\begin{equation}
-  \label{eq:multi_odvod}
-  \sumd_kP(\x) = P(\x)+\D_\x P + \D^2_\x P + \ldots + \D^k_\x P.
-\end{equation}
-We seek to generalize such notions.
+We seek to generalize such notions of differentiable programing space to spaces
+of higher order differentiable programs.
 
 \begin{definicija}\label{def:P_n}
 Let $\dP_n<\F_n$ be the space spanned by $\DD^n\dP_0$ over $K$.
@@ -498,37 +453,41 @@ By taking the limit as $n\to \infty$, we will consider
 where $\T(\VV^*)=\prod_{k=0}^\infty (\VV^*)^{\otimes k}$ is \emph{the tensor series
   algebra}, the algebra of the  infinite formal tensor series,
 which is a completion of the tensor algebra $T(\VV^*)$ in suitable topology.
-  \begin{corollary}
-  If there exists a construction of a first order programming space $\dP_1$ by a
-  single map $\sumd_1$, such that $\dP_1=\sumd_1\dP_0$, there exists a
-  construction of a programming space of an arbitrary order $\dP_n$ by a map
-  $\sumd_n$, defined by the recursion formula.
+
+\section{Operational calculus on programming spaces}\label{sec:operational}
+
+
+
+By Corollary $\ref{izr:dP}$ we may represent calculation of derivatives of the
+map $P:\VV\to \VV$, with only one mapping $\sumd$. We define the operator
+$\sumd_n$ as a direct sum of operators
+ 
+ \begin{equation}\label{eq:DD}
+  	\sumd_n = 1+\D +\D^2 +\ldots + \D^n 
+  \end{equation}
+  
+The image $\sumd_kP(\x)$ is a multitensor of order $k$, which is a direct sum of the maps value and all derivatives of order $n\le k$, all evaluated at the point $\x$:
+\begin{equation}
+  \label{eq:multi_odvod}
+  \sumd_kP(\x) = P(\x)+\D_\x P + \D^2_\x P + \ldots + \D^k_\x P.
+\end{equation}
+The operator $\sumd_n$ satisfy the recursion formula.
   \begin{equation}
     \label{eq:potenca(1+d)}
-    \sumd_{k+1}=1+\D\sumd_{k}
+    \sumd_{k+1}=1+\D\sumd_{k},
   \end{equation}
-
-  \end{corollary}
-  \begin{proof}
-    The recursive relation between $\sumd_k$ and $\sumd_{k+1}$ is
-    \begin{equation}
-      \label{eq:rekurzija}
-      \sumd_{k+1} = 1 + \D +\D^2+\ldots \D^{k+1} = 1+\D(1+\D+\ldots +\D^{k}) = 1+\D\sumd_k.
-    \end{equation} 
-
-  \end{proof}
+that can be used to recursively construct programming spaces of arbitrary order
+from first order differentiable programming space $\dP_1$.
        
     The following
      \begin{equation}
      	\sumd_n\dP_n\subset\dP_0\otimes T_n(\VV^*)
      \end{equation}
    	holds by Theorem $\ref{izr:P_n}$, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. Following $\eqref{eq:potenca(1+d)}$ and the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, it is evident that only explicit knowledge of the operator $\sumd_1$ is required.
- \begin{corollary}\label{cor:analytic}
-   If all elements of $\dP_0$ are analytic, than so are the elements of $\dP_n$.
-   \end{corollary}        
         
        \begin{opomba}\label{rem:vTen}
-       Maps $\VV\otimes T(\VV^*)\to \VV\otimes T(\VV^*)$ are constructible through tensor algebra on $\dP_n$ and through it, compositions of programs in $\dP_n$.
+       Maps $\VV\otimes T(\VV^*)\to \VV\otimes T(\VV^*)$ are constructible using
+       tensor algebra operations and compositions of programs in $\dP_n$.
        \end{opomba}
        
  
