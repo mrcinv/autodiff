@@ -172,66 +172,29 @@ program on its memory space $\VV$, can be described by a map
   \label{eq:map}
   P:\VV\to \VV.
 \end{equation}
-We can compose two programs sequentially, to obtain another program, which
-results in map composition. The set of all such maps $\F=\VV^\VV$ is a
-\emph{monoid} for the operation of composition $\circ$. A programing space is
-a space spanned by a set of elementary operations that are sequentially applied into programs. 
-\begin{definicija}[Euclidian virtual machine] The tuple $\langle \VV,\F\rangle$ is an Euclidian virtual machine, where
+A programing space is a space of maps $\VV\to\VV$ that can be implemented as a
+program in specific programming language. 
+\begin{definicija}[Euclidian virtual machine] The tuple $(\VV,\F)$ is an Euclidian virtual machine, where
   \begin{itemize}
   \item
-  $\VV$ is a finite dimensional vector space over a complete field $K$, serving as memory\footnote{In most applications the field $K$ will
+  $\VV$ is a finite dimensional vector space over a complete field $K$, serving
+  as a memory\footnote{In most applications the field $K$ will
     be $\RR$}
   \item
-  $\F= \VV^\VV$ is the space of maps $P:\VV\to \VV$, called \emph{programming space}, serving as actions on the memory
+  $\F< \VV^\VV$ is a subspace of the space of maps $\VV\to \VV$, called \emph{programming space}, serving as actions on the memory.
   \end{itemize}  
 \end{definicija}
 
 Denote by $e_1,\ldots e_n$ a standard basis of the memory space $\VV$ and by
 $x_1,\ldots x_n$ the dual basis of $\VV^*$. The functions $x_i$ are coordinate
-functions on $\VV$ and correspond to individual variables in the memory. For
-each program $P:\VV\to \VV$ we divide variables $x_i$ into three groups. Let us
-denote with $P_i$ the $i-th$ component of the map $P$ according to the standard
-basis. Function $P_i:\VV\to K$ is a scalar function and is equal to $x_i\circ P$.
-\begin{definicija}
-  Let $x_i$ be the variable in memory and $P:\VV\to\VV$ a program.  
-  \begin{enumerate}
-  \item 
-    The variable $x_i$ is called \emph{free}, if
-    \begin{equation}
-      \label{eq:free}
-      \frac{\partial P_j}{\partial x_i}\equiv \delta_{ij}\land \frac{\partial P_i}{\partial x_j}\equiv \delta_{ij}.
-    \end{equation}
-\item 
-    The variable $x_i$ is called \emph{input parameter} if
-    \begin{equation}
-      \label{eq:input}
-      \frac{\partial P_j}{\partial x_i}\not\equiv \delta_{ij} \lor
-      \left(  \frac{\partial P_j}{\partial x_i}\equiv \delta_{ij}\land \frac{\partial P_i}{\partial x_j}\not\equiv \delta_{ij}\right) .\footnote{this statement also includes the case that the partial derivative do not exist at some point}
-    \end{equation}
-\item  The variable $x_i$ is called \emph{output value} if
-    \begin{equation}
-      \label{eq:output}
-      \frac{\partial P_i}{\partial x_j}\not\equiv \delta_{ij} 
-    \end{equation}
-  \end{enumerate}
+functions on $\VV$ and correspond to individual locations(variables) in the
+program memory.
 
-\end{definicija}
-Free variables are those that are left intact by the program and have no
-influence on the final result. The output of the program depends only on the
-values of the input variables and consists of variables that are changed during
-the program. Input parameters and output values might overlap. 
-We also define corresponding vector subspaces of the program $P$.
 \begin{definicija}
-  The \emph{input} or \emph{parameter space} is a vector subspace $I_P<\VV$,
-  spanned by the standard basis vectors, that correspond to \emph{input}
-  variables. Similarly  \emph{output space} is a subspace
-  $O_P<\VV$ is spanned by basis vectors corresponding to output variables and
-  \emph{free space} is a subspace $F_P<\VV$ spanned by the basis vectors
-  corresponding to free variables. 
-\end{definicija}
-The input and the output space of a program $P$ are the minimal
-vector subspaces spanned by the standard basis vectors, such that the map $P_e$, 
-defined by the following commutative diagram 
+  For each program $P$ in the programming space $\F$, we define the \emph{input} or \emph{parameter space} $I_P<\VV$ and the
+  \emph{output space} $O_P<\VV$ to be the minimal vector sub-spaces spanned by
+  the standard basis vectors, such that the map $P_e$, defined by the following
+  commutative diagram 
 \begin{equation} 
     \label{eq:induced_map}
 \begin{tikzcd}
@@ -242,8 +205,23 @@ defined by the following commutative diagram
 \end{tikzcd}
   \end{equation}
 does not depend of the choice of the element 
-$\vec{f}\in F_P=(I_P+O_P)^\perp$. The map $P_e$ describes the actual effect of the
-program $P$, since it ignores the free memory. 
+$\vec{f}\in F_P=(I_P+O_P)^\perp$.
+
+The space $F_P=(I_P+O_P)^\perp$ is called \emph{free space} of the program $P$.
+
+\end{definicija}
+The variables $x_i$ corresponding to standard
+basis vectors spanning the parameter, output and free space are called
+\emph{paramters} or \emph{input variables}, \emph{output variables} and
+\emph{free variables} correspondingly. Free variables are those that are
+left intact by the program and have no influence on the final result other than
+their value itself. The output of the program depends only on the values
+of the input variables and consists of variables that have changed during
+the program. Input parameters and output values might overlap. 
+
+The map $P_e$ describes the actual effect of the
+program $P$ ignoring the free memory. 
+
 \section{Multivariate derivatives}
 \begin{definicija}[Derivative]
   Let $V,U$ be Banach spaces. The map $P:V\to U$ is differentiable at the point
@@ -304,7 +282,9 @@ derivative as a map $\D^{k-1}P: V\to U\otimes (V^*)^{\otimes k-1}$:
   definitions above can be done locally, which would introduce mostly technical difficulties.
 \end{opomba}
 Let $\e_1,\ldots,\e_n$ be a basis of $U$ and $x_1,\ldots x_m$ the basis of
-$V^*$. Then $\D^kP$  can be defined in terms of
+$V^*$. Denote by $P_i=x_i\circ P$ the $i-th$ component of the map
+$P$ according to the basis $\{\e_i\}$ of $U$.
+Then $\D^kP$  can be defined in terms of
 directional(partial) derivatives by the formula
 \begin{equation}\label{eq:d}
 	\partial^kP=\sum_{\forall_{i,\alpha}}\frac{\partial^k P_i}{\partial
