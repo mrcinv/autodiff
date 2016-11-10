@@ -94,10 +94,12 @@ basicstyle=\ttfamily
 
 
 \title{Operational calculus on programming spaces and generalized tensor networks}
-\author{Žiga Sajovic\footnote{\href{mail.to:ziga.sajovic@gmail.com}{ziga.sajovic@gmail.com}}, Martin Vuk}
-
+\author[fri]{Žiga Sajovic}\ead{ziga.sajovic@gmail.com}
+\author[fri]{Martin Vuk \corref{cor}}\ead{martin.vuk@fri.uni-lj.si}
+\cortext[cor]{Corresponding author}
+\address[fri]{University of Ljubljana, Faculty of Computer and Information
+  Science, \\ Večna pot 113, 1000 Ljubljana, Slovenia}
 \begin{document}
-\maketitle
 \begin{abstract}
 In this paper, we develop the theory of analytic virtual machines, that
 implement analytic programming spaces and operators acting upon them.
@@ -120,13 +122,11 @@ constructs a program that imposes that property upon any object.
 We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks. Expanding upon them, we study dynamics of computation through principles they induce into the system.
 
 \end{abstract}
+\maketitle
 
 \epigraph{The enchanting charms of this sublime science reveal themselves in all their beauty only to those who have the courage to go deeply into it.}{--- \textup{Carl F. Gauss}}
 
 
-\clearpage
-\tableofcontents
-\clearpage
 
 \section{Introduction}
 Programming holds the power of algorithmic control flow and freedom of expression, whose abstinence severely limits descriptiveness of closed form methods of \textit{pen and paper} mathematics, thus firmly cementing programming as the language of modern problem solving. Yet, a vibrant tradition of mathematics has existed since the dawn of mind, that remains, with the exception of combinatorics, largely untapped by computer science. 
