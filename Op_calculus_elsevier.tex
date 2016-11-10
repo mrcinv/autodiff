@@ -185,43 +185,6 @@ program in specific programming language.
   \end{itemize}  
 \end{definicija}
 
-Denote by $e_1,\ldots e_n$ a standard basis of the memory space $\VV$ and by
-$x_1,\ldots x_n$ the dual basis of $\VV^*$. The functions $x_i$ are coordinate
-functions on $\VV$ and correspond to individual locations(variables) in the
-program memory.
-
-\begin{definicija}
-  For each program $P$ in the programming space $\F$, we define the \emph{input} or \emph{parameter space} $I_P<\VV$ and the
-  \emph{output space} $O_P<\VV$ to be the minimal vector sub-spaces spanned by
-  the standard basis vectors, such that the map $P_e$, defined by the following
-  commutative diagram 
-\begin{equation} 
-    \label{eq:induced_map}
-\begin{tikzcd}
-  \VV \arrow{r}{P} & 
-  \VV \arrow{d}{\mathrm{pr}_{O_P}}\\
-  I_P \arrow[hook]{u}{\vec{i}\mapsto \vec{i}+\vec{f}} 
-  \arrow{r}{P_e}& O_P
-\end{tikzcd}
-  \end{equation}
-does not depend of the choice of the element 
-$\vec{f}\in F_P=(I_P+O_P)^\perp$.
-
-The space $F_P=(I_P+O_P)^\perp$ is called \emph{free space} of the program $P$.
-
-\end{definicija}
-The variables $x_i$ corresponding to standard
-basis vectors spanning the parameter, output and free space are called
-\emph{paramters} or \emph{input variables}, \emph{output variables} and
-\emph{free variables} correspondingly. Free variables are those that are
-left intact by the program and have no influence on the final result other than
-their value itself. The output of the program depends only on the values
-of the input variables and consists of variables that have changed during
-the program. Input parameters and output values might overlap. 
-
-The map $P_e$ describes the actual effect of the
-program $P$ ignoring the free memory. 
-
 \section{Differentiable programming spaces}
 To define spaces of differentiable programs, let us first recall some
 definitions from multivariate calculus.
@@ -290,8 +253,52 @@ directional(partial) derivatives by the formula
 \end{equation}
 
 \subsection{Differentiable programs}
-To each program $P:\VV\to \VV$ one can attach its effective map $P_e:I_P\to
-O_P$. The derivative of this map is of interest, when we speak about
+We want to be able to represent the derivatives of a computer program in an
+Euclidean virtual machine again as a program in the same euclidean virtual
+machine. We define three subspaces of the virtual memory space $\VV$, that
+describe how different parts of the memory influence the final result of the
+program.   
+
+Denote by $e_1,\ldots e_n$ a standard basis of the memory space $\VV$ and by
+$x_1,\ldots x_n$ the dual basis of $\VV^*$. The functions $x_i$ are coordinate
+functions on $\VV$ and correspond to individual locations(variables) in the
+program memory.
+
+\begin{definicija}
+  For each program $P$ in the programming space $\F<\VV^\VV$,
+  we define the \emph{input} or \emph{parameter space} $I_P<\VV$ and the
+  \emph{output space} $O_P<\VV$ to be the minimal vector sub-spaces spanned by
+  the standard basis vectors, such that the map $P_e$, defined by the following
+  commutative diagram 
+\begin{equation} 
+    \label{eq:induced_map}
+\begin{tikzcd}
+  \VV \arrow{r}{P} & 
+  \VV \arrow{d}{\mathrm{pr}_{O_P}}\\
+  I_P \arrow[hook]{u}{\vec{i}\mapsto \vec{i}+\vec{f}} 
+  \arrow{r}{P_e}& O_P
+\end{tikzcd}
+  \end{equation}
+does not depend of the choice of the element 
+$\vec{f}\in F_P=(I_P+O_P)^\perp$.
+
+The space $F_P=(I_P+O_P)^\perp$ is called \emph{free space} of the program $P$.
+\end{definicija}
+
+The variables $x_i$ corresponding to standard
+basis vectors spanning the parameter, output and free space are called
+\emph{paramters} or \emph{input variables}, \emph{output variables} and
+\emph{free variables} correspondingly. Free variables are those that are
+left intact by the program and have no influence on the final result other than
+their value itself. The output of the program depends only on the values
+of the input variables and consists of variables that have changed during
+the program. Input parameters and output values might overlap. 
+
+The map $P_e$ is called the \emph{effective map} of the program $P$ and
+describes the actual effect of the program $P$ on the memory
+ignoring the free memory. 
+
+The derivative of the effective map is of interest, when we speak about
 differentiability of computer programs. 
 \begin{definicija}[Automatically differentiable programs]
   A program $P:\VV\to \VV$ is \emph{automatically differentiable} if there exist an embedding
@@ -309,23 +316,27 @@ differentiable as a map $\VV\to\VV$. However only the derivative of program's
 effective map can be implemented as a program, since the memory space is limited to $\VV$. 
 
 Putting memory considerations aside, we propose an universal model of the memory
-space to be 
-$$\VV_\infty = \VV\otimes T(\VV^*) = \VV\oplus
-(\VV\otimes\VV^*)\oplus\ldots.$$
-We will call $\VV_\infty$ the \emph{universal virtual memory space} of a virtual computing machine. The term virtual memory is used as it is
-only possible to embed certain subspaces of $\VV_\infty$ into memory space $\VV$, making it similar to
+for differentiable programs.
+\begin{definicija}
+Let $(\VV,\F)$ be an Euclidean virtual machine and let  
+
+\begin{equation}
+\VV_\infty = \VV\otimes T(\VV^*) = \VV\oplus
+(\VV\otimes\VV^*)\oplus\ldots,\label{eq:virtual-memory}
+\end{equation}
+where $T(\VV^*)$ is the tensor algebra of the dual space $\VV^*$.
+We call $\VV_\infty$ the \emph{differentiable virtual memory} of a virtual
+computing machine $(\VV,\F)$.
+\end{definicija}
+The term virtual memory is used as it is only possible to embed certain subspaces of $\VV_\infty$ into memory space $\VV$, making it similar to
 virtual memory as a memory management technique.  
 
-We extend each program $P:\VV\to \VV$ to the map on universal memory space $\VV_\infty$ by setting the first component to $P$,
-and all other components to zero. Each element of $\VV_\infty$ can be written
-uniquely as a sum $\vv_0+T_1+T_2+\ldots$, where $\vv_0\in\VV$ and 
-$T_i\in\VV\otimes (\VV^*)^{\otimes i}$ and the extended map acts on it as follows   
-\begin{equation}
-  \label{eq:extension}
-  P(\vv_0+T_1+T_2+\ldots)=P(\vv_0)+0+0+\ldots.
-\end{equation}
+We can extend each program $P:\VV\to \VV$ to the map on universal memory space
+$\VV_\infty$ by setting the first component in the direct sum
+\eqref{eq:virtual-memory} to $P$,
+and all other components to zero.
 
-\section{Tensor algebra representation}
+\subsection{Tensor algebra representation}
 In order to apply the definition of derivative of a program to higher
 derivatives, we make use of the tensor algebra.
 Let $P:V\to U$ be a map on vector spaces. Motivated by the definition of higher
@@ -1491,7 +1502,7 @@ This may prove useful in future developments of the field, as neural networks cu
 State of the art methods for analyzing neural networks were generalized to general programs in the theory.
 We demonstrated how the developed operational calculus is employed in practice towards such a cause, and how through it countless methods from analysis can be trivially transfered to the subject, limited only by the imagination and inventiveness of the employer of the theory.
 
-\clearpage
+\section{References}
 \bibliographystyle{elsarticle-num}
 \nocite{*}
 \bibliography{biblio}
