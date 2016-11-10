@@ -394,6 +394,30 @@ derivatives
 $$V\xrightarrow{\D^k P} U\otimes (V^*)^{\otimes k}\hookrightarrow U\otimes
 T(V^*).$$
 
+Putting memory considerations aside, we propose an universal model of the memory
+for differentiable programs.
+\begin{definicija}
+Let $(\VV,\F)$ be an Euclidean virtual machine and let  
+
+\begin{equation}
+\VV_\infty = \VV\otimes T(\VV^*) = \VV\oplus
+(\VV\otimes\VV^*)\oplus\ldots,\label{eq:virtual-memory}
+\end{equation}
+where $T(\VV^*)$ is the tensor algebra of the dual space $\VV^*$.
+We call $\VV_\infty$ the \emph{differentiable virtual memory} of a virtual
+computing machine $(\VV,\F)$.
+\end{definicija}
+The term virtual memory is used as it is only possible to embed certain subspaces of $\VV_\infty$ into memory space $\VV$, making it similar to
+virtual memory as a memory management technique.  
+
+We can extend each program $P:\VV\to \VV$ to the map on
+universal memory space $\VV_\infty$ by setting the first component in the direct sum
+\eqref{eq:virtual-memory} to $P$, and all other components to zero. Similarly
+derivatives $\D^k P$ can be also seen as mapping $\VV$ to $\VV_\infty$ by
+setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
+and all others to zero. 
+
+
 \section{Operational calculus on programming spaces}\label{sec:operational}
 
 The derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
