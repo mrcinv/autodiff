@@ -185,8 +185,8 @@ program in specific programming language.
   \end{itemize}  
 \end{definicija}
 
-\section{Differentiable programming spaces}
-To define spaces of differentiable programs, let us first recall some
+\section{Differentiable programs}
+To define differentiable programs, let us first recall some
 definitions from multivariate calculus.
 \begin{definicija}[Derivative]
   Let $V,U$ be Banach spaces. The map $P:V\to U$ is differentiable at the point
@@ -310,13 +310,6 @@ differentiability of computer programs.
     \label{eq:program_derivative}
     P_e\oplus \D P_e:I_P\rightarrow O_P\oplus (O_P\otimes I^*).
   \end{equation}
-\end{definicija}
-
-If a program $P:\VV\to \VV$ is automatically differentiable then it is also
-differentiable as a map $\VV\to\VV$. However only the derivative of program's
-effective map can be implemented as a program, since the memory space is limited to $\VV$. 
-\begin{definicija}[Higher derivatives of the programs]
-  \label{def:program_derivative_higher}
   A program $P:\VV\to \VV$ is \emph{automatically differentiable of order $k$}
   if there exist a program $\sumd_k P:\VV\to \VV$,
   such that its effective map is the map
@@ -325,77 +318,43 @@ effective map can be implemented as a program, since the memory space is limited
     P_e\oplus \D P_e\oplus \ldots \D^k P_e:I_P\rightarrow O_P\oplus \left(O_P\otimes I^*\right)\oplus\ldots \left( O_P\otimes \left( I_p^*\right)^{k\otimes} \right).
   \end{equation}
 \end{definicija}
+
+If a program $P:\VV\to \VV$ is automatically differentiable then it is also
+differentiable as a map $\VV\to\VV$. However only the derivative of program's
+effective map can be implemented as a program, since the memory space is limited to $\VV$. 
 To be able to differentiate a program to the $k$-th order, we have to calculate
 and save all the derivatives of the orders $k$ and less.
-\subsection{Tensor algebra expansion of the virtual memory space}
-Let $P:V\to U$ be a map on vector spaces. Motivated by the definitions
-\ref{def:program_derivative} and  \ref{def:program_derivative_higher}, we define
+\section{Differentiable programming spaces}
+\subsection{Virtual memory space for differentiable programs}
+Motivated by the Definition
+\ref{def:program_derivative}, we define
 virtual memory for differentiable programs  as a sequence of vector spaces with
-recursive formula
+the recursive formula
 \begin{eqnarray}
   \label{eq:universal_space}
-  U_0 &=& U\\
-  U_k &=& U_{k-1}+\left(U_{k-1}\otimes V^*\right).
+  \VV_0 &=& \VV\\
+  \VV_k &=& \VV_{k-1}+\left(\VV_{k-1}\otimes \VV^*\right).
 \end{eqnarray}
-Note that the sum is not direct, since some of the subspaces of $U_{k-1}$ and
-$U_{k-1}\otimes V^*$ are naturally isomorphic and will be identified.
+Note that the sum is not direct, since some of the subspaces of $\VV_{k-1}$ and
+$\VV_{k-1}\otimes \VV^*$ are naturally isomorphic and will be
+identified\footnote{The spaces $\VV\otimes(\VV^*)^{\otimes (j+1)}$ and
+  $\VV\otimes (\VV^*)^{\otimes j}\otimes \VV^*$ are naturally isomorphic and
+  will be identified in the sum.
+}.
 
-The formula can be illustrated as follows. 
-To implement the derivative of a map $P:V\to U$, the space $U\otimes V^*$ has to
-be allocated along with original co-domain $U$.  The space $U\oplus
-(U\otimes V^*)$ has to be embedded into the memory space $\VV$.
-Denote $U_k$ the space needed for $k$-th order derivative. The program for
-$k-th$ derivative would implement the map $V\to U_k$. For the derivative of this map
-the space $U_k+ (U_k\otimes V^*)$ would have to be allocated. This sum
-however would not be direct, since some of the subspaces of $U_k$ coincide with
-subspaces of $U_k\otimes V^*$.
-\begin{trditev}
   The space
   \begin{equation}
     \label{eq:k-th-virtual-space}
-    U_k = U\otimes \left(K\oplus V^* \oplus (V^*\otimes V^*)\oplus\ldots
-      (V^*)^{\otimes k}\right) = U\otimes T_k(V^*)
+    \VV_k = \VV\otimes \left(K\oplus \VV^* \oplus (\VV^*\otimes \VV^*)\oplus\ldots
+      (\VV^*)^{\otimes k}\right) = \VV\otimes T_k(\VV^*)
   \end{equation}
   satisfies the recursive formula (\ref{eq:universal_space}), where the space
-  $T_k(V^*)$ is a subspace of \emph{tensor algebra} $T(V^*)$, consisting of linear
-  combinations of tensors of rank less or equal $k$.
-\end{trditev}
-
-\begin{proof}
-  We prove the claim by induction. The base of induction is trivial, for the
-  induction step we first find that:
-  \begin{multline*}
-    U\otimes T_k(V^*)=U\otimes(K\oplus V^*\oplus\ldots (V^*)^{\otimes (k+1)})=\\
-    U\oplus (U\otimes V^*)\oplus\ldots (U\oplus U\otimes(V^*)^{\otimes (k+1)})
-  \end{multline*}
-  on the other hand, using recursive formula
-  \begin{multline}
-    U_k+(U_k\otimes V^*) = \left( U\oplus (U\otimes V^*)\oplus\ldots (U\otimes(V^*)^{\otimes k})\right) + \\
-    \left((U\otimes V^*) \oplus (U\otimes V^*\otimes V^*) \oplus\ldots
-      (U\otimes(V^*)^{\otimes k}\otimes V^*)\right)
-  \end{multline}
-  However spaces $U\otimes(V^*)^{\otimes (j+1)}$ and $U\otimes (V^*)^{\otimes
-    j}\otimes V^*$ are naturally isomorphic and will be identified, leaving
-  \begin{equation}
-    U_k+(U_k\otimes V^*) = U\oplus (U\otimes V^*)\oplus\ldots (U\otimes(V^*)^{\otimes (k+1)})
-  \end{equation}
-\end{proof}
-The spaces $U_k$ form an increasing sequence of subspaces (a flag) of the space $U\otimes
-T(V^*)$
-\begin{equation}
-  \label{eq:flag}
-  U_0<U_1<U_2<\ldots < U\otimes T(V^*).
-\end{equation}
-This enables us to define all the derivatives as maps with
-the same domain and codomain $V\to U\otimes T(V^*)$. Indeed for any map $P:V\to
-U$, one can define a map to $U\otimes T(V^*)$ as
-$$V\xrightarrow{P}U\hookrightarrow U\otimes T(V^*)$$ and similarly  for all of its
-derivatives
-$$V\xrightarrow{\D^k P} U\otimes (V^*)^{\otimes k}\hookrightarrow U\otimes
-T(V^*).$$
-
-Putting memory considerations aside, we propose an universal model of the memory
-for differentiable programs.
+  $T_k(\VV^*)$ is a subspace of \emph{tensor algebra} $T(\VV^*)$, consisting of
+  linear combinations of tensors of rank less or equal $k$. This construction
+  enables us to define all the derivatives as maps with 
+  the same domain and codomain $\VV\to \VV\otimes T(\VV^*)$.
+  Putting memory considerations aside, we propose an universal model of the
+  memory for differentiable programs.
 \begin{definicija}
 Let $(\VV,\F)$ be an Euclidean virtual machine and let  
 
@@ -417,8 +376,8 @@ derivatives $\D^k P$ can be also seen as mapping $\VV$ to $\VV_\infty$ by
 setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
 and all others to zero. 
 
-
 \section{Operational calculus on programming spaces}\label{sec:operational}
+\subsection{Differentiable programming spaces}
 
 The derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
  T(\VV^*)$\footnote{the operator $\D$ may be defined partially for other maps as
