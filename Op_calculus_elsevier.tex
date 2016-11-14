@@ -1,9 +1,10 @@
-\documentclass[preprint]{elsarticle}
+\documentclass[smallcondensed]{svjour3}
+%\documentclass[preprint]{elsarticle}
 
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage{amsthm}
+%\usepackage{amsthm}
 \usepackage{caption}
 \usepackage{bbm}
 \usepackage[utf8]{inputenc}
@@ -73,8 +74,8 @@ basicstyle=\ttfamily
 \newtheorem{trditev}{Claim}[section]
 \newtheorem{izrek}{Theorem}[section]
 \newtheorem{opomba}{Remark}[section]
-\newtheorem{corollary}{Corollary}[section]
-\newtheorem{proposition}{Proposition}[section]
+%\newtheorem{corollary}{Corollary}[section]
+%\newtheorem{proposition}{Proposition}[section]
 
 
 \usepackage[hidelinks]{hyperref}
@@ -93,13 +94,13 @@ basicstyle=\ttfamily
 
 
 
-\title{Operational calculus on programming spaces and generalized tensor networks}
-\author[fri]{Žiga Sajovic}\ead{ziga.sajovic@gmail.com}
-\author[fri]{Martin Vuk \corref{cor}}\ead{martin.vuk@fri.uni-lj.si}
-\cortext[cor]{Corresponding author}
-\address[fri]{University of Ljubljana, Faculty of Computer and Information
-  Science, \\ Večna pot 113, 1000 Ljubljana, Slovenia}
 \begin{document}
+\title{Operational calculus on programming spaces and generalized tensor networks}
+\author{Žiga Sajovic \and Martin Vuk}
+\institute{University of Ljubljana, Faculty of Computer and Information
+  Science, \\ Večna pot 113, 1000 Ljubljana, Slovenia \\
+\email{martin.vuk@fri.uni-lj.si}}
+\maketitle
 \begin{abstract}
 In this paper, we develop the theory of analytic virtual machines, that
 implement analytic programming spaces and operators acting upon them.
@@ -120,19 +121,17 @@ Theory opens new doors in program analysis, while fully retaining algorithmic co
 procedure which takes a program that tests an object for a property and
 constructs a program that imposes that property upon any object. 
 We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks. Expanding upon them, we study dynamics of computation through principles they induce into the system.
+\keywords{
+  programming spaces\and
+  operational calculus\and
+  differentiable programs\and
+  neural networks\and
+  tensor calculus\and
+  program analysis
+}
+  \subclass{47L99\and 47-04 \and 46N99\and  26B40 \and 26B12}
 
 \end{abstract}
-\begin{keyword}
-  programming spaces\sep
-  operational calculus\sep
-  differentiable programs\sep
-  neural networks\sep
-  tensor calculus\sep
-  program analysis
-
-  \MSC[2010]  47L99\sep 47-04 \sep 46N99\sep  26B40 \sep 26B12
-\end{keyword}
-\maketitle
 
 \epigraph{The enchanting charms of this sublime science reveal themselves in all their beauty only to those who have the courage to go deeply into it.}{--- \textup{Carl F. Gauss}}
 
