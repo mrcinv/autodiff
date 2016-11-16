@@ -105,11 +105,13 @@ basicstyle=\ttfamily
 In this paper, we develop the theory of analytic virtual machines, that
 implement analytic programming spaces and operators acting upon them.
 
-A programming space is a subspace of the function space of maps on the virtual
-memory. We can construct a differential operator on programming spaces as we 
-extend the virtual memory to a tensor product of a virtual space with tensor algebra
-of its dual. Extended virtual memory serves by itself as an algebra of programs, giving the expansion of the original program as an infinite tensor series at
-program's input values. 
+A programming space is a subspace of the function space of maps on a vector
+space serving as a virtual memory space. We construct an operator of
+differentiation on programming spaces by extending the virtual memory to a
+tensor product of the virtual memory space with tensor algebra 
+of its dual. The extended virtual memory serves by itself as an algebra of 
+programs, giving the expansion of the original program as an infinite tensor
+series at program's input values.  
 
 We present a theory of operators on programming spaces, that enables analysis of programs
 and computations on the operator level, which favors general implementation. Theory enables
@@ -376,26 +378,19 @@ setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
 and all others to zero. 
 \subsection{Differentiable programming spaces}
 
-Let us define the following function spaces.
- \begin{equation}\label{eq:F^n}
- 	\F^n=\{f:\VV\to \VV\otimes(\VV^*)^{n\otimes}\}
- \end{equation}
- and
+Let us define the following function spaces:
  \begin{equation}\label{eq:F_n}
  	\F_n=\{f:\VV\to \VV\otimes T_n(\VV^*)\}
  \end{equation}
-All of these function spaces are can be seen as subspaces of $\F_\infty=\{f:\VV\to \VV\otimes
-T(\VV^*)\}$. The space $\F_n$ is direct a sum of $\F^k$ for $k\le n$ and
-$\F_n<\F_m$ if $n<m$.  
-
-The derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
+All of these function spaces are can be seen as sub spaces of $\F_\infty=\{f:\VV\to \VV\otimes
+T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The Fréchet derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
  T(\VV^*)$\footnote{the operator $\D$ may be defined partially for other maps as
-   well.}. We denote this operator $\D$. If we look at a map $P:\VV\to \VV$ as a map
- to $U\otimes T(V^*)$, then the image of $P$ by operator $\D$ is the first
- derivative, while the higher order derivatives are just powers of operator $\D$
- applied to $P$. Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F^n}$
+   well, but we will handle this case later.}. We denote this operator $\D$. The image of any map
+ $P:\VV\to \VV$ by operator $\D$ is the first derivative, while the higher order
+ derivatives are just powers of operator $\D$ applied to $P$.
+ Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F_n}$
  \begin{equation}\label{eq:toFn+k}
- \D^k:\F^n\to\F^{n+k}
+ \D^k:\F^n\to\F^{n+k}.
  \end{equation}
  
  
@@ -404,35 +399,37 @@ The derivative defines an operator on the space of smooth maps $\VV\to \VV\otime
  	\begin{equation}\label{eq:P}
  	\D\dP_0\subset\dP_0\otimes T(\VV^*)
  	\end{equation}
- 	When all elements of $\dP_0$ are analytic, we denote $\dP_0$ as an \emph{analytic programming space}.
+ 	When all elements of $\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}.
  \end{definicija}
 
 \begin{izrek}\label{izr:P}
 	Any differentiable programming space $\dP_0$ is an
-  infinitely differentiable programming space, such that
+  infinitely differentiable programming space, meaning that
 	\begin{equation}\label{eq:P_n}
 	 		\D^k\dP_0\subset\dP_0\otimes T(\VV^*)
 	 	\end{equation}
 for any $k\in\mathbb{N}$. If all elements of $\dP_0$ are analytic, than so are the elements of $\dP_n$.
 \end{izrek}
-\begin{proof} By Definition \ref{def:dP}
-$$\D\dP_0\subset\dP_0\otimes T(\VV^*)$$
-	Induction step is trivial. For all 	$\forall_{P\in\dP_0}$,
-  $\D^n\dP_0\subset\dP_0\otimes T(\VV^*)$, where
-  $\alpha$ is multiindex denoted the component of $T(\VV^*)$ and $i$ is the
-  index denoting the component of $\VV$.
+\begin{proof} By induction on order $k$. For $k=1$ the claim holds by Definition
+  \ref{def:dP}. Assume	$\forall_{P\in\dP_0}$,
+  $\D^n\dP_0\subset\dP_0\otimes T(\VV^*)$. Denote by $P_{\alpha,k}^i$ the
+  component of the $k$-th derivative for a multiindex $\alpha$  denoting the
+  component of $T(\VV^*)$ and an index $i$ denoting the component of $\VV$.
 	\begin{equation}\label{eq:inductionStep}
 \D^{n+1}P_{\alpha,k}^i=\D(\D^n P^i_\alpha)_k\land(\D^n P^i_\alpha)\in\dP_0\implies \D(\D^n P^i_\alpha)_k\in \dP_0\otimes T(\VV^*)
 	\end{equation}
 	$$\implies$$
 	$$\D^{n+1}\dP_0\subset\dP_0\otimes T(\VV^*)$$
+Thus by induction, the claim \eqref{eq_P_n} holds for all $k\in \mathbb{N}$. 
 \end{proof}
 
-We seek to generalize such notions of differentiable programing space to spaces
+We seek to generalize notions of differentiable programing space to spaces
 of higher order differentiable programs.
 
 \begin{definicija}\label{def:P_n}
-Let $\dP_n<\F_n$ be the space spanned by $\DD^n\dP_0$ over $K$.
+Let $\dP_0$ be a differentiable programming space and let $\dP_n<\F_n$ be the
+space spanned by $\DD^n\dP_0$ over $K$. We call $\dP_n$ differentiable
+programming space of order $n$.
  \end{definicija}
  
  \begin{izrek}\label{izr:P_n}
