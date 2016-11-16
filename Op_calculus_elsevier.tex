@@ -98,6 +98,7 @@ basicstyle=\ttfamily
 \author{Žiga Sajovic \and Martin Vuk}
 \institute{University of Ljubljana, Faculty of Computer and Information
   Science, \\ Večna pot 113, 1000 Ljubljana, Slovenia \\
+  \email{ziga.sajovic@gmail.com}\\
 \email{martin.vuk@fri.uni-lj.si}}
 \maketitle
 \begin{abstract}
@@ -452,7 +453,7 @@ which is a completion of the tensor algebra $T(\VV^*)$ in suitable topology.
 
 
 
-By Corollary $\ref{izr:dP}$ we may represent calculation of derivatives of the
+By Theorem $\ref{izr:P_n}$ we may represent calculation of derivatives of the
 map $P:\VV\to \VV$, with only one mapping $\sumd$. We define the operator
 $\sumd_n$ as a direct sum of operators
  
@@ -652,7 +653,7 @@ which enables efficient implementation.
  \end{izrek}
  
  \begin{proof}
- It is trivial to show that $\frac{d^n}{dh^n}\text{(LHS)}|_{h=0}=\frac{d^n}{dh^n}\text{(RHS)}|_{h=0}$. Then $\text{LHS}$ and $\text{RHS}$ as functions
+ We will show that $\frac{d^n}{dh^n}\text{(LHS)}|_{h=0}=\frac{d^n}{dh^n}\text{(RHS)}|_{h=0}$. Then $\text{LHS}$ and $\text{RHS}$ as functions
  of $h$ have coinciding Taylor series and are therefore equal.\\
   $\implies$
   $$\lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^ne^{h\D}(p_1\cdot p_2)=\lim\limits_{\lVert h\rVert\to 0}\D^ne^{h\D}(p_1\cdot p_2)$$
