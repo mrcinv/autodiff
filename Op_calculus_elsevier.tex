@@ -1,6 +1,5 @@
 \documentclass[smallcondensed]{svjour3}
 %\documentclass[preprint]{elsarticle}
-
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -122,7 +121,7 @@ We generalize neural networks by constructing general tensor networks, that natu
 Theory opens new doors in program analysis, while fully retaining algorithmic control flow. We develop a general
 procedure which takes a program that tests an object for a property and
 constructs a program that imposes that property upon any object. 
-We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks. Expanding upon them, we study dynamics of computation through principles they induce into the system.
+We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks.
 \keywords{
   programming spaces\and
   operational calculus\and
@@ -157,7 +156,7 @@ Analytic virtual machines fully integrate control structures as shown in Section
 We generalize neural networks by constructing general tensor networks in Section \ref{sec:generalTensorNet} and reveal their connection with programs in Section \ref{sec:progAsNet}. In Section \ref{sec:transToNet} we derive transformations of arbitrary programs to general tensor networks, providing a meaningful way of network initialization. These tensor networks are freely composed with general programs, as revealed in Section \ref{sec:compoNetProg}, allowing algorithmic constructions of layers performing specific task, like memory management \cite{LSTM}\cite{netRam}. All such constructs are trainable (as is their training process itself) and adhere to the operational calculus presented in this paper. This is demonstrated in Section \ref{sec:trainNet}, enabling analytic study through the theory.
 
 Theory offers new insights into programs, as we demonstrate how to probe their inner structure in Section \ref{sec:Analysis}, revealing what actions properties of the domain most react to in Section \ref{sec:studyProperties}. This enables us to alter data by imposing some property it lacks upon it.
-We generalize state of the art methods for analyzing neural networks \cite{DeepDream} to general programs in Section \ref{sec:propertyMeasure} and provide a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. Exploring procedures as systems inducing change upon objects in this space, we study dynamics of computation as fields and the principles they induce upon the system, attaining valuable tools for general problem solving in Section \ref{sec:dynamComp}.
+We generalize state of the art methods for analyzing neural networks \cite{DeepDream} to general programs in Section \ref{sec:propertyMeasure} and provide a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
 
 \section{Computer programs as maps on a vector space}
 We will model computer programs as maps on a vector space. If
@@ -529,10 +528,7 @@ The tuple $M=\langle \VV,\dP_0\rangle$ is an analytic, infinitely  differentiabl
     infinitely differentiable virtual machine.
   \end{definicija}
 Algebraic manipulations these machines enable are employed throughout the paper, revealing analytic insights in Section \ref{sec:Analysis}.  All analytic virtual machines fully integrate usage of control structures, as it is demonstrated and proven in Section \ref{sec:control}, thus retaining algorithmic control flow and the expressive power it possesses.
-\begin{opomba}
-By employing analytic virtual machines, we can construct analytic procedures, viewing algorithms in a new light. One can start incorporating variable parameters into algorithm design, revealing the true nature of hyper-parameters often used in practice.
 
-\end{opomba}
 \subsubsection{Implementation}
 
 An illustrative example of the implementation of the theory is available on github \cite{dC++}. Implementation closely follows theorems and derivations of this paper, intended as an educational guide.
@@ -549,8 +545,11 @@ using the developed operational calculus. A paper \cite{dC++Paper} explaining th
 
  \subsection{Tensor series expansion}\label{sec:Vrsta}
  
- Expansion into a series offers valuable insights into programs through methods of analysis, as explored in the coming sections. But before tackling analysis, we motivate the following with an immediate example. Suppose an algorithm of high time complexity. As speed is of importance, an approximation would suffice. Using the described mechanics, we may linearize the program. We choose a $v_0\in\VV$ and linearize $P'=P(v_0)+\D P(v_0)\cdot(v-v_0)$. The latter has to be done only once.
- Locally, the image of the linearization is a good approximation of the original program. To extend this radius, we would like to expand said program into a series.
+ Expansion into a series offers valuable insights into programs through methods of analysis, as explored in the coming sections.
+ 
+  \begin{trditev}\label{izr:linearnaNeodvisnost}
+   The set $\DD^n=\{\partial^k;\quad 0\le k\le n\}$ represents linearly independent vectors over a field $K$.
+  \end{trditev}
  
  By Claim $\ref{izr:linearnaNeodvisnost}$  there exists a space spanned by the set $\DD^n=\{\D^k;\quad 0\le k\le n\}$ over a field $K$. Thus, the expression
  \begin{equation}
@@ -654,7 +653,7 @@ which enables efficient implementation.
  \end{izrek}
  
  \begin{proof}
- We will show that $\frac{d^n}{dh^n}\text{(LHS)}|_{h=0}=\frac{d^n}{dh^n}\text{(RHS)}|_{h=0}$. Then $\text{LHS}$ and $\text{RHS}$ as functions
+ It is trivial to show that $\frac{d^n}{dh^n}\text{(LHS)}|_{h=0}=\frac{d^n}{dh^n}\text{(RHS)}|_{h=0}$. Then $\text{LHS}$ and $\text{RHS}$ as functions
  of $h$ have coinciding Taylor series and are therefore equal.\\
   $\implies$
   $$\lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^ne^{h\D}(p_1\cdot p_2)=\lim\limits_{\lVert h\rVert\to 0}\D^ne^{h\D}(p_1\cdot p_2)$$
@@ -985,7 +984,7 @@ with correct application of the theorems developed in this paper, we may drastic
 
 \begin{figure}[!h]
 \centering
-\begin{tikzpicture}[node distance = 2cm, auto]
+\begin{tikzpicture}[scale=0.6, every node/.style={scale=0.6},node distance = 2cm, auto]
     \node [block] (p1) {$P_1$};
     \node [block,right of=p1,node distance=5cm] (ep1) {$e^\D(P_1)$};
     \node [block,right of=ep1,node distance=5cm] (tep1) {$T_{F\X}\cdot e^\D(P_1)$};
@@ -1380,43 +1379,6 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
    When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific layer in the network, with neurons being its variable parameters, than the procedure achieves what Google's Deep Dream Project \cite{DeepDream} does. However our procedure may be applied to any program $T\in\dP_0$. As neural networks are just programs contained in the programming space $\dP$, our view gazes over a broader landscape of programs it can be utilized on.
    
-\subsection{Dynamics of computation}\label{sec:dynamComp}
-
-As each procedure is revealed to be a system existing as an object in virtual space, its computational capability becomes synonymous with shape. For example, trained neural network can be viewed as an element of a high dimensional manifold in this space and training is just a path in this manifold.
-In physics there is a strong connection between shape of the inhabiting space and physical principles it imposes upon objects traversing it \cite{GeneralCovariance}. Similarly, each procedure is a system entered by an object as an input and exited as an output upon undergoing change. The process of computation can be viewed as evolutions in phase space.
-With the developed theory, we are able to impose more general principles the procedures have to adhere to. Moreover we can use our newfound ability to mold procedures according to imposed principles.
-
-\subsubsection{Heuristics as principles}
- 
- Assume we have some a priori knowledge of how the process is to change the object, some previously known heuristic $H$ known from practice. We study the change of the state of the virtual memory through the program as a physical system, describing a point in a multidimensional phase space. %slika
- The heuristic $H$ is equivalent to having knowledge on the path of change $\gamma$, describing the change the input undergoes while going through the program. Heuristic $H$ might be some measure on the neighborhood of the intermediate state or a direction, for input objects at a particular location $l_i$ in the virtual memory. We can express the change the heuristic $H$ locally exerts with an equation describing the desired local behavior of the procedure. 
-Thus, $H$ represents a local principle we wish to impose into the underlying system. We denote the fact the system obeys the principle $H$ by $P\in H$. Our aim is an algorithm $A$ that molds the system in some way to impose the principle into it.
-\begin{equation}\label{eq:impose}
-A:P\notin H\to P\in H
-\end{equation}
-
-Similar to Algorithm $\ref{alg:appoint}$, we probe the system represented by procedure $P\in\dP_0$. By knowing from practice, or otherwise, at which locations $l_i$ of the input space, the effects of heuristic $H_i$ should be present, we maximize the action of the procedure $P$ in the neighborhood of $l_i$. This effectively means that objects in the neighborhood of location $l_i$ are affected by the principle $H_i$.
-Let
-\begin{equation}
-P=P_n\circ P_{n-1}\circ\cdots\circ P_1
-\end{equation}
-be the procedure representing the system \footnote{the program could just as easily be piecewise-defined as in $\eqref{eq:zlrprk_splosno}$, by a specific $P_i$ containing a control structure}, with $P_i=p_k\circ\cdots\circ p_1$ being the conceptual step treated by heuristic $H$. Again, we let $P^i_k=P_i\circ\cdots\circ P_k$. Directions are usually modeled by first derivatives, and attractions by second derivatives, so lets assume the heuristic $H$ employs both. 
-Assuming $H$ needs to be once differentiable, with itself containing first and second derivatives of $P$, we need to employ the operator $e^\D_3$. Using Corollary \ref{cor:extraxtDerivatives}, once differentiable first and second derivatives with respect to parameters $p$ are extracted by
-\begin{equation}
-P^{i\prime}_1=\proj_{\{1,\D\}}\left(\phi\circ e^{\D_{p}}_3(P^i_1)\right)\in\dP_1
-\end{equation}
-\begin{equation}
-P^{i\prime\prime}_1=\phi^2\circ e^{\D_p}_3(P_i)\in\dP_1
-\end{equation}
-where $\phi$ is the reduction of order map of Theorem $\ref{izr:reductionMap}$. Here we project over the subspace spanned by $\{1,\D\}$ over $K$, as coefficients are required. As both are once differentiable, so is the heuristic $H$ taking them as input.
-\begin{equation}
-H^\prime=e^{\D_p}_1(H)\circ(P^{i\prime}_1,P^{i\prime\prime}_1)\in\dP_1
-\end{equation}
-
-By an algorithm similar to Algorithm \ref{alg:appoint}, we can derive a procedure $P$, whose conceptual step $P_i$ maximizes action of the principle $H$ upon the input objects inhabiting the virtual memory.
-
-By interpreting heuristics as principles, we can improve any part of the program, at which the principle can be applied. This way we can change parts of the program as we search for a solution, improving the program itself. By noting receptiveness to a specific principle (heuristics) we might gain new knowledge about the problem we are trying to solve.
-
 \section{Conclusions}
 
 Existence of a program is embedded in a virtual reality, forming a system of objects undergoing change in a virtual space. Just as the reality inhabited by us is being studied by science, revealing principles and laws, so can the virtual reality inhabited by programs. Yet here lies a tougher task, as the laws of the system are simultaneously observed and constructed; the universe is bug-free, up to philosophic precision, while our programs are not. This reinforces the need for a language capable of not only capturing, but also constructing digital phenomena, a feat demonstrated by the theory presented in this paper. 
