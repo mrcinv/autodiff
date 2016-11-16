@@ -401,6 +401,15 @@ T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The 
  	When all elements of $\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}.
  \end{definicija}
 
+We seek to generalize notions of differentiable programing space to spaces
+of higher order differentiable programs.
+
+\begin{definicija}\label{def:P_n}
+Let $\dP_0$ be a differentiable programming space. The space $\dP_n<\F_n$
+spanned by $\DD^n\dP_0$ over $K$ is called differentiable
+programming space of order $n$.
+ \end{definicija}
+ 
 \begin{izrek}\label{izr:P}
 	Any differentiable programming space $\dP_0$ is an
   infinitely differentiable programming space, meaning that
@@ -422,19 +431,11 @@ for any $k\in\mathbb{N}$. If all elements of $\dP_0$ are analytic, than so are t
 Thus by induction, the claim \eqref{eq:P_n} holds for all $k\in \mathbb{N}$. 
 \end{proof}
 
-We seek to generalize notions of differentiable programing space to spaces
-of higher order differentiable programs.
 
-\begin{definicija}\label{def:P_n}
-Let $\dP_0$ be a differentiable programming space and let $\dP_n<\F_n$ be the
-space spanned by $\DD^n\dP_0$ over $K$. We call $\dP_n$ differentiable
-programming space of order $n$.
- \end{definicija}
- 
  \begin{izrek}\label{izr:P_n}
  	Function space $\dP_n:\VV\to \VV\otimes T(\VV^*)$ can be embedded into the tensor
-  product of the function space $\dP_0:\VV\to \VV$ and the subspace $T_n(\VV^*)$
-  tensor algebra of the dual od the virtual space $\VV$. 
+  product of the function space $\dP_0:\VV\to \VV$ and the subspace $T_n(\VV^*)$ of
+  tensor algebra of the dual od the virtual space $\VV$.
  \end{izrek}
  
  \begin{proof} Follows directly from the proof of Theorem $\ref{izr:P}$ and Corollary $\ref{izr:dP}$ through argument $\eqref{eq:inductionStep}$.
