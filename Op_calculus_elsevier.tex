@@ -471,10 +471,9 @@ The operator $\sumd_n$ satisfy the recursion formula.
     \sumd_{k+1}=1+\D\sumd_{k},
   \end{equation}
 that can be used to recursively construct programming spaces of arbitrary order
-from first order differentiable programming space $\dP_1$.
-       
+from first order differentiable programming space $\dP_1$.       
     $\sumd_n\dP_n\subset\dP_0\otimes T_n(\VV^*)$
-     holds by Theorem $\ref{izr:P_n}$, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. Following $\eqref{eq:potenca(1+d)}$ and the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, it is evident that only explicit knowledge of the operator $\sumd_1$ is required.
+     holds by Corollary $\ref{izr:P_n}$, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. Following $\eqref{eq:potenca(1+d)}$ and the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, it is evident that only explicit knowledge of the operator $\sumd_1$ is required.
         
        \begin{opomba}\label{rem:vTen}
        Maps $\VV\otimes T(\VV^*)\to \VV\otimes T(\VV^*)$ are constructible using
@@ -621,10 +620,8 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  
  The image of the contraction is an element of the original virtual space $\VV^i$. Independence of the operator $(\ref{eq:specProg})$ from a coordinate system, translates to independence in execution. Thus the expression $(\ref{eq:tenzorVrsta})$ is invariant to the point in execution of a program, a fact we explore later on.  
  
- Theorem $\ref{izr:P_n}$ through \eqref{eq:P_algebra} implies
-     \begin{equation}
-     	e^{h\D}(\dP_0)\subset\dP_0\otimes \T(\VV^*)
-     \end{equation}      
+ Corollary $\ref{izr:P_n}$ through \eqref{eq:P_algebra} implies
+     	$e^{h\D}(\dP_0)\subset\dP_0\otimes \T(\VV^*)$      
 which enables efficient implementation.
  
  \begin{izrek}\label{izr:prod}
@@ -639,10 +636,8 @@ which enables efficient implementation.
  We will show that $\frac{d^n}{dh^n}\text{(LHS)}|_{h=0}=\frac{d^n}{dh^n}\text{(RHS)}|_{h=0}$. Then $\text{LHS}$ and $\text{RHS}$ as functions
  of $h$ have coinciding Taylor series and are therefore equal.\\
   $\implies$
-  $$\lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^ne^{h\D}(p_1\cdot p_2)=\lim\limits_{\lVert h\rVert\to 0}\D^ne^{h\D}(p_1\cdot p_2)$$
-  $$\implies$$
   \begin{equation}\label{eq:Leibnitz1}
-  \D^n(p_1\cdot p_2)
+  \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^ne^{h\D}(p_1\cdot p_2)=\lim\limits_{\lVert h\rVert\to 0}\D^ne^{h\D}(p_1\cdot p_2)=\D^n(p_1\cdot p_2)
   \end{equation}
   $\impliedby$
   $$\lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\Big(e^{h\D}(p_1)\cdot e^{h\D}(p_2)\Big)=\lim\limits_{\lVert h\rVert\to 0}\sum\limits_{k=0}^{n}{n\choose k}\D^{n-k}e^{h\D}(p_1)\cdot \D^ke^{h\D}(p_2)$$
@@ -679,17 +674,13 @@ which enables efficient implementation.
  $$\exp(\D_fe^{h\D_g})=\exp\left(\D_f\sum\limits_{i=0}^{\infty}\frac{(h\D_g)^i}{i!}\right)=\prod_{i=1}^{\infty}e^{\D_f\frac{(h\D_g)^i}{i!}}\Big(e^{\D_f}\Big)$$
  $$\implies$$
  $$\exp(\D_fe^{h\D_g})(g,f)=\sum\limits_{\forall_n}h^n\sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g)}{l!}\Big)^k\frac{1}{k!}\Big(\Big(e^{\D_f}\Big)f\Big)$$
- where $\lambda(n)$ stands for the partitions of $n$.
- $$\lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\lim\limits_{\lVert h\rVert\to 0}\sum\limits_{\forall_m}n!h^{n-m}\sum\limits_{\lambda(m)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g)}{l!}\Big)^k\frac{1}{k!}\Big(\Big(e^{\D_f}\Big)f\Big)$$
- $$\implies$$
+ where $\lambda(n)$ stands for the partitions of $n$. Thus
  \begin{equation}\label{eq:dComposite}
- \sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g)}{l!}\Big)^k\frac{n!}{k!}\Big(\Big(e^{\D_f}\Big)f\Big)
+ \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g)}{l!}\Big)^k\frac{n!}{k!}\Big(\Big(e^{\D_f}\Big)f\Big)
  \end{equation}
  taking into consideration the fact that $e^{\D_f}(f)$ evaluated at a point $v\in \VV$ is the same as evaluating $f$ at $v$, the expression \eqref{eq:dComposite} equals \eqref{eq:kompproof1} by Faà di Bruno's formula.
-   $$\sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g(v))}{l!}\Big)^k\frac{n!}{k!}\Big(\Big(e^{\D_f}\Big)f(g(v))\Big)$$
-   $$\implies$$
    \begin{equation}\label{eq:dCompositePoint}
-   \sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g(v))}{l!}\Big)^k\frac{n!}{k!}\Big(f(g(v))\Big)
+   \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\sum\limits_{\lambda(n)}\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g(v))}{l!}\Big)^k\frac{n!}{k!}\Big(f(g(v))\Big)
    \end{equation}
  \end{proof}       
  The Theorem $\ref{izr:kompo}$ enables an invariant implementation of the operator of program composition in $\dP_n$, expressed as a tensor series through $\eqref{eq:kompo}$ and $\eqref{eq:dComposite}$. 
@@ -719,15 +710,13 @@ which enables efficient implementation.
  \end{equation}
  We may now compute derivatives (of arbitrary order) of the pullback operator. As an example we compute the second derivative.
  $$\left(\frac{d}{dh}\right)^2\exp\left(\D_fe^{h\D_g}\right)(g)=\frac{d}{dh}\left(\D_f(\D_gg)e^{h\D_g}\exp\left(\D_fe^{h\D_g}\right)(g)\right)$$
- which is by equations $\eqref{eq:dexp}$ and $\eqref{eq:de}$
- $$(\D_g\D_f(\D_gg))e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D_f(\D_gg)\D_f(\D_gg))e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)$$
- using algebra and correct applications
+ which is by equations $\eqref{eq:dexp}$ and $\eqref{eq:de}$, using algebra and correct applications
  \begin{equation}\label{eq:d^2comp}
  \left(\D_f(\D^2_gg)\right)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D^2_f(\D_gg)^2)e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)
  \end{equation}
- The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $v\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain
+ The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $v\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
  \begin{equation}
-	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f)
+	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f):\dP\to\D^2\dP(g)
  \end{equation}
  
  Thus, without imposing any additional rules, we computed the operator of the second derivative of composition with $g$, directly on the level of operators. The result of course matches the equation $\eqref{eq:dComposite}$ for $n=2$.
@@ -737,14 +726,6 @@ which enables efficient implementation.
  \begin{equation}\label{eq:dkompo}
  \D^n(f\circ g)=\left.\left(\frac{d}{dh}\right)^n\exp\left(\D_fe^{h\D_g}\right)(g,f)\right|_{h=0}
  \end{equation}
- 
- \begin{opomba}
- When applying $\D$ to an expression such as $(\D^n g)^k$, general rules of tensor calculus apply. 
-% As the operators $\D^n$ are symmetric, this means
-% \begin{equation}
-% \D(\D g)^k=n(\D g)^{k-1}\D^2g
-% \end{equation}
- \end{opomba}
  
    \begin{corollary}\label{izr:komp_homo}
    The operator $e^{h\D}$ commutes with composition over $\dP$
@@ -856,7 +837,7 @@ value is saved is given by a standard basis vector $\e_i$. The map $f:\VV\to \VV
 is then given as a tensor product $f=\e_i\otimes \tilde{f}$. We can start the
 construction of the differentiable programming spaces by defining differentiable
 programming space of functions $\VV\to K$ instead of maps $\VV\to \VV$ as in
-definition \ref{def:dP}.  Analog to the the theorems \ref{izr:P}, \ref{izr:P_n}
+definition \ref{def:dP}.  Analog to the the Theorem \ref{izr:P} and Corollary \ref{izr:P_n}
 it is easy to verify, that
 
 \begin{equation}
