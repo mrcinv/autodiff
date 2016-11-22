@@ -372,7 +372,7 @@ virtual memory as a memory management technique.
 We can extend each program $P:\VV\to \VV$ to the map on
 universal memory space $\VV_\infty$ by setting the first component in the direct sum
 \eqref{eq:virtual-memory} to $P$, and all other components to zero. Similarly
-derivatives $\D^k P$ can be also seen as mapping $\VV$ to $\VV_\infty$ by
+derivatives $\D^k P$ can be also seen as maps  from $\VV$ to $\VV_\infty$ by
 setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
 and all others to zero. 
 \subsection{Differentiable programming spaces}
@@ -382,10 +382,10 @@ Let us define the following function spaces:
  	\F_n=\{f:\VV\to \VV\otimes T_n(\VV^*)\}
  \end{equation}
 All of these function spaces are can be seen as sub spaces of $\F_\infty=\{f:\VV\to \VV\otimes
-T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The Fréchet derivative defines an operator on the space of smooth maps $\VV\to \VV\otimes
- T(\VV^*)$\footnote{the operator $\D$ may be defined partially for other maps as
+T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The
+Fréchet derivative defines an operator on the space of smooth maps from $\F_\infty$\footnote{the operator $\D$ may be defined partially for other maps as
    well, but we will handle this case later.}. We denote this operator $\D$. The image of any map
- $P:\VV\to \VV$ by operator $\D$ is the first derivative, while the higher order
+ $P:\VV\to \VV$ by operator $\D$ is its first derivative, while the higher order
  derivatives are just powers of operator $\D$ applied to $P$.
  Thus $\D^k$ is a mapping between function spaces $\eqref{eq:F_n}$
  \begin{equation}\label{eq:toFn+k}
@@ -399,15 +399,9 @@ T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The 
  	\D\dP_0\subset\dP_0\otimes T(\VV^*)
  	\end{equation}
  	When all elements of $\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}.
- \end{definicija}
 
-We seek to generalize notions of differentiable programing space to spaces
-of higher order differentiable programs.
-
-\begin{definicija}\label{def:P_n}
-Let $\dP_0$ be a differentiable programming space. The space $\dP_n<\F_n$
-spanned by $\DD^n\dP_0$ over $K$, where $\DD^n=\{\partial^k;\quad 0\le k\le n\}$, is called a differentiable
-programming space of order $n$.
+ A \emph{differentiable programming space of order $n$} is the subspace $\dP_n<\F_n$
+spanned by $\DD^n\dP_0$ over $K$, where $\dP_0$ is any differentiable programming space.
  \end{definicija}
  
 \begin{izrek}\label{izr:P}
@@ -1332,7 +1326,6 @@ In Section \ref{sec:generalTensorNet}, we generalized neural networks by constru
 This may prove useful in future developments of the field, as neural networks currently give best results to many problems. To this aim, we developed tools for analyzing procedures and probe their inner structure.
 State of the art methods for analyzing neural networks were generalized to general programs in the theory.
 We demonstrated how the developed operational calculus is employed in practice towards such a cause, and how through it countless methods from analysis can be trivially transfered to the subject, limited only by the imagination and inventiveness of the employer of the theory.
-
 \bibliographystyle{elsarticle-num}
 \nocite{*}
 \bibliography{biblio}
