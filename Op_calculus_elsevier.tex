@@ -77,7 +77,7 @@ basicstyle=\ttfamily
 %\newtheorem{proposition}{Proposition}[section]
 
 
-\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
 
 \usepackage{epigraph}
 
@@ -91,7 +91,8 @@ basicstyle=\ttfamily
 \patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
 \makeatother
 
-
+\journalname{Advances in Computational Mathematics}
+\date{}
 
 \begin{document}
 \title{Operational calculus on programming spaces and generalized tensor networks}
@@ -468,8 +469,12 @@ The operator $\sumd_n$ satisfies the recursive relation.
   \end{equation}
 that can be used to recursively construct programming spaces of arbitrary order. 
 \begin{trditev}
-Only explicit knowledge of $\sumd:\dP_0\to\dP_1$ is required for the construction of $\dP_n$ from $\dP_1$. The construction is achieved by following the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. 
+Only explicit knowledge of $\sumd:\dP_0\to\dP_1$ is required for the
+construction of $\dP_n$ from $\dP_1$. 
 \end{trditev}
+\begin{proof}
+  The construction is achieved by following the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. 
+\end{proof}
         
        \begin{opomba}\label{rem:vTen}
        Maps $\VV\otimes T(\VV^*)\to \VV\otimes T(\VV^*)$ are constructible using
@@ -617,10 +622,10 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  The image of the contraction is an element of the original virtual space $\VV^i$. Independence of the operator $(\ref{eq:specProg})$ from a coordinate system, translates to independence in execution. Thus the expression $(\ref{eq:tenzorVrsta})$ is invariant to the point in execution of a program, a fact we explore later on.  
  
  It is trivial to show that the operator $e^{h\D}$ is an automorphism of the programming algebra $\dP_\infty$,
-\begin{equation}
+\begin{equation}\label{eq:prod}
  	e^{h\D}(p_1\cdot p_2)=e^{h\D}(p_1)\cdot e^{h\D}(p_2)
  \end{equation}
- where $\cdot$ stands for a bilinear map.
+ where $\cdot$ stands for any bilinear map.
  
  Corollary $\ref{izr:P_n}$ through \eqref{eq:P_algebra} implies
       	$e^{h\D}(\dP_0)\subset\dP_0\otimes \T(\VV^*)$      
@@ -699,7 +704,18 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  
  Thus, without imposing any additional rules, we computed the operator of the second derivative of composition with $g$, directly on the level of operators. The result of course matches the equation $\eqref{eq:dComposite}$ for $n=2$.
  
- As it is evident from the example, calculations using operators are far simpler, than direct manipulations of functional series, as it was done in the proof of Theorem $\ref{izr:kompo}$. This of course enables a simpler implementation, that functions over arbitrary programming (function) spaces. In the space that is spanned by $\{\D^n\dP_0\}$ over $K$, derivatives of compositions may be expressed using only the product rule of Theorem $\ref{izr:prod}$, and $\eqref{eq:dexp}$ and $\eqref{eq:de}$, solely through the operators. Thus, explicit knowledge of rules for differentiating compositions is unnecessary, as it is contained in the structure of the operator $exp(\D_fe^{h\D_g})$ itself, which is differentiated using standard rules, as in the above example.
+ As it is evident from the example, calculations using operators are far
+ simpler, than direct manipulations of functional series, as it was done in the
+ proof of Theorem $\ref{izr:kompo}$. This of course enables a simpler
+ implementation, that functions over arbitrary programming (function) spaces. In
+ the space that is spanned by $\{\D^n\dP_0\}$ over $K$, derivatives of
+ compositions may be expressed solely through the operators, using only the
+ product rule $\eqref{eq:prod}$, the derivative of the composition operator
+ $\eqref{eq:dexp}$ and the derivative of the general shift operator
+ $\eqref{eq:de}$. Thus, explicit knowledge of rules for differentiating
+ compositions is unnecessary, as it is contained in the structure of the
+ operator $exp(\D_fe^{h\D_g})$ itself, which is differentiated using standard
+ rules, as in the above example. 
  
  \begin{equation}\label{eq:dkompo}
  \D^n(f\circ g)=\left.\left(\frac{d}{dh}\right)^n\exp\left(\D_fe^{h\D_g}\right)(g,f)\right|_{h=0}
@@ -1252,7 +1268,7 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
       \begin{izrek}\label{izr:algA}
            With an appropriate choice of the activity profile $\mathcal{A}$, there exist an algorithm
-           \begin{equation}\label{eq:algA}
+           \begin{equation}\label{eq:algA1}
              A:T\in\dP\to P\in\dP
              \end{equation}
              transforming a procedure $T\in\dP$, testing for a property $X_j$, to a procedure $P$, such that it increases the property measure of any object in the domain. 
