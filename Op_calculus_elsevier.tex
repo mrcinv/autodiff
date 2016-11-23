@@ -459,9 +459,9 @@ $\sumd_n$ as a direct sum of operators
 The image $\sumd_kP(\x)$ is a multitensor of order $k$, which is a direct sum of the maps value and all derivatives of order $n\le k$, all evaluated at the point $\x$:
 \begin{equation}
   \label{eq:multi_odvod}
-  \sumd_kP(\x) = P(\x)+\D_\x P + \D^2_\x P + \ldots + \D^k_\x P.
+  \sumd_kP(\x) = P(\mathbf{x})+\partial_\mathbf{x} P(\mathbf{x}) + \partial^2_\mathbf{x} P(\mathbf{x}) + \ldots + \partial^k_\mathbf{x} P(\mathbf{x}).
 \end{equation}
-The operator $\sumd_n$ satisfy the recursion formula.
+The operator $\sumd_n$ satisfies the recursive relation.
   \begin{equation}
     \label{eq:potenca(1+d)}
     \sumd_{k+1}=1+\D\sumd_{k},
