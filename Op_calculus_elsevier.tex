@@ -77,13 +77,13 @@ basicstyle=\ttfamily
 %\newtheorem{proposition}{Proposition}[section]
 
 
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 \usepackage{epigraph}
 
 % \epigraphsize{\small}% Default
 \setlength\epigraphwidth{8cm}
-\setlength\epigraphrule{0pt}
+\setlength\epigraphrule{ 0pt}
 
 \usepackage{etoolbox}
 
@@ -91,7 +91,7 @@ basicstyle=\ttfamily
 \patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
 \makeatother
 
-\journalname{Advances in Computational Mathematics}
+\journalname{Journal of Scientific Computing}
 \date{}
 
 \begin{document}
