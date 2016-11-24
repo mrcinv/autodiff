@@ -51,6 +51,7 @@ basicstyle=\ttfamily
 \newcommand{\e}{\mathbf{e}}
 \newcommand{\x}{\mathbf{x}}
 \newcommand{\m}{\mathbf{m}}
+\newcommand{\h}{\mathbf{h}}
 \newcommand{\uu}{\mathbf{u}}
 \newcommand{\vv}{\mathbf{v}}
 \newcommand{\F}{\mathcal{F}}
@@ -66,7 +67,7 @@ basicstyle=\ttfamily
 \newcommand{\sumd}{\tau}
 \DeclareMathOperator{\interior}{int}
 
-\DeclareMathOperator{\proj}{proj}
+\DeclareMathOperator{\proj}{pr}
 
 
 \newtheorem{definicija}{Definition}[section]
@@ -193,19 +194,19 @@ To define differentiable programs, let us first recall some
 definitions from multivariate calculus.
 \begin{definicija}[Derivative]
   Let $V,U$ be Banach spaces. The map $P:V\to U$ is differentiable at the point
-  $x\in V$, if there exists a linear bounded operator $TP_x:V\to U$ such that
+  $\x\in V$, if there exists a linear bounded operator $TP_\x:V\to U$ such that
   \begin{equation}
     \label{eq:frechet}
-    \lim_{h\to 0}\frac{\|P(x+h)-P(x)-TP_x(h)\|}{\|h\|} = 0.
+    \lim_{\h\to 0}\frac{\|P(\x+\h)-P(\x)-TP_\x(\h)\|}{\|\h\|} = 0.
   \end{equation}
-  The map $TP_x$ is called the \emph{Fréchet derivative} of the map $P$ at the
+  The map $TP_\x$ is called the \emph{Fréchet derivative} of the map $P$ at the
   point $\x$.
 \end{definicija}
 For maps $\RR^n\to \RR^m$ Fréchet derivative can be expressed by multiplication
-of vector $h$ by the Jacobi matrix $\mathrm{J} P$ of the  partial derivatives of the 
+of vector $\h$ by the Jacobi matrix $\mathrm{J} P$ of the  partial derivatives of the 
 components of the map $P$
 \begin{equation*}
-  T_xP(h) = \mathrm{J} P(x)\cdot h.
+  T_\x P(\h) = \mathrm{J} P(\x)\cdot \h.
 \end{equation*}
 
 We assume for the remainder of this section that the map $P:V\to U$ is
@@ -263,7 +264,7 @@ machine. We define three subspaces of the virtual memory space $\VV$, that
 describe how different parts of the memory influence the final result of the
 program.   
 
-Denote by $e_1,\ldots e_n$ a standard basis of the memory space $\VV$ and by
+Denote by $\e_1,\ldots \e_n$ a standard basis of the memory space $\VV$ and by
 $x_1,\ldots x_n$ the dual basis of $\VV^*$. The functions $x_i$ are coordinate
 functions on $\VV$ and correspond to individual locations(variables) in the
 program memory.
@@ -614,11 +615,11 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  \end{proof}
  \begin{opomba}
  The operator $e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*)$ evaluated at $h=1$ is a broad generalization of the shift operator \cite{OpCalc}, as the theory it exists in offers more than a mere shift, as will become apparent in the coming sections.
- For a specific $v_0\in\VV$ it is hereon denoted by
+ For a specific $\vv_0\in\VV$ it is hereon denoted by
  \begin{equation}
- e^\D\vert_{v_0}:\dP\to \VV\otimes \T(\VV^*)
+ e^\D\vert_{\vv_0}:\dP\to \VV\otimes \T(\VV^*)
  \end{equation}
- When the choice of $v_0\in\VV$ is arbitrary, we omit it from expressions for brevity.
+ When the choice of $\vv_0\in\VV$ is arbitrary, we omit it from expressions for brevity.
  \end{opomba}
  
  The image of the contraction is an element of the original virtual space $\VV^i$. Independence of the operator $(\ref{eq:specProg})$ from a coordinate system, translates to independence in execution. Thus the expression $(\ref{eq:tenzorVrsta})$ is invariant to the point in execution of a program, a fact we explore later on.  
@@ -663,9 +664,9 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  \begin{equation}\label{eq:dComposite}
  \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\sum\limits_{\lambda(n)}n!\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g)}{l!}\Big)^k\frac{1}{k!}\Big(\Big(e^{\D_f}\Big)f\Big)
  \end{equation}
- taking into consideration the fact that $e^{\D_f}(f)$ evaluated at a point $v\in \VV$ is the same as evaluating $f$ at $v$, the expression \eqref{eq:dComposite} equals \eqref{eq:kompproof1} by Faà di Bruno's formula.
+ taking into consideration the fact that $e^{\D_f}(f)$ evaluated at a point $\vv\in \VV$ is the same as evaluating $f$ at $\vv$, the expression \eqref{eq:dComposite} equals \eqref{eq:kompproof1} by Faà di Bruno's formula.
    \begin{equation}\label{eq:dCompositePoint}
-   \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\sum\limits_{\lambda(n)}n!\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g(v))}{l!}\Big)^k\frac{1}{k!}\Big(f(g(v))\Big)
+   \lim\limits_{\lVert h\rVert\to 0}(\frac{d}{dh})^n\exp(\D_fe^{h\D_g})=\sum\limits_{\lambda(n)}n!\prod\limits_{k\cdot l\in\lambda}\Big(\frac{\D_f\D_g^l(g(v))}{l!}\Big)^k\frac{1}{k!}\Big(f(g(\vv))\Big)
    \end{equation}
  \end{proof}       
  The Theorem $\ref{izr:kompo}$ enables an invariant implementation of the operator of program composition in $\dP_n$, expressed as a tensor series through $\eqref{eq:kompo}$ and $\eqref{eq:dComposite}$. 
@@ -699,7 +700,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  \begin{equation}\label{eq:d^2comp}
  \left(\D_f(\D^2_gg)\right)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D^2_f(\D_gg)^2)e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)
  \end{equation}
- The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $v\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
+ The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $\vv\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
  \begin{equation}
 	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f):\dP\to\D^2\dP(g)
  \end{equation}
@@ -737,9 +738,9 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
    \begin{opomba}
    With explicit evaluations in Corollary \ref{izr:komp_homo}
    \begin{equation}
-   e^{h\D}\vert_{v_0}(p_n\circ\cdots\circ p_0)=e^{h\D}\vert_{v_n}(p_n)\circ\cdots\circ e^{h\D}\vert_{v_0}(p_0)
+   e^{h\D}\vert_{\vv_0}(p_n\circ\cdots\circ p_0)=e^{h\D}\vert_{\vv_n}(p_n)\circ\cdots\circ e^{h\D}\vert_{\vv_0}(p_0)
    \end{equation}
-   the wise choice of evaluation points is $v_{i}=p_{i-1}(v_{i-1})\in \VV$.
+   the wise choice of evaluation points is $\vv_{i}=p_{i-1}(\vv_{i-1})\in \VV$.
    \end{opomba}
  
  \subsubsection{Order reduction for nested applications}\label{sec:orderReduction}
@@ -1051,39 +1052,33 @@ Transformations by $\eqref{eq:P_F}$ need to be computed only once. Complexity of
 
 \section{Generalized tensor networks}\label{sec:generalTensorNet}
 
-Let $W$ be an element of the virtual memory $\VV\otimes T_n(\VV^*)$ in an analytic machine of Definition \ref{def:analyticMachine}. We define the application of $v\in \VV$ by
+Let $W$ be an element of the virtual memory $\VV\otimes T_n(\VV^*)$ in an analytic machine of Definition \ref{def:analyticMachine}. We define the application of $\vv\in \VV$ by
 \begin{equation}
-W(v)=\sum\limits_{i=0}^n(w_i\in \VV\otimes \VV^{*\otimes i})(v^{\otimes i})\in \VV
+W(\vv)=\sum\limits_{i=0}^n(w_i\in \VV\otimes \VV^{*\otimes i})(\vv^{\otimes i})\in \VV
 \end{equation}
-where each contraction $(w_i\in \VV\otimes \VV^{*\otimes i})(v^{\otimes i})$ is defined by the programming algebra of Theorem \ref{izr:alg}.
+where each contraction $(w_i\in \VV\otimes \VV^{*\otimes i})(\vv^{\otimes i})$ is defined by the programming algebra of Theorem \ref{izr:alg}.
 
 \begin{definicija}
-A general tensor network $\NN$ is defined by the equation
+A general tensor network $\NN$ is a sequence of maps $L_i:\VV\to
+\VV$ called layers, defined by the equation
 \begin{equation}
-L_{i+1}=\Phi_i\circ W_i(L_i)
+L_{i+1}=\Phi_i\circ\mathbf{W}_i\circ L_i
 \end{equation}
-for each layer, where
-\begin{itemize}
-\item
-$L_i\in \VV$ is the input
-\item
-$L_{i+1}\in \VV$ is the output
-\item
-$W_i\in \bigoplus\limits_{k=0}^n\VV\otimes \VV^{*k\otimes}$ are the weights (and the bias)
-\item
-$\Phi_i\in\dP_0$ is the activation function
-\end{itemize}
-Thus, a general tensor network with $n$ layers is
+where
+$\mathbf{W}_i\in \bigoplus\limits_{k=0}^n\VV\otimes \VV^{*k\otimes}$ are the
+weights (and the bias) and
+$\Phi_i\in\dP_0$ is the activation function.
+If we look at a general tensor network with $n$ layers as a map, we might also denote
 \begin{equation}
-\NN=L_n
+\NN=L_n.
 \end{equation}
-Anything that operates under these specifications is a general tensor network.
 \end{definicija}
 
 \begin{trditev}
 The common neural network defined by the equation
-$$L_{i+1}=\Phi_i(b_i+W_i(L_i))$$
-is a tensor network with $W=b_i+W_i\in \VV\oplus \VV\otimes \VV^*$.
+$$\mathbf{l}_{i+1}=\Phi_i(\mathbf{b}_i+\mathbf{W}_i\cdot\mathbf{l_i})$$
+for input $\mathbf{l}_i\in\VV$ and output $\mathbf{l}_{i+1}\in\VV$ at each layer
+is a tensor network with $\mathbf{W}=\mathbf{b}_i+\mathbf{W}_i\in \VV\oplus \VV\otimes \VV^*$.
 \end{trditev}
 
 Generalizations of recurrent \cite{RecurrentNet}, convolutional \cite{ConvNet} and highway  \cite{HighwayNet} neural networks, and features such as long short term memory \cite{LSTM}, are easily generated by this model, as they are all elements of a differential programming space $\dP$.
@@ -1105,11 +1100,11 @@ By Claim \ref{trd:netEquivalence}, existing architectures like Theano \cite{Thea
 Let $P=P_n\circ\cdots\circ P_0\in\dP_0$ be the procedure of interest, with $P_i\in\dP_0$ being the source code between two branching points, like shown in Figure \ref{fig:diagram} of Section \ref{sec:TransInPractice}.
 By Theorem \ref{izr:e^d} we have
 \begin{equation}
-P(v_0+v\in \VV)=e^\D\vert_{v_0} P(v\in \VV)
+P(\vv_0+\vv\in \VV)=e^\D\vert_{\vv_0} P(\vv\in \VV)
 \end{equation}
 and through Corollary \ref{izr:komp_homo}
 \begin{equation}\label{eq:eDkompo}
-P(v_0+v\in \VV)=e^\D\vert_{v_n} P_n\circ\cdots \circ e^\D\vert_{v_0} P_0(v\in \VV)
+P(\vv_0+\vv\in \VV)=e^\D\vert_{\vv_n} P_n\circ\cdots \circ e^\D\vert_{\vv_0} P_0(\vv\in \VV)
 \end{equation}
 which is the transformation hereon denoted by $e^\D P$.
 
@@ -1129,7 +1124,7 @@ Let $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ be the set of activati
 \begin{eqnarray}
 \tilde{P}=\Phi_n\circ e^\D_N\vert_{v_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{v_0}P_0
 \end{eqnarray}
-is the transformation of a program to a general tensor network, with $e^\D P_i$ being applied at a specific point $v_{i}=P_{i-1}(v_{i-1})\in \VV$.
+is the transformation of a program to a general tensor network, with $e^\D P_i$ being applied at a specific point $\vv_{i}=P_{i-1}(\vv_{i-1})\in \VV$.
 \end{izrek}
 \begin{proof}
 $$e^\D_N\vert_{v_i} P_i=W_i\in V\otimes T_N(V^*)\implies\tilde{P}=\Phi_n\circ W_n\circ\cdots\circ\Phi_0\circ W_0$$
@@ -1194,23 +1189,23 @@ By Claim \ref{clm:composedNet}, any training methods enabled by the operational 
   
   \subsection{Study of properties}\label{sec:studyProperties}
   
-  We will denote the fact, that some object $v$ has the property $X$, by $v\in
-  X$. Suppose we have $v\notin X$, and desire a procedure $P\in\dP_0$, that in
-  some way modifies $v$ to have the property $X$, changing the element $v$ as
+  We will denote the fact, that some object $\vv$ has the property $X$, by $\vv\in
+  X$. Suppose we have $\vv\notin X$, and desire a procedure $P\in\dP_0$, that in
+  some way modifies $\vv$ to have the property $X$, changing the element $\vv$ as
   little as possible: 
   \begin{equation}\label{eq:procP}
-  P\in \dP_0:v\notin X\to P(v)\in X
+  P\in \dP_0:\vv\notin X\to P(\vv)\in X
   \end{equation}
   Usually such procedures are difficult to construct and may not even explicitly
   exist. An easier task is to construct a procedure $T\in\dP_0$, whose output
-  allows deduction of whether $v$ has the property $X$ or not. 
+  allows deduction of whether $\vv$ has the property $X$ or not. 
   
    We propose an algorithm
    \begin{equation}\label{eq:algA}
      A:T\in\dP\to P\in\dP
      \end{equation}
      transforming a procedure $T$ testing for a property $X_j$, to a procedure
-     $P\in \dP_0:v\notin X_j\to P(v)\in X_j$ \eqref{eq:procP}, imposing that
+     $P\in \dP_0:\vv\notin X_j\to P(\vv)\in X_j$ \eqref{eq:procP}, imposing that
      property onto any object in the domain $\Omega\subset \VV$.
    
    We employ the developed operational calculus in such endeavors, as we probe
@@ -1231,8 +1226,8 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
    \begin{definicija}[Activity profile]
    The function $\mathcal{A}_i:\Omega\to[0,1]$ is called a \emph{measure of activity} in the conceptual step $T_i$, where 
-   $$\mathcal{A}_i\circ e^{\D_{T_i}}T(v)$$ 
-   is the \emph{activity level} of $T_i$, for a given element of the domain $v\in \Omega$ taken as the input of $T$, with only the variable parameters of the sub-procedure $T_i$ being considered as such.
+   $$\mathcal{A}_i\circ e^{\D_{T_i}}T(\vv)$$ 
+   is the \emph{activity level} of $T_i$, for a given element of the domain $\vv\in \Omega$ taken as the input of $T$, with only the variable parameters of the sub-procedure $T_i$ being considered as such.
    
    The vector $$\mathcal{A}=(\mathcal{A}_1,\mathcal{A}_2,\dots,\mathcal{A}_n):\Omega\to[0,1]^n$$ represents the activity profile of the procedure $T$. 
    \end{definicija}
@@ -1242,7 +1237,7 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
     A function 
     $$M_X\in\dP_0:[0,1]^n\to[0,1]$$  
     is called the property measure, measuring the amount of property $X$ in an object $v\in\Omega$, if there exists  $c\in(0,1)$ such that 
-    $$v\in X\iff M_x\circ\mathcal{A}(v)\ge c.$$
+    $$\vv\in X\iff M_x\circ\mathcal{A}(\vv)\ge c.$$
     \end{definicija}
    \vspace{-1cm}
    \begin{algorithm}[H]
@@ -1252,9 +1247,9 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    \label{alg:propertyMeasure}
    \begin{algorithmic}[1]
    \Procedure{Construct property measure}{}
-   \For{each $v_k\in \Omega$}
+   \For{each $\vv_k\in \Omega$}
    \For{each $T_i$}
-   \State extract $a^i_k=\mathcal{A}_i\circ e^{\D_{T_i}}T(v_k)$
+   \State extract $a^i_k=\mathcal{A}_i\circ e^{\D_{T_i}}T(\vv_k)$
 	\EndFor
 	\EndFor
 	\State initialize set $I$
@@ -1278,27 +1273,27 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
            \end{izrek}
            \begin{corollary}
               By Theorem \ref{izr:algA}, existence of a procedure testing an object for validity is sufficient for constructing a procedure transforming a non-valid object to a valid one
-              $$P\in \dP_0:v\notin X_j\to P(v)\in X_j$$
+              $$P\in \dP_0:\vv\notin X_j\to P(\vv)\in X_j$$
               under the assumption that the increase of the property measure is sufficient.
               \end{corollary}
               
-    When $T$ serves as a simulation, with $v$ modeling a real-life object of study, the procedure opens new doors in analyzing real-life phenomena. Through it, we may observe how $v$ evolves through iterations and study stages of change, which serves as a useful insight when designing procedures causing change in real-life phenomena.          
+    When $T$ serves as a simulation, with $\vv$ modeling a real-life object of study, the procedure opens new doors in analyzing real-life phenomena. Through it, we may observe how $\vv$ evolves through iterations and study stages of change, which serves as a useful insight when designing procedures causing change in real-life phenomena.          
    
    \begin{algorithm}[H]
-   \caption{Appoint property $X_j$ to $v\in \Omega$}
+   \caption{Appoint property $X_j$ to $\vv\in \Omega$}
    \label{alg:appoint}
    \begin{algorithmic}[1]
-   \Procedure{Appoint property $X_j$ to $v\in \Omega$}{}
-   \State initialize path $\gamma$ with $v$
+   \Procedure{Appoint property $X_j$ to $\vv\in \Omega$}{}
+   \State initialize path $\gamma$ with $\vv$
    \For{each step}
    \For{each $T_i\in T_{X_j}$}
-   \State extract $T^\prime_i=\phi\circ e^{\D_{v}}_2(T_i\circ\cdots\circ T_1)\in\dP_1$
-   \State compute the energy $E_i=e^{\D_v}_1(M_{X_j})\circ T^\prime_i\in\dP_1$
-   \State extract the derivative $\D_v E_i=proj_{\{\D\}}(E_i)$
-   \State add $\D_v E_i$ to $\D_v E$
+   \State extract $T^\prime_i=\phi\circ e^{\D_{\vv}}_2(T_i\circ\cdots\circ T_1)\in\dP_1$
+   \State compute the energy $E_i=e^{\D_\vv}_1(M_{X_j})\circ T^\prime_i\in\dP_1$
+   \State extract the derivative $\D_v E_i=\proj_{\{\D\}}(E_i)$
+   \State add $\D_\vv E_i$ to $\D_\vv E$
    \EndFor
-   \State update $v$ by $step(\D_v E,v)$
-   \State insert $v$ to $\gamma$
+   \State update $\vv$ by $step(\D_\vv E,\vv)$
+   \State insert $\vv$ to $\gamma$
    \EndFor
    \State return $\gamma$
    \EndProcedure
@@ -1308,22 +1303,22 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
    \subsubsection{Example}
    
-   The derived procedures $P$, are a broad generalization of special cases such as Google's Deep Dream project \cite{DeepDream}, where the program $T\in\dP_0$ represents a neural network, with the resulting $v\in X_j$ being an altered image.
+   The derived procedures $P$, are a broad generalization of special cases such as Google's Deep Dream project \cite{DeepDream}, where the program $T\in\dP_0$ represents a neural network, with the resulting $\vv\in X_j$ being an altered image.
    
    \begin{opomba}
       Approach is trivially generalized to general tensor networks.
       \end{opomba}
    
    We take the measure of activity to be the norm of the derivative with respect to the variable parameters in sub-procedure $T_i$.
-   $$\left\Vert\D_{T_i}T\right\Vert=\left\Vert proj_{\{\D\}}\left(e^{\D_{T_i}}_1(T)\right)\right\Vert$$
+   $$\left\Vert\D_{T_i}T\right\Vert=\left\Vert \proj_{\{\D\}}\left(e^{\D_{T_i}}_1(T)\right)\right\Vert$$
    Then for each property $X_j$ we select the set of sub-procedures 
    $$T_{X_j}=\{T_i\in T_{X_j}\iff \left\Vert\D_{T_i}T\right\Vert\ge c\}$$
    that have the highest measure of activity at the elements of $X_j$. The property measure for the property $X_j$ is then simply the sum of squares of norms of the derivatives of selected sub-procedures $T^i_1=T_i\circ\cdots\circ T_1$. This completes Algorithm \ref{alg:propertyMeasure}. 
    
-   By Corollary \ref{cor:extraxtDerivatives}, $n$-differentiable $k$-th derivatives $^{n}T^{k\prime}_i\in\dP_n$ with respect to the input $v\in\Omega$ are computed by
+   By Corollary \ref{cor:extraxtDerivatives}, $n$-differentiable $k$-th derivatives $^{n}T^{k\prime}_i\in\dP_n$ with respect to the input $\vv\in\Omega$ are computed by
    
    \begin{equation}
-   ^{n}T^{k\prime}_i=\phi^k\circ e^{\D_v}_{n+k}(T^i_1)\in\dP_n
+   ^{n}T^{k\prime}_i=\phi^k\circ e^{\D_\vv}_{n+k}(T^i_1)\in\dP_n
    \end{equation}
    where $\phi$ is the reduction of order map of Theorem \ref{izr:reductionMap}.
    Thus, using $\left\Vert\cdot\right\Vert\in\dP_1$ as the norm map, the property measure is
