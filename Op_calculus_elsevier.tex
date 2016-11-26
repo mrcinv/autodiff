@@ -577,27 +577,32 @@ To any element of
  $\vv\in \VV$ is given by applying co-vector $f_n$ to $\vv$ 
  \begin{equation}
    \label{eq:contraction}
- \uu\otimes f_1\otimes\ldots\otimes f_n\cdot \vv = f_n(\vv) \uu\otimes f_1\otimes\ldots f_{n-1}.
+ \uu\otimes f_1\otimes\ldots\otimes f_n\cdot \vv = f_n(\vv) \uu\otimes f_1\otimes\ldots f_{n-1}
 \end{equation}
-We extend the operation of contraction to multi-tensors on $\VV\otimes T(\VV^*)$.
-If we write an element $\bfm\in\VV\otimes T(\VV^*)$ as
+and is extended by linearity to spaces $\VV\otimes \left(\VV^*\right)^{\otimes n}$.
+ If we write an element $\bfM\in\VV\otimes T_n(\VV^*)$ as
 $\bfM=\bfm_0+\bfm_1+\ldots+\bfm_n$, where $\bfm_k\in\VV\otimes\left( \VV^*
-\right)^{\otimes k}$, the contraction by a vector $\vv\in \VV$ equals
+\right)^{\otimes k}$, the contraction by a vector $\vv\in \VV$ yields an element
+of $\VV\otimes T_{n-1}(\VV^*)$\footnote{note that the component $\bfm_0\in\VV$ 
+  can not be contracted by the vector $\vv$. The map given by contraction by a
+  fixed multi-tensor can be seen as a generalzation of the affine map, where the
+  term $\bfm_0$ accounts for translation.} 
 \begin{equation}
   \label{eq:multi_contraction}
-  \bfM\cdot\vv = \bfm_0+\bfm_q\cdot\vv+\ldots+\bfm_n\cdot \vv.
+  \bfM\cdot\vv = \bfm_0+\bfm_1\cdot \vv+\ldots+\bfm_n\cdot \vv.
 \end{equation}
-For multi-tensor $\bfM$ we can define a polynomial map $\bfM:\vv\mapsto \bfm^n$ using Horner's algorithm
-\begin{eqnarray}\label{eq:Horner}
+For a multi-tensor $\bfM$ we can define a polynomial map denoted by the same letter $\bfM(\vv)$ using Horner's algorithm
+\begin{eqnarray}
   \label{eq:horner}
   \bfm^0&=&\bfm_n\\
-  \bfm^k&=&\bfm_{n-k}+\bfm^{k-1}\cdot\vv
+  \bfm^k&=&\bfm_{n-k}+\bfm^{k-1}\cdot\vv\\
+  \bfM(\vv) &=&\bfm^n 
 \end{eqnarray}
 \begin{izrek}[Tensor series]\label{izr:e^d}
 	For a program $P\in\dP$  the expansion into an infinite tensor series
   at the point $\vv_0\in \VV$ is expressed by multiple contractions 
 	\begin{multline}\label{eq:tenzorVrsta}
-	P(\vv_0+h\vv) = \Big((e^{h\D}P)(\vv_0)\Big)\cdot\vv
+	P(\vv_0+h\vv) = \Big((e^{h\D}P)(\vv_0)\Big)(\vv)
   = \sum_{n=0}^\infty\frac{h^n}{n!}\D^nP(\vv_0)\cdot (\vv^{\otimes n})\\
   = \sum_{n=0}^\infty \frac{h^n}{n!}\sum_{\forall_{i,\alpha}}\frac{\partial^nP_i}{\partial
  		    x_{\alpha_1}\ldots \partial x_{\alpha_n}}\e_i\cdot
