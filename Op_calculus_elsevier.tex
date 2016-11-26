@@ -574,31 +574,36 @@ To any element of
  correspondence between multi-tensors in $\VV\otimes T(\VV^*)$ and polynomial maps
  $\VV\to \VV$ given by multiple contractions for all possible indices. For a simple tensor $\uu\otimes
  f_1\otimes\ldots\otimes f_n\in \VV\otimes(\VV^*)^{\otimes n}$ the contraction by
- $\vv\in \VV$ is given by applying co-vector $f_n$ to $\vv$ 
+ $\vv\in \VV$ is given by applying co-vector $f_n$ to $\vv$ \footnote{For order
+   two tensors from $\VV\otimes\VV^*$ the contraction correspons to
+matrix vector multiplication.}
  \begin{equation}
    \label{eq:contraction}
- \uu\otimes f_1\otimes\ldots\otimes f_n\cdot \vv = f_n(\vv) \uu\otimes f_1\otimes\ldots f_{n-1}
+ \uu\otimes f_1\otimes\ldots\otimes f_n\cdot \vv = f_n(\vv) \uu\otimes f_1\otimes\ldots f_{n-1}.
 \end{equation}
-and is extended by linearity to spaces $\VV\otimes \left(\VV^*\right)^{\otimes n}$.
- If we write an element $\bfM\in\VV\otimes T_n(\VV^*)$ as
-$\bfM=\bfm_0+\bfm_1+\ldots+\bfm_n$, where $\bfm_k\in\VV\otimes\left( \VV^*
-\right)^{\otimes k}$, the contraction by a vector $\vv\in \VV$ yields an element
-of $\VV\otimes T_{n-1}(\VV^*)$\footnote{note that the component $\bfm_0\in\VV$ 
-  can not be contracted by the vector $\vv$. The map given by contraction by a
-  fixed multi-tensor can be seen as a generalzation of the affine map, where the
-  term $\bfm_0$ accounts for translation.} 
+By taking contraction multiple times, we can attach a monomial map to a
+simple tensor by  
+ \begin{equation}
+   \label{eq:monomial}
+ \uu\otimes f_1\otimes\ldots\otimes f_n\cdot (\vv)^{\otimes n} = f_n(\vv)f_{n-1}(\vv)\cdots f_1(\vv) \uu,
+\end{equation}
+Both contractions \eqref{eq:contraction} and \eqref{eq:monomial} are extended
+by linearity to spaces $\VV\otimes \left(\VV^*\right)^{\otimes n}$ and further
+to $\VV\otimes T(\VV^*)$.\footnote{note that the simple order one tensor
+  $\uu\in\VV$ can not be contracted by the vector $\vv$. To be consistent we
+  define $\uu\cdot \vv = \uu$ and attach a constant map
+  $\vv\mapsto \uu$ to order zero tensor $\uu$. The extension of
+  \eqref{eq:monomial}
+  to $\VV\otimes T(\VV^*)$ can be seen as a generalzation of the affine map,
+  where the zero order tensors account for translation.}
+For a multi-tensor $\bfM=\bfm_0+\bfm_1+\ldots+\bfm_n\in\VV\otimes T_n(\VV^*)$,
+where $\bfm_k\in\VV\otimes\left( \VV^*\right)^{\otimes k}$, applying the
+contraction by a vector $\vv\in \VV$ multiple times yields a polynomial map
 \begin{equation}
-  \label{eq:multi_contraction}
-  \bfM\cdot\vv = \bfm_0+\bfm_1\cdot \vv+\ldots+\bfm_n\cdot \vv.
+  \label{eq:polynomial_tensor}
+  \bfM(\vv) = \bfm_0+\bfm_1\cdot \vv+\ldots+\bfm_n\cdot (\vv)^{\otimes n}.
 \end{equation}
-For a multi-tensor $\bfM$ we can define a polynomial map denoted by the same letter $\bfM(\vv)$ using Horner's algorithm
-\begin{eqnarray}
-  \label{eq:horner}
-  \bfm^0&=&\bfm_n\\
-  \bfm^k&=&\bfm_{n-k}+\bfm^{k-1}\cdot\vv\\
-  \bfM(\vv) &=&\bfm^n 
-\end{eqnarray}
-\begin{izrek}[Tensor series]\label{izr:e^d}
+\begin{izrek}\label{izr:e^d}
 	For a program $P\in\dP$  the expansion into an infinite tensor series
   at the point $\vv_0\in \VV$ is expressed by multiple contractions 
 	\begin{multline}\label{eq:tenzorVrsta}
