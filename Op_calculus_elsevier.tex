@@ -38,7 +38,8 @@ keywordstyle=\color{bluekeywords}\bfseries,
 stringstyle=\color{redstrings},
 basicstyle=\ttfamily
 }
-
+\newcommand{\bfM}{\mathbf{M}}
+\newcommand{\bfm}{\mathbf{m}}
 \newcommand{\RR}{\mathbb{R}}
 \newcommand{\Ss}{\mathcal{S}}
 \newcommand{\II}{\mathbb{I}}
@@ -576,17 +577,21 @@ To any element of
  \begin{equation}
    \label{eq:contraction}
  \uu\otimes f_1\otimes\ldots\otimes f_n\cdot \vv = f_n(\vv) \uu\otimes f_1\otimes\ldots f_{n-1}.
- \end{equation}
-Applying contraction multiple times with the same vector $\vv$ one can assign to
-any simple tensor a monomial map 
- \begin{equation}
-   \label{eq:tensor->poly}
- \uu\otimes f_1\otimes\ldots\otimes f_n: \vv \mapsto f_n(\vv)\cdots f_1(\vv) \uu
- \end{equation}
-
-and by linearity to any finite rank multi-tensor in $\VV\otimes T(\VV^*)$ a
-polynomial map.
- 
+\end{equation}
+We extend the operation of contraction to multi-tensors on $\VV\otimes T(\VV^*)$.
+If we write an element $\bfm\in\VV\otimes T(\VV^*)$ as
+$\bfM=\bfm_0+\bfm_1+\ldots+\bfm_n$, where $\bfm_k\in\VV\otimes\left( \VV^*
+\right)^{\otimes k}$, the contraction by a vector $\vv\in \VV$ equals
+\begin{equation}
+  \label{eq:multi_contraction}
+  \bfM\cdot\vv = \bfm_0+\bfm_q\cdot\vv+\ldots+\bfm_n\cdot \vv.
+\end{equation}
+For multi-tensor $\bfM$ we can define a polynomial map $\bfM:\vv\mapsto \bfm^n$ using Horner's algorithm
+\begin{eqnarray}
+  \label{eq:horner}
+  \bfm^0&=&\bfm_n\\
+  \bfm^k&=&\bfm_{n-k}+\bfm^{k-1}\cdot\vv
+\end{eqnarray}
 \begin{izrek}\label{izr:e^d}
 	For a program $P\in\dP$  the expansion into an infinite tensor series
   at the point $\vv_0\in \VV$ is expressed by multiple contractions 
