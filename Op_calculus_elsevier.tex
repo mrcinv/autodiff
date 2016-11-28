@@ -361,7 +361,7 @@ identified\footnote{The spaces $\VV\otimes(\VV^*)^{\otimes (j+1)}$ and
   the same domain and codomain $\VV\to \VV\otimes T(\VV^*)$.
   Putting memory considerations aside, we propose an universal model of the
   memory for differentiable programs.
-\begin{definicija}
+\begin{definicija}[Virtual memory]\label{def:VV}
 Let $(\VV,\F)$ be an Euclidean virtual machine and let  
 
 \begin{equation}
@@ -399,7 +399,7 @@ Fréchet derivative defines an operator on the space of smooth maps from $\F_\in
  \end{equation}
  
  
- \begin{definicija}\label{def:dP}
+ \begin{definicija}[Differentiable programming space]\label{def:dP}
  	A \emph{differentiable programming space} $\dP_0$ is any subspace of $\F_0$ such that
  	\begin{equation}\label{eq:P}
  	\D\dP_0\subset\dP_0\otimes T(\VV^*)
@@ -407,7 +407,7 @@ Fréchet derivative defines an operator on the space of smooth maps from $\F_\in
  	When all elements of $\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}.
  \end{definicija}
  
-\begin{izrek}\label{izr:P}
+\begin{izrek}[Infinite differentiability]\label{izr:P}
 	Any differentiable programming space $\dP_0$ is an
   infinitely differentiable programming space, meaning that
 	\begin{equation}\label{eq:P_n}
@@ -428,7 +428,7 @@ for any $k\in\mathbb{N}$.
 Thus by induction, the claim \eqref{eq:P_n} holds for all $k\in \mathbb{N}$. 
 \end{proof}
 
-\begin{definicija}\label{def:P_n}
+\begin{definicija}[Higher order programming spaces]\label{def:P_n}
 Let $\dP_0$ be a differentiable programming space. The space $\dP_n<\F_n$ spanned by $\DD^n\dP_0$ over $K$, where $\DD^n=\{\partial^k;\quad 0\le k\le n\}$, is called a differentiable programming space of order $n$. 
 If all elements of $\dP_0$ are analytic, than so are the elements of $\dP_n$.
 \end{definicija}
@@ -593,7 +593,7 @@ For multi-tensor $\bfM$ we can define a polynomial map $\bfM:\vv\mapsto \bfm^n$ 
   \bfm^0&=&\bfm_n\\
   \bfm^k&=&\bfm_{n-k}+\bfm^{k-1}\cdot\vv
 \end{eqnarray}
-\begin{izrek}\label{izr:e^d}
+\begin{izrek}[Tensor series]\label{izr:e^d}
 	For a program $P\in\dP$  the expansion into an infinite tensor series
   at the point $\vv_0\in \VV$ is expressed by multiple contractions 
 	\begin{multline}\label{eq:tenzorVrsta}
@@ -619,7 +619,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  $$\implies$$
  $$\left(\D^n(P)(\vv_0)\right)(\vv^{\otimes n})$$
  \end{proof}
- \begin{opomba}
+ \begin{opomba}[Generalized shift operator]\label{rmrk:genShift}
  The operator $e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*)$ evaluated at $h=1$ is a broad generalization of the shift operator \cite{OpCalc}, as the theory it exists in offers more than a mere shift, as will become apparent in the coming sections.
  For a specific $\vv_0\in\VV$ it is hereon denoted by
  \begin{equation}
@@ -644,7 +644,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  
  In this section we generalize both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single invariant operator in the theory. We demonstrate how calculations can be performed on the operator level, easing general implementation. This condenses complex notions to simple expressions allowing meaningful manipulations before being applied to a particular programming space.
  
- \begin{izrek}\label{izr:kompo}
+ \begin{izrek}[Program composition]\label{izr:kompo}
  Composition of maps $\dP$ is expressed as
  \begin{equation}\label{eq:kompo}
  e^{h\D}(f\circ g)=\exp(\D_fe^{h\D_g})(g,f)
@@ -685,7 +685,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
   \begin{equation}\label{eq:opKompo}
   \exp(\D_fe^{h\D_g})(g): \dP\to\dP_\infty(g)
   \end{equation}
- \begin{trditev}\label{trd:reverseForward}
+ \begin{trditev}[Unified AD]\label{trd:reverseForward}
  When projecting onto the space spanned by $\{1,\D\}$, the action of the operator $\exp(\D_fe^{h\D_g})(g)$ of $\eqref{eq:opKompo}$ is equivalent to forward \cite{PcAD} mode automatic differentiation. Both forward \cite{PcAD} and reverse \cite{ReverseAD} mode (generalized to arbitrary order) are obtainable using the same operator $\exp(\D_fe^{h\D_g})$ of $\eqref{eq:opGenKompo}$, by fixing the appropriate one of the two maps. This generalizes both concepts under a single operator in the theory. The operator \eqref{eq:kompo} can be generalized for the notion of a pullback to arbitrary operators.
  \end{trditev}
  
@@ -752,7 +752,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  \subsubsection{Order reduction for nested applications}\label{sec:orderReduction}
  
  It is useful to be able to use the $k$-th derivative of a program $P\in\dP$ as part of a different differentiable program $P_1$. As such, we must be able to treat the derivative itself as a differentiable program $P^{\prime k}\in\dP$, while only coding the original program $P$. 
-\begin{izrek}\label{izr:reductionMap}
+\begin{izrek}[Order reduction]\label{izr:reductionMap}
 There exists a reduction of order map $\phi:\dP_n\to \dP_{n-1}$, such that the
 following  diagram commutes
 \begin{equation}\label{eq:reductionMap}
@@ -769,7 +769,7 @@ satisfying
 \end{equation}
 for each $n\ge 1$, where $e^\D_n$ is the projection of the operator $e^\D$ onto the set $\{\D^n\}$.
 \end{izrek}  
-\begin{corollary}\label{cor:extraxtDerivatives}
+\begin{corollary}[Differentiable derivative]\label{cor:extraxtDerivatives}
 By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a program $P\in\dP_0$ can be extracted by
 \begin{equation}
 ^{n}P^{k\prime}=\phi^k\circ e^\D_{n+k}(P)\in\dP_n
@@ -1064,7 +1064,7 @@ W(\vv)=\sum\limits_{i=0}^n(w_i\in \VV\otimes \VV^{*\otimes i})(\vv^{\otimes i})\
 \end{equation}
 where each contraction $(w_i\in \VV\otimes \VV^{*\otimes i})(\vv^{\otimes i})$ is defined by the programming algebra of Theorem \ref{izr:alg} through expression \eqref{eq:Horner}.
 
-\begin{definicija}
+\begin{definicija}[General tensor network]
 A general tensor network $\NN$ is a sequence of maps $L_i:\VV\to
 \VV$ called layers, defined by the equation
 \begin{equation}
@@ -1115,7 +1115,7 @@ The image of the application of the operator $e^\D$ to a program $P\in\dP_0$ as 
 
 \subsubsection{Transformations of programs to general tensor networks}\label{sec:transToNet}
 
-The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the historic Taylor series.
+The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the historic Taylor series and evolving the \emph{generalized shift operator} \eqref{rmrk:genShift}.
 \begin{izrek}[Neural Tensor series]\label{izr:transToTensorNet}
 Let $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ be the set of activation functions. Then the transformation
 \begin{equation}
