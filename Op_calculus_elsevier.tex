@@ -125,7 +125,7 @@ Neural networks are elevated to general tensor networks, that naturally exist in
  
 A general procedure is presented, which takes a program that tests an object for a property and
 constructs a program that imposes that property upon any object. 
-We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks.
+Using it, state of the art methods for analyzing neural networks are generalized for the use on programming spaces.
 \keywords{
   programming spaces\and
   operational calculus\and
@@ -642,7 +642,7 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
   
  \subsubsection{Operator of program composition}\label{sec:compsition}
  
- In this section we generalize both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single invariant operator in the theory. We demonstrate how calculations can be performed on the operator level, easing general implementation. This condenses complex notions to simple expressions allowing meaningful manipulations before being applied to a particular programming space.
+ In this section both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation are generalized to arbitrary order, under a single invariant operator in the theory. We demonstrate how calculations can be performed on the operator level, easing general implementation. This condenses complex notions to simple expressions allowing meaningful manipulations before being applied to a particular programming space.
  
  \begin{izrek}[Program composition]\label{izr:kompo}
  Composition of maps $\dP$ is expressed as
@@ -815,7 +815,7 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
   \end{equation}
   
   Using the tensor $\eqref{eq:matTrans}$, we can easily perform basis transformations $\X\to F$. For a specific set $F$ (and consequentially a hardware $H$, upon which the set $F$ is conditioned), the tensor $\eqref{eq:matTrans}$ only has to be computed once, and can then be used for transforming arbitrary programs (while using the same operator $e^\D_n$).
-  Thus, the coordinates of program $P\in\dP$ in basis $F$ are
+  The coordinates of program $P\in\dP$ in basis $F$ are
   
   \begin{equation}\label{eq:P_F}
   	P_F=T_{F\X}\cdot e^\D(P)
@@ -923,24 +923,16 @@ Cardinality of the set of domains $\Omega=\{\Omega_i\}$ equals $\lvert\{\Omega_i
 Iterators, that do not change exit conditions within its' body, do not cause branching.
 \end{opomba}
 
-
-It follows from Claim $\ref{izr:st.zlepkov}$, that the complexity of naive
-implementations of methods presented in Sections $\ref{sec:Vrsta}$ and
-$\ref{sec:FTP}$ to piecewise-defined maps are exponential in the number of
-branching points (if we were to treat each domain $\Omega_i$ by itself). But,
-with correct application of the theorems developed in this paper, we may drastically reduce this down to linear. This is the subject of study in this section.
-
+This section concerns itself with employing the derived theorems to propose a linear treatment of branchings and avoid the exponential threat of Claim \ref{izr:st.zlepkov} to applications of the theory.
 
 \begin{izrek}
 A program $P\in\dP$ can be equivalently represented with at most $2n+1$ applications of the operator $e^\D$, on $2n+1$ analytic programs.
 \end{izrek}
 
-\begin{proof}
-	Source code of a program $P\in\dP$ can be represented by a directed graph, as shown in Figure $\ref{fig:diagram}$. Each branching causes a split in the execution tree, that after completion returns to the splitting point.
-	By Theorem $\ref{izr:kompo}$, each of these branches can be viewed as a program $p_i$, for which it holds $$e^\D(p_n\circ p_{n-1}\circ\cdots\circ p_1)=e^\D(p_n)\circ e^\D(p_{n-1})\circ\cdots\circ e^\D(p_1)$$ by Theorem $\ref{izr:kompo}$.
-	
-	Thus, the source code contains $2n$ differentiable branches, from its' first branching on, not counting the branch leading up to it, upon which the application of the operator $e^\D$ is needed. Total of $2n+1$. By Theorem $\ref{izr:P}$, each of these branches is analytic.
-\end{proof}
+
+
+
+
 
 
 
@@ -1025,10 +1017,20 @@ A program $P\in\dP$ can be equivalently represented with at most $2n+1$ applicat
 	
 \end{tikzpicture}
 \caption{Transformation diagram} \label{fig:diagram} 
-\vspace{-3.288cm}
+\vspace{-1cm}
 \end{wrapfigure}
 
 
+
+
+
+
+\begin{proof}
+	Source code of a program $P\in\dP$ can be represented by a directed graph, as shown in Figure $\ref{fig:diagram}$. Each branching causes a split in the execution tree, that after completion returns to the splitting point.
+	By Theorem $\ref{izr:kompo}$, each of these branches can be viewed as a program $p_i$, for which it holds $$e^\D(p_n\circ p_{n-1}\circ\cdots\circ p_1)=e^\D(p_n)\circ e^\D(p_{n-1})\circ\cdots\circ e^\D(p_1)$$ by Theorem $\ref{izr:kompo}$.
+	
+	Thus, the source code contains $2n$ differentiable branches, from its' first branching on, not counting the branch leading up to it, upon which the application of the operator $e^\D$ is needed. Total of $2n+1$. By Theorem $\ref{izr:P}$, each of these branches is analytic.
+\end{proof}
 
 
 \begin{trditev}\label{trd:composeOperators}
@@ -1053,8 +1055,6 @@ The transformation tensor $T_{F\X}$ is needed to be computed only once and can t
 \begin{trditev}\label{clm:paralel}
 Images of the operator $e^\D (P\in\dP_0)$ are elements of $\VV\otimes T(\VV^*)$ by $\eqref{eq:specProg}$, consisting of multi-linear maps. As such, their evaluation and composition ($e^\D(P_1)\circ e^\D(P_2)$) is tailor made for efficient implementation by methods of parallelism \cite{TensorGPU}, with computable complexities.
 \end{trditev}
-
-Transformations by $\eqref{eq:P_F}$ need to be computed only once. Complexity of the composition of images of transformations $T_{F\X}\cdot e^\D(p_2)\circ T_{F\X}\cdot e^\D(p_1)$ depends on complexities of $f_i\in F$.
 
 \section{Generalized tensor networks}\label{sec:generalTensorNet}
 
@@ -1194,7 +1194,7 @@ By Claim \ref{clm:composedNet}, any training methods enabled by the operational 
   
 \section{Analysis}\label{sec:Analysis}
   
-   The theory presented in this paper grants new insights through methods of analysis. It reveals a procedure to be a system exerting change on objects inhabiting virtual space. These revelations are the object of study of this section, as we demonstrate how to intertwine algorithmic control flow, operational calculus and algebra, towards a common goal.  
+   Operational calculus grants new insights through methods of analysis. It reveals a procedure to be a system exerting change on objects inhabiting virtual space. These revelations are the object of study of this section, as we demonstrate how to intertwine algorithmic control flow, operational calculus and algebra, towards a common goal.  
   
   \subsection{Study of properties}\label{sec:studyProperties}
   
@@ -1217,7 +1217,7 @@ By Claim \ref{clm:composedNet}, any training methods enabled by the operational 
      $P\in \dP_0:\vv\notin X_j\to P(\vv)\in X_j$ \eqref{eq:procP}, imposing that
      property onto any object in the domain $\Omega\subset \VV$.
    
-   We employ the developed operational calculus in such endeavors, as we probe
+   We employ operational calculus in such endeavors, as we probe
    procedures' inner structure and explore how it interacts with the elements of
    the domain.
  
@@ -1312,7 +1312,7 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
    \subsubsection{Example}
    
-   The derived procedures $P$, are a broad generalization of special cases such as Google's Deep Dream project \cite{DeepDream}, where the program $T\in\dP_0$ represents a neural network, with the resulting $\vv\in X_j$ being an altered image.
+   The derived procedures $P$, are a generalization of special cases such as Google's Deep Dream project \cite{DeepDream}, where the program $T\in\dP_0$ represents a neural network, with the resulting $\vv\in X_j$ being an altered image.
    
    \begin{opomba}
       Approach is trivially generalized to general tensor networks.
@@ -1337,11 +1337,11 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    \end{equation}
    assuming it only needs to be once differentiable. Optimization of the property measure completes Algorithm \ref{alg:appoint}.
    
-   When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific layer in the network, with neurons being its variable parameters, than the procedure achieves what Google's Deep Dream Project \cite{DeepDream} does. However our procedure may be applied to any program $T\in\dP_0$. As neural networks are just programs contained in the programming space $\dP$, our view gazes over a broader landscape of programs it can be utilized on.
+   When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific layer in the network, with neurons being its variable parameters, than the procedure achieves what Google's Deep Dream Project \cite{DeepDream} does. However the procedure may be applied to any program $T\in\dP_0$, as neural networks are just programs contained in the programming space $\dP$.
    
 \section{Conclusions}
 
-Existence of a program is embedded in a virtual reality, forming a system of objects undergoing change in a virtual space. Just as the reality inhabited by us is being studied by science, revealing principles and laws, so can the virtual reality inhabited by programs. Yet here lies a tougher task, as the laws of the system are simultaneously observed and constructed; the universe is bug-free, up to philosophic precision, while our programs are not. This reinforces the need for a language capable of not only capturing, but also constructing digital phenomena, a feat demonstrated by the theory presented in this paper. 
+Existence of a program is embedded in a virtual reality, forming a system of objects undergoing change in a virtual space. Just as the reality inhabited by us is being studied by science, revealing principles and laws, so can the virtual reality inhabited by programs. Yet here lies a tougher task, as the laws of the system are simultaneously observed and constructed; the universe is bug-free, up to philosophic precision, while our programs are not. This reinforces the need for a language capable of not only capturing, but also constructing digital phenomena, a feat demonstrated by operational calculus. 
 
 Like Feynman \cite{Feynman} and Heaviside \cite{HeavisideOperational} for physics before us, we developed operational calculus on programming spaces, allowing analytic conclusions through algebraic means, easing implementation. We derived the operator of program composition, generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single operator in the theory. Both the use of algebra and operational calculus were demonstrated upon the operator, as calculations and manipulations were performed on the operator level, before the operator is applied to a particular program.
 This language condenses complex notions into simple expressions, enabling formulation of meaningful algebraic equations to be solved. Doing so, we derived functional transformations of programs in arbitrary function basis', a useful tool when adapting code to the specifics of a given hardware, among other.
