@@ -1115,7 +1115,7 @@ The image of the application of the operator $e^\D$ to a program $P\in\dP_0$ as 
 
 \subsubsection{Transformations of programs to general tensor networks}\label{sec:transToNet}
 
-The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the established Taylor series.
+The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the historic Taylor series.
 \begin{izrek}[Neural Tensor series]\label{izr:transToTensorNet}
 Let $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ be the set of activation functions. Then the transformation
 \begin{equation}
@@ -1124,7 +1124,7 @@ Let $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ be the set of activati
 \begin{eqnarray}
 \mathcal{N}\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0
 \end{eqnarray}
-is the transformation of a program $P=P_n\circ\cdots\circ P_0\in\dP_0$ to a general tensor network, with $e^\D P_i$ being applied at a specific point $\vv_{i}=P_{i-1}(\vv_{i-1})\in \VV$. When the choice of $P\in\dP_0$ and $\mathbf{v}_0\in\VV$ is arbitrary, we denote it simply $\NN\in\dP_0$ for brevity
+is the transformation of a program $P=P_n\circ\cdots\circ P_0\in\dP_0$ to a general tensor network, with $e^\D_N P_i$ being applied at a specific point $\vv_{i}=P_{i-1}(\vv_{i-1})\in \VV$. When the choice of $P\in\dP_0$ and $\mathbf{v}_0\in\VV$ is arbitrary, we denote it simply $\NN\in\dP_0$ for brevity.
 \end{izrek}
 \begin{proof}
 $$e^\D_N\vert_{v_i} P_i=W_i\in V\otimes T_N(V^*)\implies\tilde{P}=\Phi_n\circ W_n\circ\cdots\circ\Phi_0\circ W_0$$
@@ -1135,7 +1135,7 @@ $$\mathcal{N}\vert_{\mathbf{v}_0}P=L_{n+1}\in\dP_0$$
 \end{proof}
 
 \begin{corollary}[Neural-Program equivalence]\label{cor:N=P}
-Every tensor network can be derived from some program $P\in\dP_0$ and activations $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$. This establishes an equivalence between tensor networks and general programs $\in\dP$.
+Every general tensor network is a \emph{Neural Tensor series} of some program $P\in\dP_0$, for some  set of activation functions $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$. This establishes an equivalence between general tensor networks and programming spaces.
 \begin{equation}
 \NN=\dP
 \end{equation}
