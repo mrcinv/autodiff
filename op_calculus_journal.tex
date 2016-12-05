@@ -111,36 +111,32 @@ Martin Vuk \at  University of Ljubljana, Faculty of Computer and Information
   Science,  Večna pot 113, SI-1000 Ljubljana, Slovenia }
 \maketitle
 \begin{abstract}
-In this paper, we develop operational calculus on \emph{programming spaces} that
-generalizes existing approaches to automatic differentiation and provides a
-rigorous framework for program analysis through calculus. 
+In this paper, we develop operational calculus on programming spaces that
+generalizes existing approaches to automatic differentiation of computer
+programs and provides a rigorous framework for program analysis through calculus. 
 
-We present an abstract computing machine, that models automatically
-differentiable computer programs.  Computer programs are viewed as maps on a
-finite dimensional vector space called \emph{virtual memory space}, which is
-extended by the tensor algebra of its dual to accommodate derivatives. The
-extended virtual memory serves by itself as an algebra of programs, giving the
-expansion of the original program as an infinite tensor series at program's
-input values.    
+We present an abstract computing machine that models automatically
+differentiable computer programs. Computer programs are viewed as maps on a
+finite dimensional vector space called virtual memory space, which we
+extend by the tensor algebra of its dual to accommodate derivatives. The
+extended virtual memory is by itself an algebra of programs and its elements
+give the expansion of the original program as an infinite tensor series at
+program's input values.     
 
-The operator theory is used to perform calculations on the
-operator level and the generalized shift operator is used to perform
-analysis of programs and the transformations of programs to a different function
-basis.
+We define the operator of differentiation on programming spaces and
+implement higher order derivatives as well as generalized shift operator in
+terms of its powers. Operational calculus is used to prove properties of the
+defined operators. Several possible applications to computer science are
+presented, most notably trainable general tensor neural networks that can
+provide a meaningful way of neural network initialization and in some cases
+yield better performing approximations of programs. 
 
-Several possible applications to computer science are presented. An algorithm
-that takes a program testing an object for a property and 
-constructs a program imposing that property upon any object is presented.
+Our approach offers a powerful tool for program
+analysis and approximation as well as unified approach to automatic
+differentiation covering both forward and backward mode. General tensor networks
+enable generalization of the existing state of the art methods for analyzing neural
+networks to any computer program. 
 
-Neural networks are generalized to general tensor networks, that naturally exist in 
-extended virtual memory. Transformation of programs to trainable tensor
-networks as \emph{neural tensor series} is derived. can
-provide a meaningful way of neural network initialization and its training
-yields approximations of programs that might perform better or 
-faster than the original program.  General tensor networks also provide a bridge
-to \emph{differentiable neural computers} enabling state of the art methods for
-analyzing neural networks to be generalized for the use on any computer program. 
- 
 
 \keywords{
   programming spaces\and
