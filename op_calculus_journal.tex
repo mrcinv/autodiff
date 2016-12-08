@@ -428,10 +428,12 @@ Fréchet derivative defines an operator on the space of smooth maps in $\F_\inft
  	A \emph{differentiable programming space} $\dP_0$ is any subspace of $\F_0$ such that
  	\begin{equation}\label{eq:P}
  	\D\dP_0\subset\dP_0\otimes T(\VV^*)
- 	\end{equation}
- 	When all elements of $\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}.
+\end{equation}
+The space $\dP_n<\F_n$ spanned by $\{\D^k\dP_0;\quad 0\le k\le n\}$ over $K$, is
+called a differentiable programming space of order $n$. When all elements of
+$\dP_0$ are analytic, we call $\dP_0$ an \emph{analytic programming space}. 
  \end{definition}
- 
+The definition of higher order differentiable programming spaces is justified by the following theorem. 
 \begin{theorem}[Infinite differentiability]\label{izr:P}
 	Any differentiable programming space $\dP_0$ is an
   infinitely differentiable programming space, meaning that
@@ -440,8 +442,7 @@ Fréchet derivative defines an operator on the space of smooth maps in $\F_\inft
 	 	\end{equation}
 for any $k\in\mathbb{N}$.
 \end{theorem}
-\begin{proof} By induction on order $k$. For $k=1$ the claim holds by Definition
-  \ref{def:dP}. Assume	$\forall_{P\in\dP_0}$,
+\begin{proof} By induction on order $k$. For $k=1$ the claim holds by definition. Assume	$\forall_{P\in\dP_0}$,
   $\D^n\dP_0\subset\dP_0\otimes T(\VV^*)$. Denote by $P_{\alpha,k}^i$ the
   component of the $k$-th derivative for a multiindex $\alpha$  denoting the
   component of $T(\VV^*)$ and an index $i$ denoting the component of $\VV$.
@@ -450,30 +451,31 @@ for any $k\in\mathbb{N}$.
 	\end{equation}
 	$$\implies$$
 	$$\D^{n+1}\dP_0\subset\dP_0\otimes T(\VV^*)$$
-Thus by induction, the claim \eqref{eq:P_n} holds for all $k\in \mathbb{N}$. 
+Thus by induction, the claim holds for all $k\in \mathbb{N}$. 
 \end{proof}
 
-\begin{definition}[Higher order programming spaces]\label{def:P_n}
-Let $\dP_0$ be a differentiable programming space. The space $\dP_n<\F_n$ spanned by $\{\D^k\dP_0;\quad 0\le k\le n\}$ over $K$, is called a differentiable programming space of order $n$. 
-If all elements of $\dP_0$ are analytic, than so are the elements of $\dP_n$.
-\end{definition}
 
 
  \begin{corollary}\label{izr:P_n}
- 	A differentiable programming space of order $n$, $\dP_n:\VV\to \VV\otimes T(\VV^*)$, can be embedded into the tensor
-  product of the function space $\dP_0:\VV\to \VV$ and the subspace $T_n(\VV^*)$ of
-  tensor algebra of the dual of the virtual space $\VV$.
+ 	A differentiable programming space of order $n$, $\dP_n:\VV\to \VV\otimes
+  T(\VV^*)$, can be embedded into the tensor 
+  product of the function space $\dP_0$ and the space $T_n(\VV^*)$ of
+  multi-tensors of order less than equal $n$:
+  \begin{equation}
+    \label{eq:D_p_embed}
+    \dP_n<\dP_0\otimes T_n(\VV^*).
+  \end{equation}
  \end{corollary}
  
-By taking the limit as $n\to \infty$, we will consider 
+By taking the limit as $n\to \infty$, we consider 
  	
  	\begin{equation}
  	\label{eq:P_algebra}
  	 	    \dP_\infty < \dP_0\otimes \T(\VV^*),
  	\end{equation}
-where $\T(\VV^*)=\prod_{k=0}^\infty (\VV^*)^{\otimes k}$ is \emph{the tensor series
-  algebra}, the algebra of the  infinite formal tensor series,
-which is a completion of the tensor algebra $T(\VV^*)$ in suitable topology.
+where $\T(\VV^*)=\prod_{k=0}^\infty (\VV^*)^{\otimes k}$ is the \emph{tensor series
+  algebra}, the algebra of the infinite formal tensor series.\footnote{The
+  tensor series algebra is a completion of the tensor algebra $T(\VV^*)$ in suitable topology.}
 
 \section{Operational calculus on programming spaces}\label{sec:operational}
 
@@ -487,23 +489,23 @@ $\sumd_n$ as a direct sum of operators
   	\sumd_n = 1+\D +\D^2 +\ldots + \D^n 
   \end{equation}
   
-The image $\sumd_kP(\x)$ is a multitensor of order $k$, which is a direct sum of the maps value and all derivatives of order $n\le k$, all evaluated at the point $\x$:
+The image $\sumd_kP(\x)$ is a multi-tensor of order $k$, which is a direct sum of the map's value and all derivatives of order $n\le k$, all evaluated at the point $\x$:
 \begin{equation}
   \label{eq:multi_odvod}
   \sumd_kP(\x) = P(\mathbf{x})+\partial_\mathbf{x} P(\mathbf{x}) + \partial^2_\mathbf{x} P(\mathbf{x}) + \ldots + \partial^k_\mathbf{x} P(\mathbf{x}).
 \end{equation}
-The operator $\sumd_n$ satisfies the recursive relation.
+The operator $\sumd_n$ satisfies the recursive relation:
   \begin{equation}
     \label{eq:potenca(1+d)}
     \sumd_{k+1}=1+\D\sumd_{k},
   \end{equation}
 that can be used to recursively construct programming spaces of arbitrary order. 
 \begin{proposition}
-Only explicit knowledge of $\sumd:\dP_0\to\dP_1$ is required for the
+Only explicit knowledge of $\sumd_1:\dP_0\to\dP_1$ is required for the
 construction of $\dP_n$ from $\dP_1$. 
 \end{proposition}
 \begin{proof}
-  The construction is achieved by following the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. 
+  The construction is achieved following the argument $\eqref{eq:inductionStep}$ of the proof of Theorem \ref{izr:P}, allowing simple implementation, as dictated by $\eqref{eq:potenca(1+d)}$. 
 \end{proof}
         
        \begin{remark}\label{rem:vTen}
@@ -532,11 +534,11 @@ extending linearly on the whole space $\VV\otimes\T(\VV^*)$
 
 \subsection{Analytic virtual machine}
 
-We propose an abstract computational model, a virtual machine capable of constructing and implementing the derived theory. Such a machine provides a framework for analytic study of algorithmic procedures through algebraic means.
+We propose an abstract computational model, a virtual machine capable of
+constructing differentiable programming spaces. Such a machine provides a
+framework for analytic study of algorithmic procedures by algebraic means. 
 
-\begin{proposition}
-The tuple  $(\VV,\dP_0)$ and the belonging \emph{tensor series algebra} are sufficient conditions for the existence and construction of \emph{infinitely differentiable programing spaces} $\dP_\infty$ $\eqref{def:P_n}$, which are \emph{function algebras} by Theorem $\ref{izr:alg}$, through linear combinations of elements of $\dP_0\otimes \T(\VV^*)$
-\end{proposition}
+
 
 \begin{definition}[Analytic virtual machine]\label{def:analyticMachine}
 The tuple $M=\langle \VV,\dP_0\rangle$ is an analytic, infinitely  differentiable virtual machine, where
@@ -552,6 +554,13 @@ The tuple $M=\langle \VV,\dP_0\rangle$ is an analytic, infinitely  differentiabl
     When $\dP_0$ is a differentiable programming space, this defines an
     infinitely differentiable virtual machine.
   \end{definition}
+\begin{remark}
+The tuple  $(\VV,\dP_0)$ and the structure of the \emph{tensor series algebra}
+$\T(\VV^*)$ are sufficient to construct \emph{infinitely differentiable
+  programing spaces} $\dP_\infty$ by linear combinations of elements of
+$\dP_0\otimes \T(\VV^*)$. 
+\end{remark}
+
 Algebraic manipulations these machines enable are employed throughout the paper, revealing analytic insights in Section \ref{sec:Analysis}.  All analytic virtual machines fully integrate usage of control structures, as it is demonstrated and proven in Section \ref{sec:control}, thus retaining algorithmic control flow and the expressive power it possesses.
 
 \subsubsection{Implementation}
