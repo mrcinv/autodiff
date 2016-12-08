@@ -1150,39 +1150,39 @@ The image of the application of the operator $e^\D$ to a program $P\in\dP_0$ as 
 
 The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the historic Taylor series and evolving the \emph{generalized shift operator} \eqref{rmrk:genShift}.
 \begin{definition}[Neural tensor series]\label{def:transToTensorNet}
-Let $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ be the set of
-activation functions. Assume the program $P\in\dP_0$ can be written as a
-composition $P=P_n\circ\cdots\circ P_0\in\dP_0$. Then the map
+ Assume the program $P\in\dP_0$ can be written as a
+ composition $P=P_n\circ\cdots\circ P_0\in\dP_0$. A general tensor network
+ $\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P$ defined with a set of activation
+ functions $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ and 
+ weights
 \begin{eqnarray}
-\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0
+\bfW_k = e^\D_N\vert_{\mathbf{v}_k}P_k;\quad \vv_k=P_k\circ \cdots P_0(\vv_0)
 \end{eqnarray}
 is called \emph{neural tensor series of order $N$} for a program $P$ at a point
-$\vv_0$ with activation functions $\Phi$. When the choice of $(\Phi,P,\mathbf{v_0})$ is arbitrary, we simply denote it $\NN\in\dP_0$, as any general tensor network is a truncated Neural tensor series of some program $P\in\dP$.
+$\vv_0$ with activation functions $\Phi$. 
 \end{definition}
 
 
-\begin{trditev}
-The neural tensor series $\mathcal{N}_\Phi\vert_{\vv_0}P$ is a generalized
-tensor network with weights $e^\D_N\vert_{\mathbf{v}_i}P_i\in\VV\otimes T(\VV^*)$ and activation
-functions $\Phi_i$.
-\end{trditev}
-
-
 \begin{opomba}
-Using the operator $e^ \D_1$ in the transformation of Definition \ref{def:transToTensorNet}, we arrive at a transformation from a program to a common neural network.
+Neural tensor series transforms a common program to a trainable general tensor network.
+Using the operator $e^ \D_1$ a program can be transformed to a common neural network.
 \end{opomba}
 Definition \ref{def:transToTensorNet} has wide applications to different fields.
-When the original program is a sub-optimal algorithm providing an approximate
-solution, as it is more often than not in practice, one can apply the
-transformation of Definition \ref{def:transToTensorNet}. The derived
-\emph{neural tensor series} serves as a great initialization point for further
-training. This can be seen as a process of \emph{boosting} \cite{boosting},
-converting a weaker learner to a strong one, which may prove useful in
-applications, as currently neural networks give best results to many problems.
+In practice if a sub-optimal algorithm providing an approximate
+solution is available, the \emph{neural tensor series} serves as a great
+initialization point for further training, leading to a process of
+\emph{boosting} \cite{boosting}(converting a weaker learner to a strong one).
+As currently neural networks give best results to many problems, the described
+method is likely to provide improvements to existing methods.
 
-As each general tensor network is a neural tensor series of some program, it provides an elegant way of expressing neural computations through operational calculus. 
-This has direct implications to the study and understanding of \emph{differentiable neural computers} \cite{netRam}. Interchanging neural processes and programming spaces reveals new directions to explore, as we might gain insight on one by identifying it with the other.
-
+As each general tensor network is a neural tensor series of some program, it
+provides an elegant way of expressing neural computations through operational
+calculus.  
+This has direct implications to the study and understanding of
+\emph{differentiable neural computers} \cite{netRam}. Interchanging neural
+processes and programming spaces reveals new directions to explore, as we might
+gain insight on one by identifying it with the other. 
+ 
 
 \begin{opomba}
 All coefficients $\bfW_i\in \VV\otimes T(\VV^*)$ are multi-linear maps allowing efficient implementation through GPU parallelism as by Claim \ref{clm:paralel}. Thus, general tensor networks may employ it, just as the common neural networks they generalize do.
