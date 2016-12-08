@@ -1193,7 +1193,11 @@ The transformed program \eqref{eq:PGN1} equals the original program by Theorem \
 \begin{eqnarray}
 \bfW_k = e^\D_N\vert_{\mathbf{v}_k}P_k;\quad \vv_k=P_k\circ \cdots P_0(\vv_0)
 \end{eqnarray}
-is called \emph{neural tensor series of order $N$} for a program $P$ at a point
+is called \emph{neural tensor series of order $N$} 
+\begin{equation}
+\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0
+\end{equation}
+for a program $P$ at a point
 $\vv_0$ with activation functions $\Phi$. 
 \end{definition}
 
