@@ -132,8 +132,8 @@ provide a meaningful way of neural network initialization and in some cases
 yield better performing approximations of programs. 
 
 Our approach offers a powerful tool for program
-analysis and approximation as well as unified approach to automatic
-differentiation covering both forward and backward mode. General tensor networks
+analysis and approximation as well as a unified approach to automatic
+differentiation covering both forward and reverse mode under a single operator. General tensor networks
 enable generalization of the existing state of the art methods for analyzing neural
 networks to any computer program. 
 
@@ -1157,7 +1157,7 @@ composition $P=P_n\circ\cdots\circ P_0\in\dP_0$. Then the map
 \mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0
 \end{eqnarray}
 is called \emph{neural tensor series of order $N$} for a program $P$ at a point
-$\vv_0$ with activation functions $\Phi$. When the choice of $(\Phi,P,\mathbf{v_0})$ is arbitrary, we simply denote it $\NN\in\dP_0$ for brevity.
+$\vv_0$ with activation functions $\Phi$. When the choice of $(\Phi,P,\mathbf{v_0})$ is arbitrary, we simply denote it $\NN\in\dP_0$, as any general tensor network is a truncated Neural tensor series of some program $P\in\dP$.
 \end{definition}
 
 
