@@ -349,8 +349,8 @@ Motivated by the Definition
 virtual memory for differentiable programs  as a sequence of vector spaces with
 the recursive formula
 \begin{eqnarray}
-  \label{eq:universal_space}
   \VV_0 &=& \VV\\
+  \label{eq:universal_space}
   \VV_k &=& \VV_{k-1}+\left(\VV_{k-1}\otimes \VV^*\right).
 \end{eqnarray}
 Note that the sum is not direct, since some of the subspaces of $\VV_{k-1}$ and
@@ -360,14 +360,13 @@ identified\footnote{The spaces $\VV\otimes(\VV^*)^{\otimes (j+1)}$ and
   will be identified in the sum.
 }.
 
-  The space
+  The space that satisfies the recursive formula (\ref{eq:universal_space}) is
   \begin{equation}
     \label{eq:k-th-virtual-space}
     \VV_k = \VV\otimes \left(K\oplus \VV^* \oplus (\VV^*\otimes \VV^*)\oplus\ldots
-      (\VV^*)^{\otimes k}\right) = \VV\otimes T_k(\VV^*)
+      (\VV^*)^{\otimes k}\right) = \VV\otimes T_k(\VV^*),
   \end{equation}
-  satisfies the recursive formula (\ref{eq:universal_space}), where the space
-  $T_k(\VV^*)$ is a subspace of \emph{tensor algebra} $T(\VV^*)$, consisting of
+  where $T_k(\VV^*)$ is a subspace of \emph{tensor algebra} $T(\VV^*)$, consisting of
   linear combinations of tensors of rank less or equal $k$. This construction
   enables us to define all the derivatives as maps with 
   the same domain and codomain $\VV\to \VV\otimes T(\VV^*)$.
