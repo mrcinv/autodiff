@@ -74,7 +74,8 @@ basicstyle=\ttfamily
 \DeclareMathOperator{\proj}{pr}
 
 
-\usepackage[hidelinks]{hyperref}
+%\usepackage[hidelinks]{hyperref}
+\usepackage{hyperref}
 
 \usepackage{epigraph}
 
@@ -152,14 +153,35 @@ Programming holds the power of algorithmic control flow and freedom of expressio
 Just as the discrete nature of physical reality is studied through analytic means, so can the nature of digital phenomena. Studying these procedures as objects undergoing change in some virtual space, has partially been attempted in some fields, such as Hamiltonian Monte Carlo methods of Bayesian predictors, that Girolami and Calderhead \cite{StatMC} studied as manifolds to great success, using unfortunately impractical methods of hard-coding derivatives of distributions. This of course stifles the freedom of algorithmic expression programming is embraced for.
 
 The way evaluation of algorithmic expressions differs from evaluation of symbolic expressions of standard analysis, lies at the very core of this dissonance. The disconnect was partially mitigated by methods of automatic differentiation \cite{AdSurvey}, utilized today in machine learning, engineering, simulations, etc. Yet under the lack of a proper formalism the model collapses \cite{AD2} when one tries to generalize to such notions as a differentiable program $p_1$ operating on (differentiable) derivatives of another program $p_2$ (where only coding of $p_2$ is required within $p_1$), while retaining the famed expressive freedom. 
-Models allowing for nested differentiation \cite{AD1}, still fail in providing algorithms with an algebra enabling study and formulation of programs through analytic equations. Thus, existing models \cite{PcAD} \cite{ReverseAD} remain nothing more than efficient means to calculating derivatives, void of any meaningful algebraic insight, lacking the true power the vast field of analysis is endowed with.
+Models allowing for nested differentiation \cite{AD1}, still fail in providing algorithms with an algebra enabling study and formulation of programs with analytic equations. Existing models \cite{PcAD} \cite{ReverseAD} remain nothing more than efficient means to calculating derivatives, void of any meaningful algebraic insight, lacking the true power the vast field of analysis is endowed with.
 
-The aim of this paper is bridging the gap between programming and analysis left behind by previous models. By generalizing them, they are shown to be specific views of the same great elephant. Employing tensor algebra a virtual memory is constructed, whose internal structure reflects and carries evaluation of algorithmic expressions. In Section \ref{sec:operational}, an exact definition and construction of an analytic virtual machine is presented, capable of implementing infinitely-differentiable programming spaces and operators acting upon them, supporting actions on multiple memory locations at a time. These programming spaces are shown to be a subalgebra, giving rise to symbolic manipulations of programs, while attaining construction by algorithmic control flow. Through it operators expanding a program into an infinite tensor series are derived in Section \ref{sec:Vrsta}. The operator of program composition is constructed in Section \ref{sec:compsition}, generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single invariant operator in the theory. Through projections and embeddings in this space, the problem of nested differentiation is resolved in Section \ref{sec:orderReduction}.
+The aim of this paper is bridging the gap between programming and analysis left
+behind by previous models. By generalizing them, they are shown to be specific
+views of the same great elephant. Employing tensor algebra a virtual memory is
+constructed, whose internal structure reflects and carries evaluation of
+algorithmic expressions. In Section \ref{sec:operational}, an exact definition
+and construction of an analytic virtual machine is presented, capable of
+implementing infinitely-differentiable programming spaces and operators acting
+upon them, supporting actions on multiple memory locations at a time. These
+programming spaces are shown to be a subalgebra, giving rise to symbolic
+manipulations of programs, while attaining construction by algorithmic control
+flow. Operators expanding a program into an infinite tensor series are derived
+in Section \ref{sec:Vrsta}. The operator of program composition is constructed
+in Section \ref{sec:compsition}, generalizing both forward \cite{PcAD} and
+reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order,
+under a single invariant operator. The problem of nested differentiation is
+resolved in Section \ref{sec:orderReduction}.
 
-Theory grants us the ability to choose programs' complexity through approximations inhabiting the virtual space. It being modeled by tensor algebra consisting of multi-linear maps is tailor made for efficient implementation by GPU parallelism \cite{TensorGPU}. In Section \ref{sec:FTP}, functional transformations of programs in an arbitrary function basis are derived in the developed algebra. 
-As different hardware is optimized for running of different sets of functions, this proves useful with adapting code to fit specific hardware.
-Instructions on methods of usage are provided in Section \ref{sec:TransInPractice}, outlining the process of how these transformations are to be interchangeably applied in practice. 
-Analytic virtual machines fully integrate control structures as shown in Section \ref{sec:control}, retaining algorithmic control flow and the expressive power it possesses.
+Theory grants us the ability to choose programs' complexity through
+approximations in the virtual space. The tensor algebra model of virtual memory
+consists of multi-linear maps which are tailor made for efficient implementation
+by GPU parallelism \cite{TensorGPU}. In Section \ref{sec:FTP} functional
+transformations of programs in an arbitrary function basis are derived. As
+different hardware is optimized for running with different sets of functions, this
+proves useful with adapting code to fit specific hardware. 
+Branching and discontinuity are discussed in Section \ref{sec:control}. 
+where we show that analytic virtual machines fully integrate control structures,
+retaining algorithmic control flow. 
  
 Theory grants a generalization from neural networks to general tensor networks in Section \ref{sec:generalTensorNet}, revealing their connection with programs in Section \ref{sec:progAsNet}.
 The historic Taylor series are modernized in Section \ref{sec:transToNet} by deriving \emph{Neural tensor series}, establishing an equivalence between general tensor networks and programming spaces. This has direct implications to the study and understanding of \emph{differentiable neural computers} \cite{netRam} through operational calculus. By this equivalence, transformations of arbitrary programs to general tensor networks are derived. The transformation to a \emph{Neural Tensor series} serves as a great initialization point of a general tensor network to be trained. This can be seen as a process of \emph{boosting} \cite{boosting}, converting a weaker learner to a strong one, which proves fruitful, as currently neural networks give best results to many problems.
@@ -698,11 +720,25 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
   \begin{equation}\label{eq:opKompo}
   \exp(\D_fe^{h\D_g})(g): \dP\to\dP_\infty(g)
   \end{equation}
- \begin{proposition}[Unified AD]\label{trd:reverseForward}
- When projecting onto the space spanned by $\{1,\D\}$, the action of the operator $\exp(\D_fe^{h\D_g})(g)$ of $\eqref{eq:opKompo}$ is equivalent to forward \cite{PcAD} mode automatic differentiation. Both forward \cite{PcAD} and reverse \cite{ReverseAD} mode (generalized to arbitrary order) are obtainable using the same operator $\exp(\D_fe^{h\D_g})$ of $\eqref{eq:opGenKompo}$, by fixing the appropriate one of the two maps. This generalizes both concepts under a single operator in the theory. The operator \eqref{eq:kompo} can be generalized for the notion of a pullback to arbitrary operators.
- \end{proposition}
+ \begin{remark}[Unified AD]\label{trd:reverseForward}
+ When projecting onto the space spanned by $\{1,\D\}$, the action of the
+ operator $\exp(\D_fe^{h\D_g})(g)$ is equivalent to forward \cite{PcAD} mode
+ automatic differentiation. Both forward \cite{PcAD} and reverse
+ \cite{ReverseAD} mode (generalized to arbitrary order) are obtainable using the
+ same operator $\exp(\D_fe^{h\D_g})$, by fixing the appropriate map $f$ or $g$.
+ This generalizes both concepts under a single operator.
+   
+ \end{remark}
+ \begin{remark}
+ The operator \eqref{eq:kompo} can be generalized for the notion of a pullback to arbitrary operators.
+ \end{remark}
  
- Thus, through $\eqref{eq:kompo}$ and all its' descendants (exponents), the operator $(\ref{eq:opKompo})$ grants invariance to the point in execution of a program, which proves useful as invariants are at the center of proving algorithms' correctness. This is analogous to the principle of general covariance \cite{GeneralCovariance}[See section 7.1] in general relativity, the invariance of the form of physical laws under arbitrary differentiable coordinate transformations. This principle and what it offers to programming is explored in Section \ref{sec:TransInPractice}.
+ Thus, through $\eqref{eq:kompo}$ and all its' descendants (exponents), the
+ operator $(\ref{eq:opKompo})$ grants invariance to the point in execution of a
+ program, which is important when proving algorithm's correctness. This is
+ analogous to the principle of general covariance \cite{GeneralCovariance}[See
+ section 7.1] in general relativity, the invariance of the form of physical laws
+ under arbitrary differentiable coordinate transformations. 
  
  With this we turn towards easing such calculations, towards completing them on the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is
  \begin{equation}\label{eq:dexp}
@@ -925,7 +961,6 @@ functions.
   Interior of each domain $\Omega_i$ is open. As the entire domain $\Omega=\bigcup\limits_{\forall_i}\interior(\Omega_i)$ is a union of open sets, it is therefore open itself. Thus, all evaluations are computed on some open set, effectively removing boundaries, where problems might have otherwise occurred. Theorem follows directly from the proof of Theorem $\ref{izr:P}$ through argument $\eqref{eq:inductionStep}$.
  \end{proof}
  
-\subsection{Transformations in practice} \label{sec:TransInPractice}
 
 Branching of programs into domains $\eqref{eq:zlrprk_splosno}$ is done through conditional statements. Each conditional causes a branching in programs' execution tree.
 
@@ -1122,7 +1157,7 @@ and others could be easily adapted to handle general tensor networks.
 
 \subsection{Programs as general tensor networks}\label{sec:progAsNet}
 
-Let $P=P_n\circ\cdots\circ P_0\in\dP_0$ be the procedure of interest, with $P_i\in\dP_0$ being the source code between two branching points, like shown in Figure \ref{fig:diagram} of Section \ref{sec:TransInPractice}.
+Let $P=P_n\circ\cdots\circ P_0\in\dP_0$ be the procedure of interest, with $P_i\in\dP_0$ being the source code between two branching points, like shown in Figure \ref{fig:diagram}.
 By Theorem \ref{izr:e^d} we have
 \begin{equation}\label{eq:PGN1}
 P(\vv_0+\vv\in \VV)=e^\D\vert_{\vv_0} P(\vv\in \VV)
@@ -1181,7 +1216,8 @@ All coefficients $\bfW_i\in \VV\otimes T(\VV^*)$ are multi-linear maps allowing 
 
 \subsubsection{Compositions of tensor networks with general programs}\label{sec:compoNetProg}
 
-Methods of practical use presented in Section \ref{sec:TransInPractice} apply to general tensor networks.
+Methods for control structures and branching presented in Section
+\ref{sec:control} apply to general tensor networks. 
 \begin{proposition}\label{clm:composedNet}
 By Claim \ref{trd:composeOperators}, an arbitrary $P\in\dP:\VV\to\VV$ can be composed with general tensor networks $\NN_i:\VV\to\VV$ 
 \begin{equation}\label{eq:composedNet}
@@ -1371,7 +1407,7 @@ Existence of a program is embedded in a virtual reality, forming a system of obj
 
 Inspired by the endeavors of Feynman \cite{Feynman} and Heaviside \cite{HeavisideOperational} in physics before us, we applied operational calculus to programming spaces, allowing analytic conclusions through algebraic means, easing implementation. It yielded the operator of program composition, generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single operator in the theory. Both the use of algebra and operational calculus were demonstrated upon the operator, as calculations and manipulations were performed on the operator level, before the operator is applied to a particular program.
 This language condenses complex notions into simple expressions, enabling formulation of meaningful algebraic equations to be solved. In doing so, functional transformations of programs in arbitrary function basis' were derived, a useful tool when adapting code to the specifics of a given hardware, among other.
-All such formulations are invariant not only to the choice of a programming space, but also to the point in execution of a program, introducing the principle of general covariance \cite{GeneralCovariance} to programming. Offerings of this principle were exploited in designing methods on how transformations are to be interchangeably applied in practice in Section \ref{sec:TransInPractice}. These methods allow for seamless transitions between transformed forms and original code throughout the program.
+All such formulations are invariant not only to the choice of a programming space, but also to the point in execution of a program, introducing the principle of general covariance \cite{GeneralCovariance} to programming. Offerings of this principle were exploited in designing methods on how transformations are to be interchangeably applied in practice in Section \ref{sec:control}. These methods allow for seamless transitions between transformed forms and original code throughout the program.
 
 Operational calculus provides more than mere means to calculating derivatives. Its depth allows merging modern discoveries with known old truths in the form of Neural Tensor series. A construct most useful when coming to terms with the finite horizon beyond which theoretical truths become pragmatic approximations. It allows us to treat the idealistic case deprecated by the finite, as an initial prediction of a model to be trained. This has widespread applicability, as it can be seen as a process of \emph{boosting} \cite{boosting}, which already enriched other fields. 
 
