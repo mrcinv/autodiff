@@ -72,7 +72,6 @@ basicstyle=\ttfamily
 \DeclareMathOperator{\interior}{int}
 
 \DeclareMathOperator{\proj}{pr}
-\bibliographystyle{spmpsci}
 
 %\usepackage[hidelinks]{hyperref}
 \usepackage{hyperref}
@@ -563,13 +562,10 @@ $\T(\VV^*)$ are sufficient to construct \emph{infinitely differentiable
 $\dP_0\otimes \T(\VV^*)$. 
 \end{remark}
 
-Algebraic manipulations these machines enable are employed throughout the paper, revealing analytic insights in Section \ref{sec:Analysis}.  All analytic virtual machines fully integrate usage of control structures, as it is demonstrated and proven in Section \ref{sec:control}, thus retaining algorithmic control flow and the expressive power it possesses.
-
-\subsubsection{Implementation}
-
-An illustrative example of the implementation of the theory is available on github \cite{dC++}. Implementation closely follows theorems and derivations of this paper, intended as an educational guide.
-
-Virtual memory $\VV$ is constructed and expanded to $\VV\otimes T(\VV^*)$, serving by itself as an algebra of programs. We provide a construction of an analytic programming space $\CC\subset \dP_0:\VV\to\VV$ and expand it to $\DD^n\CC\subset\dP_n:\VV\to\VV\otimes T(\VV^*)$ using the developed operational calculus. A paper \cite{dC++Paper} explaining the process of implementation accompanies the source-code. 
+An illustrative example of the implementation of an analytic virtual machine is available on
+github \cite{dC++}. Implementation closely follows theorems and derivations of
+this paper and is intended as an educational guide. A paper \cite{dC++Paper} explaining
+the process of implementation accompanies the source-code.  
 
  \subsection{Tensor series expansion}\label{sec:Vrsta}
  
@@ -1430,6 +1426,7 @@ As each general tensor network is a Neural tensor series of some program, we mig
 hopefully further bridging the gap in understanding between continuous and discrete computation.
  Operational calculus provides a rigorous framework for such discussion, as was briefly explored in the final section, and will be the authors' next subject of study.
 
+\bibliographystyle{spmpsci}
 \bibliography{biblio}
 
 \end{document}
