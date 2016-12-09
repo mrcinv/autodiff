@@ -569,7 +569,6 @@ the process of implementation accompanies the source-code.
 
  \subsection{Tensor series expansion}\label{sec:Vrsta}
  
- Expansion into a series offers valuable insights into programs through methods of analysis, as explored in the coming sections.
  
 There exists a space spanned by the set $\DD^n=\{\D^k;\quad 0\le k\le n\}$ over a field $K$. Thus, the expression
  \begin{equation}
@@ -591,18 +590,21 @@ The operator $e^{h\D}$ is a mapping between function spaces $\eqref{eq:F_n}$
   	e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*),
   \end{equation}
 by taking the image of the map $e^{h\D}(P)$ at a certain point $\vv\in \VV$.  
-Through $\eqref{eq:specProg}$ we may construct a map from the space of programs,
-to the space of polynomials. Note that the space of multivariate polynomials
+We may construct a map from the space of programs,
+to the space of polynomials using  $\eqref{eq:specProg}$. Note that the space of
+multivariate polynomials 
 $\VV\to K$ is isomorphic to symmetric algebra $S(\VV^*)$, which is in turn a
 quotient of tensor algebra $T(\VV^*)$.
 To any element of
- $\VV\otimes T(\VV^*)$ one can attach corresponding element of $\VV\otimes S(\VV^{i*})$
+ $\VV\otimes T(\VV^*)$ one can attach corresponding element of $\VV\otimes S(\VV^*)$
  namely a polynomial map  $\VV\to \VV$. Thus, similarly to \eqref{eq:P_algebra}, we consider the completion of the symmetric algebra $S(\VV^*)$ as the \emph{formal power series} $\Ss(\VV^{*})$, which is in turn isomorphic to a quotient of \emph{tensor series algebra} $\T(\VV^*)$, arriving at 
  \begin{equation}\label{eq:pToPol}
- 	e^{h\D}: \dP\times \VV\to \VV\otimes \Ss(\VV^{i*})
+ 	e^{h\D}: \dP\times \VV\to \VV\otimes \Ss(\VV^*)
  \end{equation}
  For any element $\vv_0\in \VV$, the expression $e^{h\D}(\cdot,\vv_0)$ is a map $\dP\to
- \VV\otimes \Ss(\VV^*)$, mapping a program to a formal power series. We can express the
+ \VV\otimes \Ss(\VV^*)$, mapping a program to a formal power series.
+
+ We can express the
  correspondence between multi-tensors in $\VV\otimes T(\VV^*)$ and polynomial maps
  $\VV\to \VV$ given by multiple contractions for all possible indices. For a simple tensor $\uu\otimes
  f_1\otimes\ldots\otimes f_n\in \VV\otimes(\VV^*)^{\otimes n}$ the contraction by
@@ -661,37 +663,54 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  $$\implies$$
  $$\left(\D^n(P)(\vv_0)\right)\cdot(\vv^{\otimes n})$$
  \end{proof}
- \begin{remark}[Generalized shift operator]\label{rmrk:genShift}
- The operator $e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*)$ evaluated at $h=1$ is a broad generalization of the shift operator \cite{OpCalc}, as the theory it exists in offers more than a mere shift, as will become apparent in the coming sections.
- For a specific $\vv_0\in\VV$ it is hereon denoted by
- \begin{equation}
- e^\D\vert_{\vv_0}:\dP\to \VV\otimes \T(\VV^*)
- \end{equation}
- When the choice of $\vv_0\in\VV$ is arbitrary, we omit it from expressions for brevity.
- \end{remark}
- 
- The image of the contraction is an element of the original virtual space $\VV^i$. Independence of the operator $(\ref{eq:specProg})$ from a coordinate system, translates to independence in execution. Thus the expression $(\ref{eq:tenzorVrsta})$ is invariant to the point in execution of a program, a fact we explore later on.  
- 
- It is trivial to show that the operator $e^{h\D}$ is an automorphism of the programming algebra $\dP_\infty$,
+It follows trivially from the above theorem that the operator $e^{h\D}$ is an
+automorphism of the programming algebra $\dP_\infty$, 
 \begin{equation}\label{eq:prod}
  	e^{h\D}(p_1\cdot p_2)=e^{h\D}(p_1)\cdot e^{h\D}(p_2)
  \end{equation}
  where $\cdot$ stands for any bilinear map.
+
+ \begin{remark}[Generalized shift operator]\label{rmrk:genShift}
+ The operator $e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*)$ evaluated at $h=1$
+ is a broad generalization of the shift operator \cite{OpCalc}. The theory
+ presented in this section offers more than a mere shift, which will become
+ apparent in the coming sections.
+ \end{remark}
  
+ For a specific $\vv_0\in\VV$, the generalized shift operator is denoted by
+ \begin{equation}
+ e^\D\vert_{\vv_0}:\dP\to \VV\otimes \T(\VV^*)
+ \end{equation}
+ When the choice of $\vv_0\in\VV$ is arbitrary, we omit it from expressions for brevity.
+
+ \begin{remark}
+ Independence of the operator $(\ref{eq:specProg})$ from a coordinate
+ system, translates to independence in execution. Thus the expression
+ $(\ref{eq:tenzorVrsta})$ is invariant to the point in execution of a program, a
+ fact we explore in Section \ref{sec:control}.   
+\end{remark}
+
+ \begin{remark}
  Corollary $\ref{izr:P_n}$ through \eqref{eq:P_algebra} implies
       	$e^{h\D}(\dP_0)\subset\dP_0\otimes \T(\VV^*)$      
- which enables efficient implementation. 
-  
- \subsubsection{Operator of program composition}\label{sec:compsition}
+ which enables efficient implementation by operator $\sumd$. 
+\end{remark}
+\subsubsection{Operator of program composition}\label{sec:compsition}
  
- In this section both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation are generalized to arbitrary order, under a single invariant operator in the theory. We demonstrate how calculations can be performed on the operator level, easing general implementation. This condenses complex notions to simple expressions allowing meaningful manipulations before being applied to a particular programming space.
+ In this section both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of
+ automatic differentiation are generalized to arbitrary order under a single
+ invariant operator in the theory. We demonstrate how to perform calculations on
+ operator level before they are applied to a particular 
+ programming space, condensing complex notions to simple expressions.  
  
  \begin{theorem}[Program composition]\label{izr:kompo}
  Composition of maps $\dP$ is expressed as
  \begin{equation}\label{eq:kompo}
  e^{h\D}(f\circ g)=\exp(\D_fe^{h\D_g})(g,f)
  \end{equation}
- where $\exp(\D_fe^{h\D_g}):\dP\times\dP\to\dP_\infty$ is an operator on pairs of maps $(g,f)$, where $\D_g$ is applied to $g$, and $\D_f$ to $f$. 
+ where $\exp(\D_fe^{h\D_g}):\dP\times\dP\to\dP_\infty$ is an operator on pairs
+ of maps $(g,f)$, where $\D_g$ is differentiation operator applied to the first
+ component $g$, and $\D_f$ to the second component $f$. 
  \end{theorem}
  
 \begin{proof}
@@ -747,44 +766,6 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
  section 7.1] in general relativity, the invariance of the form of physical laws
  under arbitrary differentiable coordinate transformations. 
  
- With this we turn towards easing such calculations, towards completing them on the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is
- \begin{equation}\label{eq:dexp}
- \frac{d}{dh}\exp(\D_fe^{h\D_g})(g)=\D_f(\D_gg)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)
- \end{equation}
- 
- We note an important distinction to the operator $e^{h\D_g}$, the derivative of which is
- \begin{equation}\label{eq:de}
-\frac{d}{dh}e^{h\D_g}=\D_ge^{h\D_g}
- \end{equation}
- We may now compute derivatives (of arbitrary order) of the pullback operator. As an example we compute the second derivative.
- $$\left(\frac{d}{dh}\right)^2\exp\left(\D_fe^{h\D_g}\right)(g)=\frac{d}{dh}\left(\D_f(\D_gg)e^{h\D_g}\exp\left(\D_fe^{h\D_g}\right)(g)\right)$$
- which is by equations $\eqref{eq:dexp}$ and $\eqref{eq:de}$, using algebra and correct applications
- \begin{equation}\label{eq:d^2comp}
- \left(\D_f(\D^2_gg)\right)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D^2_f(\D_gg)^2)e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)
- \end{equation}
- The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $\vv\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
- \begin{equation}
-	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f):\dP\to\D^2\dP(g)
- \end{equation}
- 
- Thus, without imposing any additional rules, we computed the operator of the second derivative of composition with $g$, directly on the level of operators. The result of course matches the equation $\eqref{eq:dComposite}$ for $n=2$.
- 
- As it is evident from the example, calculations using operators are far
- simpler, than direct manipulations of functional series, as it was done in the
- proof of Theorem $\ref{izr:kompo}$. This of course enables a simpler
- implementation, that functions over arbitrary programming (function) spaces. In
- the space that is spanned by $\{\D^n\dP_0\}$ over $K$, derivatives of
- compositions may be expressed solely through the operators, using only the
- product rule $\eqref{eq:prod}$, the derivative of the composition operator
- $\eqref{eq:dexp}$ and the derivative of the general shift operator
- $\eqref{eq:de}$. Thus, explicit knowledge of rules for differentiating
- compositions is unnecessary, as it is contained in the structure of the
- operator $exp(\D_fe^{h\D_g})$ itself, which is differentiated using standard
- rules, as in the above example. 
- 
- \begin{equation}\label{eq:dkompo}
- \D^n(f\circ g)=\left.\left(\frac{d}{dh}\right)^n\exp\left(\D_fe^{h\D_g}\right)(g,f)\right|_{h=0}
- \end{equation}
  
    \begin{corollary}\label{izr:komp_homo}
    The operator $e^{h\D}$ commutes with composition over $\dP$
@@ -804,7 +785,51 @@ of $h$ have coinciding Taylor series and are therefore equal.\\
    \end{equation}
    the wise choice of evaluation points is $\vv_{i}=p_{i-1}(\vv_{i-1})\in \VV$.
    \end{remark}
+
+With this we turn towards easing such calculations, completing them on
+the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is 
+ \begin{equation}\label{eq:dexp}
+ \frac{d}{dh}\exp(\D_fe^{h\D_g})(g)=\D_f(\D_gg)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)
+ \end{equation}
  
+ We note an important distinction to the operator $e^{h\D_g}$, the derivative of which is
+ \begin{equation}\label{eq:de}
+\frac{d}{dh}e^{h\D_g}=\D_ge^{h\D_g}
+ \end{equation}
+ We may now compute derivatives (of arbitrary order) of the pullback operator.
+\subsection{Example of an operator level computation}\label{sec:example}
+ As an example we compute the second derivative.
+ $$\left(\frac{d}{dh}\right)^2\exp\left(\D_fe^{h\D_g}\right)(g)=\frac{d}{dh}\left(\D_f(\D_gg)e^{h\D_g}\exp\left(\D_fe^{h\D_g}\right)(g)\right)$$
+ which is by equations $\eqref{eq:dexp}$ and $\eqref{eq:de}$, using algebra and correct applications
+ \begin{equation}\label{eq:d^2comp}
+ \left(\D_f(\D^2_gg)\right)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D^2_f(\D_gg)^2)e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)
+ \end{equation}
+ The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $\vv\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
+ \begin{equation}
+	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f):\dP\to\D^2\dP(g)
+ \end{equation}
+ 
+ Thus, without imposing any additional rules, we computed the operator of the second derivative of composition with $g$, directly on the level of operators. The result of course matches the equation $\eqref{eq:dComposite}$ for $n=2$.
+ 
+ As it is evident from the example, calculations using operators are far
+ simpler, than direct manipulations of functional series, similar to how it was done in the
+ proof of Theorem $\ref{izr:kompo}$. This enables a simpler
+ implementation that functions over arbitrary programming (function) spaces. In
+ the space that is spanned by $\{\D^n\dP_0\}$ over $K$, derivatives of
+ compositions may be expressed solely through the operators, using only the
+ product rule $\eqref{eq:prod}$, the derivative of the composition operator
+ $\eqref{eq:dexp}$ and the derivative of the general shift operator
+ $\eqref{eq:de}$. Thus, explicit knowledge of rules for differentiating
+ compositions is unnecessary, as it is contained in the structure of the
+ operator $exp(\D_fe^{h\D_g})$ itself, which is differentiated using standard
+ rules, as shown by this example. 
+
+ Similarly higher derivatives of the composition can also be computed on the
+ operator level:
+ \begin{equation}\label{eq:dkompo}
+ \D^n(f\circ g)=\left.\left(\frac{d}{dh}\right)^n\exp\left(\D_fe^{h\D_g}\right)(g,f)\right|_{h=0}.
+ \end{equation}
+
  \subsubsection{Order reduction for nested applications}\label{sec:orderReduction}
  
  It is useful to be able to use the $k$-th derivative of a program $P\in\dP$ as part of a different differentiable program $P_1$. As such, we must be able to treat the derivative itself as a differentiable program $P^{\prime k}\in\dP$, while only coding the original program $P$. 
@@ -831,46 +856,48 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
 ^{n}P^{k\prime}=\phi^k\circ e^\D_{n+k}(P)\in\dP_n
 \end{equation}
 \end{corollary}    
- Thus, we gained the ability of writing a differentiable program acting on derivatives of another program, stressed as crucial (but lacking in most models) by other authors \cite{AD1}. Usage of the reduction of order map and other constructs of this Section are demonstrated in Section \ref{sec:Analysis}, as we analyze procedures as systems inducing change upon objects in virtual space.
- 
+ We gained the ability of writing a differentiable program acting on derivatives
+ of another program, stressed as crucial (but lacking in most models) by other
+ authors \cite{AD1}. Usage of the reduction of order map and other constructs of
+ this Section are demonstrated in Section \ref{sec:Analysis}. 
    \subsection{Functional transformations of programs}\label{sec:FTP}
    
-   Let's suppose a hardware $H$, optimized for the set of functions
+   Let's suppose a hardware $H$ is optimized for the set of functions
    $F=\{f_i:\VV\to \VV\}$. The set $F$ is specified by the manufacturer.  
    
    With technological advances, switching the hardware is common, which can lead
    to a decline in performance.  Thus, we would like to employ transformations
    of a program $P\in\dP$ in basis $F$. It is common to settle for a suboptimal
    algorithm, that is efficient on hardware $H$. Sub-optimality of the algorithm
-   depends on the set $F$, whether it spans $P$, or not. A classic example of a
-   transformation, is the Fourier transform in the basis $\{\sin(nx),
-   \cos(mx)\}$, that spans $\dP$ (which as stated is not true for an arbitrary
-   set $F$).
+   depends on the set $F$, whether it spans $P$ or not. A classic example of a
+   transformation of basis is the Fourier transform.
    
    Using the developed tools, the problem is solvable using linear algebra. Let
    $e^\D_n$ denote the projection of the operator $e^\D$, onto the first $n$
-   basis vectors $\{\D^i\}$. We can, by Theorem $\ref{izr:e^d}$, construct a map
+   basis vectors $\{\D^i\}$. By Theorem $\ref{izr:e^d}$ a map
    $\eqref{eq:pToPol}$ from the space of programs, to the space of polynomials,
-   with unknowns in $\VV^k$, using the operator $e^\D$. Let $\X=\{p_i\}$ denote a basis of
+   with unknowns in $\VV^k$, can be constructed using the operator $e^\D$.
+   Let $\X=\{p_i\}$ denote a basis of
    the space of polynomials $\VV\to \VV$ \footnote{one choice would be the monomial basis,
    consisting of elements $\e_i\otimes\prod\limits_{\alpha,\forall_j}
    x_{\alpha_j}$, where $\e_i$ span $\VV$, $x_i$ span $\VV^*$ and $\alpha$
-   multi-index}. Than, we can interpret $e^\D_n(P\in\dP)$ as a vector of linear combinations of $\X$, which is assumed hereon.
+   multi-index}. We can interpret $e^\D_n(P\in\dP)$ as a vector of linear
+ combinations of $\X$. 
   
-  Thus, we define the tensor of basis transformation $F\to\X$
+  We define the tensor $T_{\X F}$ of basis transformation $F\to\X$ by
   
   \begin{equation}\label{eq:matTransF}
   T_{\X F}=
-  p_1\otimes e_n^\D(f_1)^* + p_2\otimes e_n^\D(f_2)^* + \ldots + p_n\otimes e_n^\D(f_n)^*
+  p_1\otimes e_n^\D(f_1)^* + p_2\otimes e_n^\D(f_2)^* + \ldots + p_n\otimes e_n^\D(f_n)^*.
   \end{equation}
   
-  and the tensor of basis transformation $\X\to F$ is
+  The tensor of basis transformation $\X\to F$ is the inverse
   
   \begin{equation}\label{eq:matTrans}
-  T_{F\X}=T_{\X F}^{-1}
+  T_{F\X}=T_{\X F}^{-1}.
   \end{equation}
   
-  Using the tensor $\eqref{eq:matTrans}$, we can easily perform basis transformations $\X\to F$. For a specific set $F$ (and consequentially a hardware $H$, upon which the set $F$ is conditioned), the tensor $\eqref{eq:matTrans}$ only has to be computed once, and can then be used for transforming arbitrary programs (while using the same operator $e^\D_n$).
+  For a specific set $F$ (and consequentially a hardware $H$, upon which the set $F$ is conditioned), the tensor $\eqref{eq:matTrans}$ only has to be computed once, and can then be used for transforming arbitrary programs (while using the same operator $e^\D_n$).
   The coordinates of program $P\in\dP$ in basis $F$ are
   
   \begin{equation}\label{eq:P_F}
@@ -883,12 +910,16 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
   \end{equation}
   
   If $F$ does not span $\dP$, or we used the projection of the operator $e^\D_{n<N}$, the expression $P_F$ still represents the best possible approximation of the original program, on components $\{\D^n\}$, in basis $F$.
-  
-  It makes sense to, before computing the tensor $\eqref{eq:matTrans}$, expand the set $F$, by mutual (nested) compositions, and gain mappings, that can not be expressed as linear combinations (but are still optimized for hardware $H$), and so increasing the power of the method.
+  \begin{remark}
+  It makes sense to expand the set $F$, by mutual (nested) compositions, and
+  gain mappings before
+  computing the tensor $\eqref{eq:matTrans}$ and increase the power of the above
+  method.
+\end{remark}
 \subsection{Special case of functions $\VV\to K$}
-We describe a special case when $\dP_0=\VV\otimes\dP_{-1}$, where
+We describe a special case when $\dP_0=\VV\otimes\dP_{-1}$ and
 $\dP_{-1}<K^\VV$ is a subspace of the space of functions $\VV\to K$. This is
-useful, if the set of functions $F$ only contains functions $\VV\to K$. It is
+useful, if the set $F$ only contains functions $\VV\to K$. It is
 very common, that basic operations in a programming language change one single
 real valued variable at a time. In that case, the value of changed variable is
 described by the function $\tilde{f}:\VV\to K$, while the location, where the
@@ -915,8 +946,10 @@ functional transformation becomes much more efficient, since the set of
 functions $F$ can be generated by the functions of the form  $f=\e_i\otimes
 \tilde{f_j}$, where $F_{-1}=\{\tilde{f}_j:\VV\to K \}$.
 \begin{theorem}\label{izr:blockDiagonal}
-Suppose that $\dP_0=\VV\otimes \dP_{-1}$ where $\dP_{-1}$ is a subspace of functions $\VV\to K$. If $F=\{\e_i\otimes \tilde{f_j}\}$ and $\X=\{\e_l\otimes \tilde{p_k}\}$ be the basis of the space of polynomial maps $\VV\to\VV$, with $\X_{-1}=\{p_k\}$ being the basis
-of polynomial functions $\VV\to K$. Then the matrix $T_{\X F}$ is block diagonal with the same block along the diagonal
+Suppose that $\dP_0=\VV\otimes \dP_{-1}$ where $\dP_{-1}$ is a subspace of
+functions $\VV\to K$. Suppose that $F=\{\e_i\otimes \tilde{f_j}\}$ and $\X=\{\e_l\otimes
+\tilde{p_k}\}$ is the basis of the space of polynomial maps $\VV\to\VV$ while
+$\X_{-1}=\{p_k\}$ is the basis of polynomial functions $\VV\to K$. Then the matrix $T_{\X F}$ is block diagonal with the same block along the diagonal
 \begin{equation}
   \label{eq:block}
   T_{\X_{-1}F_{-1}} = \sum\limits_{k,j} p_k\otimes e^{\D}_n(\tilde{f_j}).
@@ -972,7 +1005,8 @@ functions.
 Branching of programs into domains $\eqref{eq:zlrprk_splosno}$ is done through conditional statements. Each conditional causes a branching in programs' execution tree.
 
 \begin{proposition}\label{izr:st.zlepkov}
-Cardinality of the set of domains $\Omega=\{\Omega_i\}$ equals $\lvert\{\Omega_i \}\rvert=2^k$, where $k$ is the number of conditionals contained within the program.
+Cardinality of the set of domains $\Omega=\{\Omega_i\}$ equals $\lvert\{\Omega_i
+\}\rvert=2^k$, where $k$ is the number of branching point within the program.
 \end{proposition}
 \begin{remark}
 Iterators, that do not change exit conditions within its' body, do not cause branching.
@@ -981,13 +1015,10 @@ Iterators, that do not change exit conditions within its' body, do not cause bra
 This section concerns itself with employing the derived theorems to propose a linear treatment of branchings and avoid the exponential threat of Claim \ref{izr:st.zlepkov} to applications of the theory.
 
 \begin{theorem}
-A program $P\in\dP$ can be equivalently represented with at most $2n+1$ applications of the operator $e^\D$, on $2n+1$ analytic programs.
+A program $P\in\dP$ can be equivalently represented with at most $2n+1$
+applications of the operator $e^\D$, on $2n+1$ analytic programs, where
+$n$ is the number of branching points within the program.
 \end{theorem}
-
-
-
-
-
 
 
 
@@ -1088,17 +1119,17 @@ A program $P\in\dP$ can be equivalently represented with at most $2n+1$ applicat
 \end{proof}
 
 
-\begin{proposition}\label{trd:composeOperators}
-Images of the operator $e^\D$ and $T_{F\X}$  are elements of the original space $\dP$, which may be composed. Thus, for $P=p_3\circ p_2\circ p_1$, the following makes sense
+\begin{remark}\label{trd:composeOperators}
+Images of the operator $e^\D$ and $T_{F\X}$  are elements of the original space $\dP$, which may be composed. Thus for $P=p_3\circ p_2\circ p_1$, the following makes sense
 \begin{equation}
 P=\Big(p_3\circ e^ \D(p_2)\circ T_{F\X}e^\D(p_1)\Big) \in \dP
 \end{equation}
 
 The same holds true for all permutations of applications of operators $e^\D$, $T_{F\X}$ and $id$, as visible in Figure $\ref{fig:diagram}$.
-\end{proposition}
+\end{remark}
 
 \begin{remark}
-In practice, we always use projections of the operator $e^\D$ to some finite subset $\DD^n$, resulting in $e^\D_n$. Therefore, we must take note that the following relation holds
+In practice, we always use projections of the operator $e^\D$ to some finite order $n$, resulting in $e^\D_n$. Therefore, we must take note that the following relation holds
 \begin{equation}
 e^\D_m(P_2)\circ e^\D_n(P_1)=e^\D_k(P_2\circ P_1)\iff 0\le k\le \min(m,n)
 \end{equation}
@@ -1107,9 +1138,9 @@ when composing two images of the applied operator, projected to different subspa
 
 The transformation tensor $T_{F\X}$ is needed to be computed only once and can then on be applied to any program running on said hardware. The same holds true for each branch $p_i$, which can, by Theorem $\ref{izr:komp_homo}$, be freely composed amongst each other.
 
-\begin{proposition}\label{clm:paralel}
+\begin{remark}\label{clm:paralel}
 Images of the operator $e^\D (P\in\dP_0)$ are elements of $\VV\otimes T(\VV^*)$ by $\eqref{eq:specProg}$, consisting of multi-linear maps. As such, their evaluation and composition ($e^\D(P_1)\circ e^\D(P_2)$) is tailor made for efficient implementation by methods of parallelism \cite{TensorGPU}, with computable complexities.
-\end{proposition}
+\end{remark}
 
 \section{Generalized tensor networks}\label{sec:generalTensorNet}
 
@@ -1191,12 +1222,12 @@ The transformed program \eqref{eq:PGN1} equals the original program by Theorem \
 \begin{eqnarray}
 \bfW_k = e^\D_N\vert_{\mathbf{v}_k}P_k;\quad \vv_k=P_k\circ \cdots P_0(\vv_0)
 \end{eqnarray}
-is called \emph{neural tensor series of order $N$} 
+is called \emph{neural tensor series of order $N$} for a program $P$ at a point
+$\vv_0$ with activation functions $\Phi$ with final layer
 \begin{equation}
-\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0
+\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0.
 \end{equation}
-for a program $P$ at a point
-$\vv_0$ with activation functions $\Phi$. 
+
 \end{definition}
 
 
@@ -1230,20 +1261,21 @@ All coefficients $\bfW_i\in \VV\otimes T(\VV^*)$ are multi-linear maps allowing 
 Methods for control structures and branching presented in Section
 \ref{sec:control} apply to general tensor networks. 
 \begin{proposition}\label{clm:composedNet}
-By Claim \ref{trd:composeOperators}, an arbitrary $P\in\dP:\VV\to\VV$ can be composed with general tensor networks $\NN_i:\VV\to\VV$ 
+An arbitrary $P\in\dP_0$ can be composed with general tensor networks $\NN_i$ 
 \begin{equation}\label{eq:composedNet}
-\tilde{P}=\NN_2\circ P\circ\NN_1 \in \dP
+\tilde{P}=\NN_2\circ P\circ\NN_1 \in \dP_\infty
 \end{equation}
-The expression $\tilde{P}\in\dP$ \eqref{eq:composedNet} is an element of a differentiable programming space, and can thus be treated by the operational calculus. 
+and $\tilde{P}$ is an element of a differentiable programming space $\dP_\infty$, and can thus be treated by the operational calculus. 
 \end{proposition}
 
 \begin{remark}
-Any layer $L_i\in\dP_0$ can be composed with an arbitrary element of the differentiable programming space by Claim  \ref{clm:composedNet}. This allows algorithmic coding of trainable memory managers, generalizing concepts such as long short term memory \cite{LSTM} and easing the implementation of networks capable of reading from and writing to an external memory \cite{netRam}, by freeing semantics of their design process.
+Any layer $L_i\in\dP_n$ can be composed with an arbitrary element of the
+differentiable programming space $\dP_0$. This allows algorithmic coding of trainable memory managers, generalizing concepts such as long short term memory \cite{LSTM} and easing the implementation of networks capable of reading from and writing to an external memory \cite{netRam}, by freeing semantics of their design process.
 \end{remark}
 
 \subsection{Training of general tensor networks}\label{sec:trainNet}
 
-All transformed programs $\NN P:\VV\to\VV$ are elements of a differentiable programming space $\dP_0$. As such, the operational calculus, and the operators it offers can freely be applied to them.
+All transformed programs $\NN_\Phi \vert_{\vv_0}P$ are elements of a differentiable programming space $\dP_\infty$. As such, the operational calculus, and the operators it offers can freely be applied to them.
 
 By Corollary \ref{izr:komp_homo} we have
 \begin{equation}\label{eq:tenNetKthDer}
@@ -1253,21 +1285,25 @@ Thus by Corollary \ref{cor:extraxtDerivatives}, the $n$-differentiable $k$-th de
 \begin{equation}
 ^{n}L_{i+1}^{k\prime}=\phi^k\circ e^\D_{n+k}(L_{i+1})\in\dP_n
 \end{equation}
-from \eqref{eq:tenNetKthDer} through Corollary \ref{cor:extraxtDerivatives}, where $\phi$ is the reduction of order map of Theorem \ref{izr:reductionMap}. Derivatives of specific order are extracted through projections on components of $P_n$, and can be used in any of the well established training methods in the industry. 
+from \eqref{eq:tenNetKthDer}, where $\phi$ is the reduction of order map of
+Theorem \ref{izr:reductionMap}. Derivatives of specific order are extracted by
+projecting on components of $P_n$, and can be used in any of the well established training methods in the industry. 
 
 \begin{proposition}
-Using the operator $\exp(\D_fe^{h\D_g})$ of Theorem \ref{izr:kompo}, both forward \cite{PcAD} and reverse \cite{ReverseAD} mode automatic differentiation (generalized to arbitrary order) can be implemented on general tensor networks, as by Claim \ref{trd:reverseForward}.
+Using the operator $\exp(\D_fe^{h\D_g})$ of Theorem \ref{izr:kompo}, both forward \cite{PcAD} and reverse \cite{ReverseAD} mode automatic differentiation (generalized to arbitrary order) can be implemented on general tensor networks.
 \end{proposition}
 
 \begin{remark}
-The operational calculus can be applied to the training process $T\in\dP_0$ of a general tensor network itself, as it is but an element of a differentiable programming space $\dP$. Thus, hyper-parameters of the training process \cite{HyperParams} can be studied, analyzed and trained \cite{hyper}, as to be adapted to the particulars of the problem being solved.
+The operational calculus can be applied to the training process $T\in\dP_0$ of a general tensor network itself, as it is an element of a differentiable programming space $\dP_0$. Thus, hyper-parameters of the training process \cite{HyperParams} can be studied, analyzed and trained \cite{hyper}, as to be adapted to the particulars of the problem being solved.
 \end{remark}
 
-By Claim \ref{clm:composedNet}, any training methods enabled by the operational calculus presented in this paper apply to all compositions of general tensor networks $\NN_i$ with arbitrary programs $P\in\dP$. This allows seamless trainable transitions between code formulations, naturally extending the Transformation diagram of Figure \ref{fig:diagram}. 
+By Proposition \ref{clm:composedNet}, any training methods enabled by the operational calculus presented in this paper apply to all compositions of general tensor networks $\NN_i$ with arbitrary programs $P\in\dP$. This allows seamless trainable transitions between code formulations, naturally extending the Transformation diagram of Figure \ref{fig:diagram}. 
   
 \section{Analysis}\label{sec:Analysis}
   
-   Operational calculus grants new insights through methods of analysis. It reveals a procedure to be a system exerting change on objects inhabiting virtual space. These revelations are the object of study of this section, as we demonstrate how to intertwine algorithmic control flow, operational calculus and algebra, towards a common goal.  
+   Operational calculus offers new approaches to program analysis that are the
+   object of study in this section.
+   We demonstrate how to intertwine algorithmic control flow, operational calculus and algebra.  
   
   \subsection{Study of properties}\label{sec:studyProperties}
   
@@ -1287,10 +1323,10 @@ By Claim \ref{clm:composedNet}, any training methods enabled by the operational 
      A:T\in\dP\to P\in\dP
      \end{equation}
      transforming a procedure $T$ testing for a property $X_j$, to a procedure
-     $P\in \dP_0:\vv\notin X_j\to P(\vv)\in X_j$ \eqref{eq:procP}, imposing that
+     $P\in \dP_0:\vv\notin X_j\to P(\vv)\in X_j$ imposing that
      property onto any object in the domain $\Omega\subset \VV$.
    
-   We employ operational calculus in such endeavors, as we probe
+   We employ operational calculus as we probe
    procedures' inner structure and explore how it interacts with the elements of
    the domain.
  
@@ -1299,17 +1335,23 @@ By Claim \ref{clm:composedNet}, any training methods enabled by the operational 
 To be able to determine which conceptual steps are the most important for the
 result of the testing procedure $T$, we have to somehow measure the activity
 at that step. A simple example of the measure of activity $\mathcal{A}$ could simply be the norm of the
-appropriate derivative, as it measures the rate of change. A measure easily replaceable by a more sophisticated one, as made available by the theory.
+appropriate derivative, as it measures the rate of change. 
 
-   Let 
+   Let's assume 
    $$T=T_n\circ T_{n-1}\circ\cdots\circ T_1$$
-   for simplicity, but it could just as easily be piecewise-differentiable as in $\eqref{eq:zlrprk_splosno}$ (by a specific $T_i$ containing a control structure, as shown in Section \ref{sec:control}). Here $T_i=\varepsilon_k\circ\ldots \varepsilon_1$, is a conceptual step in the procedure.
+   for simplicity\footnote{ $T$ could also be piecewise-differentiable as in
+     $\eqref{eq:zlrprk_splosno}$, by specific $T_i$ containing a control
+     structure as is ilustrated in Figure \ref{fig:diagram}}. The part $T_i$ is called a conceptual step in the procedure.
   
    
    \begin{definition}[Activity profile]
-   The function $\mathcal{A}_i:\Omega\to[0,1]$ is called a \emph{measure of activity} in the conceptual step $T_i$, where 
+   The function $\mathcal{A}_i:\Omega\to[0,1]$ is called a \emph{measure of
+     activity} in the conceptual step $T_i$. The value  
    $$\mathcal{A}_i\circ e^{\D_{T_i}}T(\vv)$$ 
-   is the \emph{activity level} of $T_i$, for a given element of the domain $\vv\in \Omega$ taken as the input of $T$, with only the variable parameters of the sub-procedure $T_i$ being considered as such.
+   is the \emph{activity level} of $T_i$ for a given element of the domain
+   $\vv\in \Omega$ taken as the input of $T$\footnote{the operator $e^{\D_{T_i}}$
+     considers only the variable parameters of the sub-procedure $T_i$ as
+     variables}.
    
    The vector $$\mathcal{A}=(\mathcal{A}_1,\mathcal{A}_2,\dots,\mathcal{A}_n):\Omega\to[0,1]^n$$ represents the activity profile of the procedure $T$. 
    \end{definition}
@@ -1347,11 +1389,8 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    Once the activity profiles and property measures are generated, starting with an element, without the property $X_j$, we can use any established optimization technique, to optimize and increase the measure $M_{X_j}$. When the increase of the measure $M_{X_j}$ is sufficient, this results in an new object possessing the property $X_j$.
    
       \begin{theorem}\label{izr:algA}
-           With an appropriate choice of the activity profile $\mathcal{A}$, there exist an algorithm
-           \begin{equation}\label{eq:algA1}
-             A:T\in\dP\to P\in\dP
-             \end{equation}
-             transforming a procedure $T\in\dP$, testing for a property $X_j$, to a procedure $P$, such that it increases the property measure of any object in the domain. 
+           With an appropriate choice of the activity profile $\mathcal{A}$, the
+           Algorithm \ref{alg:appoint} transforms a procedure $T\in\dP$, testing for a property $X_j$, to a procedure $P$, that increases the property measure of any object in the domain. 
            \end{theorem}
            \begin{corollary}
               By Theorem \ref{izr:algA}, existence of a procedure testing an object for validity is sufficient for constructing a procedure transforming a non-valid object to a valid one
@@ -1359,7 +1398,11 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
               under the assumption that the increase of the property measure is sufficient.
               \end{corollary}
               
-    When $T$ serves as a simulation, with $\vv$ modeling a real-life object of study, the procedure opens new doors in analyzing real-life phenomena. Through it, we may observe how $\vv$ evolves through iterations and study stages of change, which serves as a useful insight when designing procedures causing change in real-life phenomena.          
+    When $T$ serves as a simulation, with $\vv$ modeling a real-life object of
+    study, the procedure opens new doors in analyzing real-life phenomena. We
+    may observe how $\vv$ evolves through iterations and study stages of change,
+    which serves as a useful insight when designing procedures causing change in
+    real-life phenomena.        
    
    \begin{algorithm}[H]
    \caption{Appoint property $X_j$ to $\vv\in \Omega$}
@@ -1385,11 +1428,9 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    
    \subsubsection{Example}
    
-   The derived procedures $P$, are a generalization of special cases such as Google's Deep Dream project \cite{DeepDream}, where the program $T\in\dP_0$ represents a neural network, with the resulting $\vv\in X_j$ being an altered image.
-   
-   \begin{remark}
-      Approach is trivially generalized to general tensor networks.
-      \end{remark}
+   The derived procedures $P$ given by Algorithm \ref{alg:appoint} are
+   generalizations of methods already present in practice. This example
+   demonstrates how the method can be employed.   
    
    We take the measure of activity to be the norm of the derivative with respect to the variable parameters in sub-procedure $T_i$.
    $$\left\Vert\D_{T_i}T\right\Vert=\left\Vert \proj_{\{\D\}}\left(e^{\D_{T_i}}_1(T)\right)\right\Vert$$
@@ -1403,28 +1444,69 @@ appropriate derivative, as it measures the rate of change. A measure easily repl
    ^{n}T^{k\prime}_i=\phi^k\circ e^{\D_\vv}_{n+k}(T^i_1)\in\dP_n
    \end{equation}
    where $\phi$ is the reduction of order map of Theorem \ref{izr:reductionMap}.
-   Thus, using $\left\Vert\cdot\right\Vert\in\dP_1$ as the norm map, the property measure is
+   Using $\left\Vert\cdot\right\Vert^2\in\dP_1$ as the norm map, the property measure is
    
    \begin{equation}
    M_{X_j}=\sum\limits_{T_i\in T_{X_j}} \left\Vert T^\prime_i\right\Vert^2\in\dP_1
    \end{equation}
    assuming it only needs to be once differentiable. Optimization of the property measure completes Algorithm \ref{alg:appoint}.
    
-   When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific layer in the network, with neurons being its variable parameters, than the procedure achieves what Google's Deep Dream Project \cite{DeepDream} does. However the procedure may be applied to any program $T\in\dP_0$, as neural networks are just programs contained in the programming space $\dP$.
-   
-\section{Conclusions}
+   When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific
+   layer in the network, with neurons being its variable parameters, the
+   Algorithm \ref{alg:appoint} gives a procedure, that acts similarly to how
+   Google's Deep Dream Project \cite{DeepDream} works. 
+However the  Algorithm \ref{alg:appoint} may be applied to any program $T\in\dP_0$ not just neural networks.
 
-Existence of a program is embedded in a virtual reality, forming a system of objects undergoing change in a virtual space. Just as the reality inhabited by us is being studied by science, revealing principles and laws, so can the virtual reality inhabited by programs. Yet here lies a tougher task, as the laws of the system are simultaneously observed and constructed; the universe is bug-free, up to philosophic precision, while our programs are not. This reinforces the need for a language capable of not only capturing, but also constructing digital phenomena, a feat demonstrated by operational calculus. 
+ \section{Conclusions}
 
-Inspired by the endeavors of Feynman \cite{Feynman} and Heaviside \cite{HeavisideOperational} in physics before us, we applied operational calculus to programming spaces, allowing analytic conclusions through algebraic means, easing implementation. It yielded the operator of program composition, generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of automatic differentiation to arbitrary order, under a single operator in the theory. Both the use of algebra and operational calculus were demonstrated upon the operator, as calculations and manipulations were performed on the operator level, before the operator is applied to a particular program.
-This language condenses complex notions into simple expressions, enabling formulation of meaningful algebraic equations to be solved. In doing so, functional transformations of programs in arbitrary function basis' were derived, a useful tool when adapting code to the specifics of a given hardware, among other.
-All such formulations are invariant not only to the choice of a programming space, but also to the point in execution of a program, introducing the principle of general covariance \cite{GeneralCovariance} to programming. Offerings of this principle were exploited in designing methods on how transformations are to be interchangeably applied in practice in Section \ref{sec:control}. These methods allow for seamless transitions between transformed forms and original code throughout the program.
+Existence of a program is embedded in a virtual reality, forming a system of
+objects undergoing change in a virtual space. Just as the reality inhabited by
+us is being studied by science, revealing principles and laws, so can the
+virtual reality inhabited by programs. Yet here lies a tougher task, as the laws
+of the system are simultaneously observed and constructed; the universe is
+bug-free, up to philosophic precision, while our programs are not. This
+reinforces the need for a language capable of not only capturing, but also
+constructing digital phenomena, a feat demonstrated by analytic virtual machines
+and operational calculus. 
 
-Operational calculus provides more than mere means to calculating derivatives. Its depth allows merging modern discoveries with known old truths in the form of Neural Tensor series. A construct most useful when coming to terms with the finite horizon beyond which theoretical truths become pragmatic approximations. It allows us to treat the idealistic case deprecated by the finite, as an initial prediction of a model to be trained. This has widespread applicability, as it can be seen as a process of \emph{boosting} \cite{boosting}, which already enriched other fields. 
+Inspired by the endeavors of Feynman \cite{Feynman} and Heaviside
+\cite{HeavisideOperational} in physics before us, we applied operational
+calculus to programming spaces, allowing analytic conclusions through algebraic
+means, easing implementation. It yielded the operator of program composition,
+generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of
+automatic differentiation to arbitrary order, under a single operator in the
+theory. Both the use of algebra and operational calculus were demonstrated, as
+calculations and manipulations were performed on the operator level, before the
+operator is applied to a particular program.
+The language presented in this work condenses complex notions into simple expressions, enabling
+formulation of meaningful algebraic equations to be solved. In doing so,
+functional transformations of programs in arbitrary function basis' were
+derived, a useful tool when adapting code to the specifics of a given hardware,
+among other. 
+All such formulations are invariant not only to the choice of a programming
+space, but also to the point in execution of a program, introducing the
+principle of general covariance \cite{GeneralCovariance} to programming.
+Offerings of this principle were exploited in designing methods on how
+transformations are to be interchangeably applied in practice in Section
+\ref{sec:control}. These methods allow seamless transitions between transformed
+forms and original code throughout the program. 
 
-As each general tensor network is a Neural tensor series of some program, we might gain insight on one by identifying it with the other,
-hopefully further bridging the gap in understanding between continuous and discrete computation.
- Operational calculus provides a rigorous framework for such discussion, as was briefly explored in the final section, and will be the authors' next subject of study.
+Operational calculus provides more than mere means to calculating derivatives.
+Its depth allows merging modern discoveries with known old truths in the form of
+Neural Tensor series. A construct most useful when coming to terms with the
+finite horizon beyond which theoretical truths become pragmatic approximations.
+It allows us to treat the idealistic case deprecated by the finite, as an
+initial prediction of a model to be trained.  This has widespread applicability,
+as it can be seen as a process of \emph{boosting} \cite{boosting}, which already
+enriched other fields of science.  
+
+As each general tensor network is a Neural tensor series of some program, we
+might gain insight on one by identifying it with the other, 
+hopefully further bridging the gap in understanding between continuous and
+discrete computation. 
+ Operational calculus provides a rigorous framework for such discussion, as was
+ briefly explored in the final section, and will be the authors' next subject of
+ study. 
 
 \bibliographystyle{spmpsci}
 \bibliography{biblio}
