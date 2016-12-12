@@ -73,8 +73,8 @@ basicstyle=\ttfamily
 
 \DeclareMathOperator{\proj}{pr}
 
-%\usepackage[hidelinks]{hyperref}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
+%\usepackage{hyperref}
 
 \usepackage{epigraph}
 
@@ -104,7 +104,7 @@ Martin Vuk \at  University of Ljubljana, Faculty of Computer and Information
 \maketitle
 \vspace{-1.5cm}
 \begin{abstract}
-In this paper, we develop operational calculus on programming spaces that
+In this paper we develop operational calculus on programming spaces that
 generalizes existing approaches to automatic differentiation of computer
 programs and provides a rigorous framework for program analysis through calculus. 
 
@@ -117,7 +117,7 @@ give the expansion of the original program as an infinite tensor series at
 program's input values.     
 
 We define the operator of differentiation on programming spaces and
-implement higher order derivatives as well as generalized shift operator in
+implement higher order derivatives as well as a generalized shift operator in
 terms of its powers. Operational calculus is used to prove properties of the
 defined operators. Several possible applications to computer science are
 presented, most notably trainable general tensor neural networks that can
@@ -142,7 +142,7 @@ networks to any computer program.
 }
   \subclass{47L99\and 47-04 \and 46N99\and  26B40 \and 26B12}
   \acknowledgement{
-  First author extends his gratitude to Jure Kališnik for proofreading the proofs, and Borut Robič for general guidance through the academia.
+  First author extends his gratitude to dr. Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
   }
 
 \end{abstract}
@@ -189,7 +189,7 @@ The historic Taylor series are modernized in Section \ref{sec:transToNet} by der
  All such constructs are trainable (as is their training process itself) and adhere to the operational calculus. This is demonstrated in Section \ref{sec:trainNet}, enabling analytic study through the theory.
 
 Theory offers new insights into programs, as we demonstrate how to probe their inner structure in Section \ref{sec:Analysis}, revealing what actions properties of the domain most react to in Section \ref{sec:studyProperties}. This enables us to alter data by imposing some property it lacks upon it.
-State of the art methods for analyzing neural networks \cite{DeepDream} are generalized for the use on programming spaces. in Section \ref{sec:propertyMeasure}, providing a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
+State of the art methods for analyzing neural networks \cite{DeepDream} are generalized for the use on programming spaces in Section \ref{sec:propertyMeasure}, providing a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
 
 \section{Computer programs as maps on a vector space}
 We will model computer programs as maps on a vector space. If
