@@ -28,4 +28,4 @@ networks to any computer program, and vice versa.
 
 An illustrative example of the implementation of the theory is available at [/ZigaSajovic/dCpp](https://github.com/ZigaSajovic/dCpp). Implementation closely follows theorems and derivations of this paper, intended as an educational guide for those transitioning from automatic differentiation to this general theory.
 
-The paper [Implementation of Operational calculus on programming spaces with Applications]((https://zigasajovic.github.io/dCpp/paper/dCpp.pdf) accompaning the implementation is avaliable.
+The paper [Implementation of Operational calculus on programming spaces with Applications](https://zigasajovic.github.io/dCpp/paper/dCpp.pdf) accompaning the implementation is avaliable.
