@@ -2,26 +2,30 @@
 
 ###Abstract
 
-In this paper, we develop the theory of analytic virtual machines, that
-implement analytic programming spaces and operators acting upon them.
+In this paper we develop operational calculus on programming spaces that
+generalizes existing approaches to automatic differentiation of computer
+programs and provides a rigorous framework for program analysis through calculus. 
 
-A programming space is a subspace of the function space of maps on the virtual
-memory. We can construct a differential operator on programming spaces as we 
-extend the virtual memory to a tensor product of a virtual space with tensor algebra
-of its dual. Extended virtual memory serves by itself as an algebra of programs, giving the expansion of the original program as an infinite tensor series at
-program's input values. 
-
-We present a theory of operators on programming spaces, that enables analysis of programs
-and computations on the operator level, which favors general implementation. Theory enables
-approximation and transformations of programs to a more appropriate function basis'. We
-also present several examples of how the theory can be used in computer science.
-
-We generalize neural networks by constructing general tensor networks, that naturally exist in virtual memory. Transformations of programs to these trainable networks are derived, providing a meaningful way of network initialization.
-Theory opens new doors in program analysis, while fully retaining algorithmic control flow. We develop a general
-procedure which takes a program that tests an object for a property and
-constructs a program that imposes that property upon any object. 
-We use it to generalize state of the art methods for analyzing neural networks to general programs and tensor networks. Expanding upon them, we study dynamics of computation through principles they induce into the system.
+We present an abstract computing machine that models automatically
+differentiable computer programs. Computer programs are viewed as maps on a
+finite dimensional vector space called virtual memory space, which we
+extend by the tensor algebra of its dual to accommodate derivatives. The
+extended virtual memory is by itself an algebra of programs, a data structure one can calculate with, and its elements
+give the expansion of the original program as an infinite tensor series at
+program's input values.   
+  
+We define the operator of differentiation on programming spaces and
+implement higher order derivatives as well as a generalized shift operator in
+terms of its powers. Our approach offers a powerful tool for program
+analysis and approximation as well as a unified approach to automatic
+differentiation covering both forward and reverse mode of arbitrary order under a single operator. Several possible applications to computer science are
+presented, most notably trainable general tensor neural networks that can
+provide a meaningful way of neural network initialization and
+enable generalization of the existing state of the art methods for analyzing neural
+networks to any computer program, and vice versa. 
 
 ###Implementation
 
-An illustrative example of the implementation of the theory is available at [/ZigaSajovic/dCpp](https://github.com/ZigaSajovic/dCpp). Implementation closely follows theorems and derivations of this paper, intended as an educational guide. A paper explaining the process of implementation accompanies the source-code at [/dCpp/paper](https://zigasajovic.github.io/dCpp/paper/dCpp.pdf). 
+An illustrative example of the implementation of the theory is available at [/ZigaSajovic/dCpp](https://github.com/ZigaSajovic/dCpp). Implementation closely follows theorems and derivations of this paper, intended as an educational guide for those transitioning from automatic differentiation to this general theory.
+
+The paper [Implementation of Operational calculus on programming spaces with Applications]((https://zigasajovic.github.io/dCpp/paper/dCpp.pdf) accompaning the implementation is avaliable.
