@@ -103,7 +103,7 @@ Martin Vuk \at  University of Ljubljana, Faculty of Computer and Information
   Science,  Večna pot 113, SI-1000 Ljubljana, Slovenia\\
   \email{martin.vuk@fri.uni-lj.si} }
 \maketitle
-
+\vspace{-0.5cm}
 \begin{abstract}
 In this paper we develop operational calculus on programming spaces that
 generalizes existing approaches to automatic differentiation of computer
@@ -112,7 +112,7 @@ We present an abstract computing machine that models automatically
 differentiable computer programs. Computer programs are viewed as maps on a
 finite dimensional vector space called virtual memory space, which we
 extend by the tensor algebra of its dual to accommodate derivatives. The
-extended virtual memory is by itself an algebra of programs and its elements
+extended virtual memory is by itself an algebra of programs, a data structure one can calculate with, and its elements
 give the expansion of the original program as an infinite tensor series at
 program's input values.     
 We define the operator of differentiation on programming spaces and
@@ -123,7 +123,7 @@ differentiation covering both forward and reverse mode of arbitrary order under 
 presented, most notably trainable general tensor neural networks that can
 provide a meaningful way of neural network initialization and
 enable generalization of the existing state of the art methods for analyzing neural
-networks to any computer program. 
+networks to any computer program, and vice versa. 
 
 
 \keywords{
@@ -1242,7 +1242,7 @@ calculus.
 This has direct implications to the study and understanding of
 \emph{differentiable neural computers} \cite{netRam}. Interchanging neural
 processes and programming spaces reveals new directions to explore, as we might
-gain insight on one by identifying it with the other. 
+gain insight on one by identifying it with the other. By this equivalence, the relation between a computer program and a general tensor network is that of a function and its Taylor series enhanced by activations. Thus, they may be appropriately employed to the purpose of analysis in computer science, a path well walked by other fields.
  
 
 \begin{remark}
