@@ -1021,7 +1021,7 @@ Iterators, that do not change exit conditions within its' body, do not cause bra
 
 This section concerns itself with employing the derived theorems to propose a linear treatment of branchings and avoid the exponential threat of Proposition \ref{izr:st.zlepkov} to applications of the theory.
 
-\begin{theorem}
+\begin{theorem}\label{izr:2n+1}
 A program $P\in\dP$ can be equivalently represented with at most $2n+1$
 applications of the operator $e^\D$, on $2n+1$ analytic programs, where
 $n$ is the number of branching points within the program.
@@ -1226,7 +1226,7 @@ The transformed program \eqref{eq:PGN1} equals the original program by Theorem \
 \end{eqnarray}
 is called \emph{neural tensor series of order $N$} for a program $P$ at a point
 $\vv_0$ with activation functions $\Phi$ with final layer
-\begin{equation}
+\begin{equation}\label{eq:NeuralTensorSeries}
 \mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0.
 \end{equation}
 
@@ -1234,8 +1234,8 @@ $\vv_0$ with activation functions $\Phi$ with final layer
 
 
 \begin{remark}
-Neural tensor series transforms a common program to a trainable general tensor network.
-Using the operator $e^ \D_1$ a program can be transformed to a common neural network.
+Neural tensor series transforms a common program to a trainable general tensor network, naturally extending Theorem \ref{izr:2n+1} and the Transformation diagram of Figure \ref{fig:diagram}.
+For example, by setting $N=1$ in \eqref{eq:NeuralTensorSeries} a program can be transformed to a common neural network.
 \end{remark}
 Definition \ref{def:transToTensorNet} has wide applications to different fields.
 In practice if a sub-optimal algorithm providing an approximate
