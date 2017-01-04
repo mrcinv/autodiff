@@ -171,7 +171,7 @@ The historic Taylor series are modernized in Section \ref{sec:transToNet} by der
 Theory offers new insights into programs, as we demonstrate how to probe their inner structure in Section \ref{sec:Analysis}, revealing what actions properties of the domain most react to in Section \ref{sec:studyProperties}. This enables us to alter data by imposing some property it lacks upon it.
 State of the art methods for analyzing neural networks \cite{DeepDream} are generalized for the use on programming spaces in Section \ref{sec:propertyMeasure}, providing a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
 
-\section{Computer programs as maps on a vector space}
+\section{Computer Programs as Maps on a Vector Space}
 We will model computer programs as maps on a vector space. If
 we only focus on the real valued variables (of type \texttt{float} or
 \texttt{double}),  the state of the virtual memory can be seen as a high
@@ -198,7 +198,7 @@ program in specific programming language.
   \end{itemize}  
 \end{definition}
 
-\section{Differentiable programs}
+\section{Differentiable Maps and Programs}
 To define differentiable programs, let us first recall some
 definitions from multivariate calculus.
 \begin{definition}[Derivative]
@@ -266,7 +266,7 @@ directional(partial) derivatives by the formula
 	  dx_{\alpha_1}\otimes\ldots \otimes dx_{\alpha_k}.
 \end{equation}
 
-\subsection{Differentiable programs}
+\subsection{Differentiable Programs}
 We want to be able to represent the derivatives of a computer program in an
 Euclidean virtual machine again as a program in the same euclidean virtual
 machine. We define three subspaces of the virtual memory space $\VV$, that
@@ -337,8 +337,7 @@ differentiable as a map $\VV\to\VV$. However only the derivative of program's
 effective map can be implemented as a program, since the memory space is limited to $\VV$. 
 To be able to differentiate a program to the $k$-th order, we have to calculate
 and save all the derivatives of the orders $k$ and less.
-\section{Differentiable programming spaces}
-\subsection{Virtual memory space for differentiable programs}
+\section{Differentiable Programming Spaces}
 Motivated by the Definition
 \ref{def:program_derivative}, we define
 virtual memory for differentiable programs  as a sequence of vector spaces with
@@ -387,7 +386,7 @@ universal memory space $\VV_\infty$ by setting the first component in the direct
 derivatives $\D^k P$ can be also seen as maps  from $\VV$ to $\VV_\infty$ by
 setting $k$-th component in the direct sum \eqref{eq:virtual-memory} to $\D^k P$
 and all others to zero. 
-\subsection{Differentiable programming spaces}
+\subsection{Differentiable Programming Spaces}
 
 Let us define the following function spaces:
  \begin{equation}\label{eq:F_n}
@@ -458,7 +457,7 @@ where $\T(\VV^*)=\prod_{k=0}^\infty (\VV^*)^{\otimes k}$ is the \emph{tensor ser
   algebra}, the algebra of the infinite formal tensor series.\footnote{The
   tensor series algebra is a completion of the tensor algebra $T(\VV^*)$ in suitable topology.}
 
-\section{Operational calculus on programming spaces}\label{sec:operational}
+\section{Operational Calculus on Programming Spaces}\label{sec:operational}
 
 
 
@@ -513,7 +512,7 @@ extending linearly on the whole space $\VV\otimes\T(\VV^*)$
  by \eqref{eq:algebra_product}.
 \end{theorem}
 
-\subsection{Analytic virtual machine}
+\subsection{Analytic Virtual Machine}
 
 We propose an abstract computational model, a virtual machine capable of
 constructing differentiable programming spaces. Such a machine provides a
@@ -547,7 +546,7 @@ github \cite{dC++}. Implementation closely follows theorems and derivations of
 this paper and is intended as an educational guide. A paper \cite{dC++Paper} explaining
 the process of implementation accompanies the source-code.  
 
- \subsection{Tensor series expansion}\label{sec:Vrsta}
+ \subsection{Tensor Series Expansion}\label{sec:Vrsta}
  
  
 There exists a space spanned by the set $\DD^n=\{\D^k;\quad 0\le k\le n\}$ over a field $K$. Thus, the expression
@@ -675,7 +674,7 @@ automorphism of the programming algebra $\dP_\infty$,
       	$e^{h\D}(\dP_0)\subset\dP_0\otimes \T(\VV^*)$      
  which enables efficient implementation by operator $\sumd$. 
 \end{remark}
-\subsubsection{Operator of program composition}\label{sec:compsition}
+\subsection{Operator of Program Composition}\label{sec:compsition}
  
  In this section both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of
  automatic differentiation are generalized to arbitrary order under a single
@@ -791,7 +790,7 @@ the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is
 \frac{d}{dh}e^{h\D_g}=\D_ge^{h\D_g}
  \end{equation}
  We may now compute derivatives (of arbitrary order) of the pullback operator.
-\subsection{Example of an operator level computation}\label{sec:example}
+\subsection{Example of an Operator Level Computation}\label{sec:example}
  As an example we compute the second derivative.
  $$\left(\frac{d}{dh}\right)^2\exp\left(\D_fe^{h\D_g}\right)(g)=\frac{d}{dh}\left(\D_f(\D_gg)e^{h\D_g}\exp\left(\D_fe^{h\D_g}\right)(g)\right)$$
  which is by equations $\eqref{eq:dexp}$ and $\eqref{eq:de}$, using algebra and correct applications
@@ -824,7 +823,7 @@ the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is
  \D^n(f\circ g)=\left.\left(\frac{d}{dh}\right)^n\exp\left(\D_fe^{h\D_g}\right)(g,f)\right|_{h=0}.
  \end{equation}
 
- \subsubsection{Order reduction for nested applications}\label{sec:orderReduction}
+ \subsection{Order Reduction for Nested Applications}\label{sec:orderReduction}
  
  It is useful to be able to use the $k$-th derivative of a program $P\in\dP$ as part of a different differentiable program $P_1$. As such, we must be able to treat the derivative itself as a differentiable program $P^{\prime k}\in\dP$, while only coding the original program $P$. 
 \begin{theorem}[Order reduction]\label{izr:reductionMap}
@@ -854,7 +853,7 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
  of another program, stressed as crucial (but lacking in most models) by other
  authors \cite{AD1}. Usage of the reduction of order map and other constructs of
  this Section are demonstrated in Section \ref{sec:Analysis}. 
-   \subsection{Functional transformations of programs}\label{sec:FTP}
+   \subsection{Functional Transformations of Programs}\label{sec:FTP}
    
    Let's suppose a hardware $H$ is optimized for the set of functions
    $F=\{f_i:\VV\to \VV\}$. The set $F$ is specified by the manufacturer.  
@@ -910,7 +909,7 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
   computing the tensor $\eqref{eq:matTrans}$ and increase the power of the above
   method.
 \end{remark}
-\subsection{Special case of functions $\VV\to K$}
+\subsection{Special Case of Functions $\VV\to K$}
 We describe a special case when $\dP_0=\VV\otimes\dP_{-1}$ and
 $\dP_{-1}<K^\VV$ is a subspace of the space of functions $\VV\to K$. This is
 useful, if the set $F$ only contains functions $\VV\to K$. It is
@@ -957,7 +956,7 @@ change several memory locations at once, while the general model presented in th
 work is to develop methods for analysis of computer programs, making the programming
 spaces of maps $\VV\to \VV$ much more appropriate than the programming spaces of
 functions.
- \subsection{Control structures}\label{sec:control}
+ \subsection{Control Structures}\label{sec:control}
  
  Until now, we restricted ourselves to operations, that change the memories' content. Along side assignment statements, we know control statements (ex. statements \texttt{if},
   \texttt{for}, \texttt{while}, ...). Control statements don't directly
@@ -1132,7 +1131,7 @@ The transformation tensor $T_{F\X}$ is needed to be computed only once and can t
 Images of the operator $e^\D (P\in\dP_0)$ are elements of $\VV\otimes T(\VV^*)$ by $\eqref{eq:specProg}$, consisting of multi-linear maps. As such, their evaluation and composition ($e^\D(P_1)\circ e^\D(P_2)$) is tailor made for efficient implementation by methods of parallelism \cite{TensorGPU}, with computable complexities.
 \end{remark}
 
-\section{Generalized tensor networks}\label{sec:generalTensorNet}
+\section{Generalized Tensor Networks}\label{sec:generalTensorNet}
 
 Let $\bfW=\sum\limits_{i=0}^n(\bfw_i\in \VV\otimes \VV^{*\otimes i})$ be an element of the virtual memory $\VV\otimes T_n(\VV^*)$ in an
 analytic machine of Definition \ref{def:analyticMachine}. The element $\bfW$ can
@@ -1178,7 +1177,7 @@ Existing architectures like Theano \cite{Theano}, TensorFlow \cite{TensorFlow}
 and others could be easily adapted to handle general tensor networks.
 \end{remark}
 
-\subsection{Programs as general tensor networks}\label{sec:progAsNet}
+\subsection{Programs as General Tensor Networks}\label{sec:progAsNet}
 
 Let $P=P_n\circ\cdots\circ P_0\in\dP_0$ be the procedure of interest, with $P_i\in\dP_0$ being the source code between two branching points, like shown in Figure \ref{fig:diagram}.
 By Theorem \ref{izr:e^d} we have
@@ -1195,7 +1194,7 @@ which is the transformation hereon denoted by $e^\D P$.
 The image of the application of the operator $e^\D$ to a program $P\in\dP_0$ as in \eqref{eq:eDkompo}, is a general tensor network, with the activation function $\Phi_i$ being the identity map, at each layer.
 \end{proposition}
 
-\subsubsection{Transformations of programs to general tensor networks}\label{sec:transToNet}
+\subsubsection{Transformations of Programs to General Tensor Networks}\label{sec:transToNet}
 
 The transformed program \eqref{eq:PGN1} equals the original program by Theorem \ref{izr:e^d} and Corollary \ref{izr:komp_homo}. But in practice, we are always working with a finite virtual memory $\VV\otimes T_n(\VV^*)$ and the equality becomes an approximation. Thus we treat the transformation of the original program, as the initialization of the weights (and the bias) of a general tensor network to be trained.  This motivates modernizing the historic Taylor series and evolving the \emph{generalized shift operator} \eqref{rmrk:genShift}.
 \begin{definition}[Neural tensor series]\label{def:transToTensorNet}
@@ -1240,7 +1239,7 @@ gain insight on one by identifying it with the other. By this equivalence, the r
 All coefficients $\bfW_i\in \VV\otimes T(\VV^*)$ are multi-linear maps allowing efficient implementation through GPU parallelism as by Claim \ref{clm:paralel}. Thus, general tensor networks may employ it, just as the common neural networks they generalize do.
 \end{remark}
 
-\subsubsection{Compositions of tensor networks with general programs}\label{sec:compoNetProg}
+\subsubsection{Compositions of Tensor Networks with General Programs}\label{sec:compoNetProg}
 
 Methods for control structures and branching presented in Section
 \ref{sec:control} apply to general tensor networks. 
@@ -1257,7 +1256,7 @@ Any layer $L_i\in\dP_n$ can be composed with an arbitrary element of the
 differentiable programming space $\dP_0$. This allows algorithmic coding of trainable memory managers, generalizing concepts such as long short term memory \cite{LSTM} and easing the implementation of networks capable of reading from and writing to an external memory \cite{netRam}, by freeing semantics of their design process.
 \end{remark}
 
-\subsection{Training of general tensor networks}\label{sec:trainNet}
+\subsection{Training of General Tensor Networks}\label{sec:trainNet}
 
 All transformed programs $\NN_\Phi \vert_{\vv_0}P$ are elements of a differentiable programming space $\dP_\infty$. As such, the operational calculus, and the operators it offers can freely be applied to them.
 
@@ -1289,7 +1288,7 @@ By Proposition \ref{clm:composedNet}, any training methods enabled by the operat
    object of study in this section.
    We demonstrate how to intertwine algorithmic control flow, operational calculus and algebra.  
   
-  \subsection{Study of properties}\label{sec:studyProperties}
+  \subsection{Study of Properties}\label{sec:studyProperties}
   
   We will denote the fact, that some object $\vv$ has the property $X$, by $\vv\in
   X$. Suppose we have $\vv\notin X$, and desire a procedure $P\in\dP_0$, that in
@@ -1314,7 +1313,7 @@ By Proposition \ref{clm:composedNet}, any training methods enabled by the operat
    procedures' inner structure and explore how it interacts with the elements of
    the domain.
  
-\subsubsection{Activity profiles and property measures}\label{sec:propertyMeasure}
+\subsubsection{Activity Profiles and Property Measures}\label{sec:propertyMeasure}
     
 To be able to determine which conceptual steps are the most important for the
 result of the testing procedure $T$, we have to somehow measure the activity
