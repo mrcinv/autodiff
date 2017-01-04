@@ -550,9 +550,9 @@ the process of implementation accompanies the source-code.
  
  
 There exists a space spanned by the set $\DD^n=\{\D^k;\quad 0\le k\le n\}$ over a field $K$. Thus, the expression
- \begin{equation}
+ \begin{equation*}
  	e^{h\D}=\sum\limits_{n=0}^{\infty}\frac{(h\D)^n}{n!}
- \end{equation}
+ \end{equation*}
  is well defined. In coordinates, the operator $e^{h\D}$ can be written as a
  series over all multi-indices $\alpha$
  \begin{equation}\label{eq:e^d}
@@ -561,9 +561,9 @@ There exists a space spanned by the set $\DD^n=\{\D^k;\quad 0\le k\le n\}$ over 
  		  dx_{\alpha_1}\otimes\ldots \otimes dx_{\alpha_n}.
  \end{equation}
 The operator $e^{h\D}$ is a mapping between function spaces $\eqref{eq:F_n}$
- \begin{equation}
+ \begin{equation*}
  	e^{h\D}:\dP\to\dP_\infty.
- \end{equation}
+ \end{equation*}
  It also defines a map
   \begin{equation}\label{eq:specProg}
   	e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*),
@@ -657,9 +657,9 @@ automorphism of the programming algebra $\dP_\infty$,
  \end{remark}
  
  For a specific $\vv_0\in\VV$, the generalized shift operator is denoted by
- \begin{equation}
+ \begin{equation*}
  e^\D\vert_{\vv_0}:\dP\to \VV\otimes \T(\VV^*)
- \end{equation}
+ \end{equation*}
  When the choice of $\vv_0\in\VV$ is arbitrary, we omit it from expressions for brevity.
 
  \begin{remark}
@@ -762,9 +762,9 @@ automorphism of the programming algebra $\dP_\infty$,
  
    \begin{corollary}\label{izr:komp_homo}
    The operator $e^{h\D}$ commutes with composition over $\dP$
-   \begin{equation}
+   \begin{equation*}
    e^{h\D}(p_2\circ p_1)=e^{h\D}(p_2)\circ e^{h\D}(p_1)
-   \end{equation}
+   \end{equation*}
    \end{corollary}
    
    \begin{proof}
@@ -773,9 +773,9 @@ automorphism of the programming algebra $\dP_\infty$,
    
    \begin{remark}
    With explicit evaluations in Corollary \ref{izr:komp_homo}
-   \begin{equation}
+   \begin{equation*}
    e^{h\D}\vert_{\vv_0}(p_n\circ\cdots\circ p_0)=e^{h\D}\vert_{\vv_n}(p_n)\circ\cdots\circ e^{h\D}\vert_{\vv_0}(p_0)
-   \end{equation}
+   \end{equation*}
    the wise choice of evaluation points is $\vv_{i}=p_{i-1}(\vv_{i-1})\in \VV$.
    \end{remark}
 
@@ -798,9 +798,9 @@ the level of operators. The derivative $\frac{d}{dh}$ of $\eqref{eq:opKompo}$ is
  \left(\D_f(\D^2_gg)\right)e^{h\D_g}\exp(\D_fe^{h\D_g})(g)+(\D^2_f(\D_gg)^2)e^{2h\D_g}\exp(\D_fe^{h\D_g})(g)
  \end{equation}
  The operator is always shifted to the evaluating point $\eqref{eq:specProg}$ $\vv\in \VV$, thus, only the behavior in the limit as $h\to 0$ is of importance. Taking this limit in the expression $\eqref{eq:d^2comp}$ we obtain the operator
- \begin{equation}
+ \begin{equation*}
 	\left(\D_f(\D^2_gg)+\D^2_f(\D_gg)^2\right)\exp(\D_f):\dP\to\D^2\dP(g)
- \end{equation}
+ \end{equation*}
  
  Thus, without imposing any additional rules, we computed the operator of the second derivative of composition with $g$, directly on the level of operators. The result of course matches the equation $\eqref{eq:dComposite}$ for $n=2$.
  
@@ -838,16 +838,16 @@ following  diagram commutes
 \end{tikzcd}
 \end{equation}
 satisfying
-\begin{equation}
+\begin{equation*}
 \forall_{P_1\in\dP_0}\exists_{P_2\in\dP_0}\Big(\phi^k\circ e^\D_n(P_1)=e^\D_{n-k}(P_2)\Big)
-\end{equation}
+\end{equation*}
 for each $n\ge 1$, where $e^\D_n$ is the projection of the operator $e^\D$ onto the set $\{\D^n\}$.
 \end{theorem}  
 \begin{corollary}[Differentiable derivative]\label{cor:extraxtDerivatives}
 By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a program $P\in\dP_0$ can be extracted by
-\begin{equation}
+\begin{equation*}
 ^{n}P^{k\prime}=\phi^k\circ e^\D_{n+k}(P)\in\dP_n
-\end{equation}
+\end{equation*}
 \end{corollary}    
  We gained the ability of writing a differentiable program acting on derivatives
  of another program, stressed as crucial (but lacking in most models) by other
@@ -898,9 +898,9 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
   \end{equation}
   
   The expression $\eqref{eq:P_F}$ represents coordinates of program $P$ in basis $F$. Thus, the program is expressible as a linear combination of $f_i$, with components $P_F$ as coefficients.
-  \begin{equation}
+  \begin{equation*}
   P=\sum\limits_{i=0}^{n}{P_F}_if_i
-  \end{equation}
+  \end{equation*}
   
   If $F$ does not span $\dP$, or we used the projection of the operator $e^\D_{n<N}$, the expression $P_F$ still represents the best possible approximation of the original program, on components $\{\D^n\}$, in basis $F$.
   \begin{remark}
@@ -1110,18 +1110,18 @@ $n$ is the number of branching points within the program.
 
 \begin{remark}\label{trd:composeOperators}
 Images of the operator $e^\D$ and $T_{F\X}$  are elements of the original space $\dP$, which may be composed. Thus for $P=p_3\circ p_2\circ p_1$, the following makes sense
-\begin{equation}
+\begin{equation*}
 P=\Big(p_3\circ e^ \D(p_2)\circ T_{F\X}e^\D(p_1)\Big) \in \dP
-\end{equation}
+\end{equation*}
 
 The same holds true for all permutations of applications of operators $e^\D$, $T_{F\X}$ and $id$, as visible in Figure $\ref{fig:diagram}$.
 \end{remark}
 
 \begin{remark}
 In practice, we always use projections of the operator $e^\D$ to some finite order $n$, resulting in $e^\D_n$. Therefore, we must take note that the following relation holds
-\begin{equation}
+\begin{equation*}
 e^\D_m(P_2)\circ e^\D_n(P_1)=e^\D_k(P_2\circ P_1)\iff 0\le k\le \min(m,n)
-\end{equation}
+\end{equation*}
 when composing two images of the applied operator, projected to different subspaces.
 \end{remark}
 
@@ -1137,26 +1137,26 @@ Let $\bfW=\sum\limits_{i=0}^n(\bfw_i\in \VV\otimes \VV^{*\otimes i})$ be an elem
 analytic machine of Definition \ref{def:analyticMachine}. The element $\bfW$ can
 be seen as a map 
 $\vv\mapsto \bfW(\vv)$ as defined by \eqref{eq:monomial}:
-\begin{equation}
+\begin{equation*}
 \bfW(\vv)=\sum\limits_{i=0}^n\bfw_i\cdot\vv^{\otimes i}\in \VV.
-\end{equation}
+\end{equation*}
 
 \begin{definition}
   \label{def:tensor_network}
 A \emph{general tensor network} $\NN$ is a sequence of maps $L_i:\VV\to \VV$  called
 \emph{layers}, defined recursively by the equation 
-\begin{equation}
+\begin{equation*}
 L_0=\mathrm{id};\quad L_{i+1}=\Phi_i\circ\mathbf{W}_i\circ L_i
-\end{equation}
+\end{equation*}
 where $\mathbf{W}_i\in \bigoplus\limits_{k=0}^n\VV\otimes \VV^{*k\otimes}$ are
 the \emph{weights} (and the bias) and $\Phi_i\in\dP_0$ is the \emph{activation
   function}.
 \end{definition}
 We may look at a general tensor network with $n$ layers as a map. In that case
 we mean
-\begin{equation}
+\begin{equation*}
 \NN=L_n\in\dP_0.
-\end{equation}
+\end{equation*}
 
 \begin{remark}
   The common neural network is a tensor network with $\mathbf{b}_i+\bfW_i\in
@@ -1203,9 +1203,9 @@ The transformed program \eqref{eq:PGN1} equals the original program by Theorem \
  $\mathcal{N}_\Phi\vert_{\mathbf{v}_0}P$ defined with a set of activation
  functions $\Phi=\{\Phi_k\in\dP_0:\VV\to\VV;\quad 0\le k\le n\}$ and 
  weights
-\begin{eqnarray}
+\begin{eqnarray*}
 \bfW_k = e^\D_N\vert_{\mathbf{v}_k}P_k;\quad \vv_k=P_k\circ \cdots P_0(\vv_0)
-\end{eqnarray}
+\end{eqnarray*}
 is called \emph{neural tensor series of order $N$} for a program $P$ at a point
 $\vv_0$ with activation functions $\Phi$ with final layer
 \begin{equation}\label{eq:NeuralTensorSeries}
@@ -1265,9 +1265,9 @@ By Corollary \ref{izr:komp_homo} we have
 e^\D_n(L_{i+1})=e^\D_n(\Phi_i)\circ e^\D_n(W_i\circ L_i)\in\dP_n
 \end{equation}
 Thus by Corollary \ref{cor:extraxtDerivatives}, the $n$-differentiable $k$-th derivatives can be extracted by
-\begin{equation}
+\begin{equation*}
 ^{n}L_{i+1}^{k\prime}=\phi^k\circ e^\D_{n+k}(L_{i+1})\in\dP_n
-\end{equation}
+\end{equation*}
 from \eqref{eq:tenNetKthDer}, where $\phi$ is the reduction of order map of
 Theorem \ref{izr:reductionMap}. Derivatives of specific order are extracted by
 projecting on components of $P_n$, and can be used in any of the well established training methods in the industry. 
@@ -1423,15 +1423,15 @@ appropriate derivative, as it measures the rate of change.
    
    By Corollary \ref{cor:extraxtDerivatives}, $n$-differentiable $k$-th derivatives $^{n}T^{k\prime}_i\in\dP_n$ with respect to the input $\vv\in\Omega$ are computed by
    
-   \begin{equation}
+   \begin{equation*}
    ^{n}T^{k\prime}_i=\phi^k\circ e^{\D_\vv}_{n+k}(T^i_1)\in\dP_n
-   \end{equation}
+   \end{equation*}
    where $\phi$ is the reduction of order map of Theorem \ref{izr:reductionMap}.
    Using $\left\Vert\cdot\right\Vert^2\in\dP_1$ as the norm map, the property measure is
    
-   \begin{equation}
+   \begin{equation*}
    M_{X_j}=\sum\limits_{T_i\in T_{X_j}} \left\Vert T^\prime_i\right\Vert^2\in\dP_1
-   \end{equation}
+   \end{equation*}
    assuming it only needs to be once differentiable. Optimization of the property measure completes Algorithm \ref{alg:appoint}.
    
    When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific
