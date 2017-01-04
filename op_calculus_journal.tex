@@ -76,7 +76,9 @@ basicstyle=\ttfamily
 
 %\usepackage[hidelinks]{hyperref}
 %\usepackage{hyperref}
-
+\jmlrheading{}{}{}{1/16}{}{Žiga Sajovic and Martin Vuk}
+\ShortHeadings{Operational calculus on programming spaces}{Sajovic and Vuk}
+\firstpageno{1}
 \date{}
 
 \begin{document}
@@ -1023,8 +1025,8 @@ $n$ is the number of branching points within the program.
 \tikzstyle{line} = [draw, -latex']
 
 
-\begin{wrapfigure}{}{0.5\textwidth}
-
+\begin{figure}[h!]
+\begin{center}
 \begin{tikzpicture}[scale=0.5, every node/.style={scale=0.5},node distance = 2cm, auto]
     \node [block] (p1) {$P_1$};
     \node [block,right of=p1,node distance=5cm] (ep1) {$e^\D(P_1)$};
@@ -1095,13 +1097,9 @@ $n$ is the number of branching points within the program.
 	\path[line](J2)--(K2)--(tep3);
 	
 \end{tikzpicture}
-\caption{Transformation diagram} \label{fig:diagram} 
-\vspace{-1.2cm}
-\end{wrapfigure}
-
-
-
-
+\caption{Transformation diagram} \label{fig:diagram}
+\end{center}
+\end{figure}
 
 
 \begin{proof}
@@ -1496,7 +1494,7 @@ discrete computation.
  briefly explored in the final section, and will be the authors' next subject of
  study. 
 
- \acks{First author extends his gratitude to Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
+ \acks{First author extends his gratitude to dr. Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
   }
 
 \bibliographystyle{natbib}
