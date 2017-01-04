@@ -1,5 +1,6 @@
-\documentclass[smallcondensed]{svjour3}
-%\documentclass[preprint]{elsarticle}
+\documentclass[11pt]{article}
+% \documentclass[preprint]{elsarticle}
+\usepackage{jmlr2e}
 \usepackage[english]{babel}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -73,79 +74,58 @@ basicstyle=\ttfamily
 
 \DeclareMathOperator{\proj}{pr}
 
-\usepackage[hidelinks]{hyperref}
+%\usepackage[hidelinks]{hyperref}
 %\usepackage{hyperref}
 
-\usepackage{epigraph}
-
-% \epigraphsize{\small}% Default
-\setlength\epigraphwidth{8cm}
-\setlength\epigraphrule{ 0pt}
-
-\usepackage{etoolbox}
-
-\makeatletter
-\patchcmd{\epigraph}{\@epitext{#1}}{\itshape\@epitext{#1}}{}{}
-\makeatother
-
-\journalname{Journal of Scientific Computing}
 \date{}
 
 \begin{document}
-\title{Operational calculus on programming spaces and generalized tensor networks}
+\title{Operational calculus on programming spaces}
 \author{Žiga Sajovic \and Martin Vuk}
-\institute{Žiga Sajovic \at University of Ljubljana, Faculty of Computer and Information
+\author{\name Žiga Sajovic (corresponding author) \email ziga.sajovic@gmail.com\\
+  \addr University of Ljubljana, Faculty of Computer and Information
   Science,  Večna pot 113, SI-1000 Ljubljana, Slovenia\\
   XLAB d.o.o., Pot za Brdom 100, SI-1000 Ljubljana, Slovenia\\
-  \email{ziga.sajovic@gmail.com}
-  \and
-Martin Vuk \at  University of Ljubljana, Faculty of Computer and Information
-  Science,  Večna pot 113, SI-1000 Ljubljana, Slovenia }
+  \AND
+  Martin Vuk  \email martin.vuk@fri.uni-lj.si \\
+    \addr  University of Ljubljana, Faculty of Computer and Information
+  Science,  Večna pot 113, SI-1000 Ljubljana, Slovenia\\
+}
+\editor{}
 \maketitle
-\vspace{-1.5cm}
 \begin{abstract}
 In this paper we develop operational calculus on programming spaces that
 generalizes existing approaches to automatic differentiation of computer
 programs and provides a rigorous framework for program analysis through calculus. 
-
 We present an abstract computing machine that models automatically
 differentiable computer programs. Computer programs are viewed as maps on a
 finite dimensional vector space called virtual memory space, which we
 extend by the tensor algebra of its dual to accommodate derivatives. The
-extended virtual memory is by itself an algebra of programs and its elements
+extended virtual memory is by itself an algebra of programs, a data structure one can calculate with, and its elements
 give the expansion of the original program as an infinite tensor series at
 program's input values.     
-
 We define the operator of differentiation on programming spaces and
 implement higher order derivatives as well as a generalized shift operator in
-terms of its powers. Operational calculus is used to prove properties of the
-defined operators. Several possible applications to computer science are
-presented, most notably trainable general tensor neural networks that can
-provide a meaningful way of neural network initialization and in some cases
-yield better performing approximations of programs. 
-
-
-Our approach offers a powerful tool for program
+terms of its powers. Our approach offers a powerful tool for program
 analysis and approximation as well as a unified approach to automatic
-differentiation covering both forward and reverse mode of arbitrary order under a single operator. General tensor networks
+differentiation covering both forward and reverse mode of arbitrary order under a single operator. Several possible applications to computer science are
+presented, most notably trainable general tensor neural networks that can
+provide a meaningful way of neural network initialization and
 enable generalization of the existing state of the art methods for analyzing neural
-networks to any computer program. 
+networks to any computer program, and vice versa. 
 
-
-\keywords{
-  programming spaces\and
-  operational calculus\and
-  differentiable programs\and
-  neural networks\and
-  tensor calculus\and
-  program analysis
-}
-  \subclass{47L99\and 47-04 \and 46N99\and  26B40 \and 26B12}
-  \acknowledgement{
-  First author extends his gratitude to dr. Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
-  }
 
 \end{abstract}
+\begin{keywords}
+  programming spaces,
+  operational calculus,
+  differentiable programs,
+  neural networks,
+  tensor calculus,
+  program analysis
+\end{keywords}
+%\subclass{47L99\and 47-04 \and 46N99\and  26B40 \and 26B12}
+
 
 \section{Introduction}
 
@@ -159,8 +139,7 @@ Models allowing for nested differentiation \cite{AD1}, still fail in providing a
 The aim of this paper is bridging the gap between programming and analysis left
 behind by previous models. By generalizing them, they are shown to be specific
 views of the same great elephant. Employing tensor algebra a virtual memory is
-constructed, whose internal structure reflects and carries evaluation of
-algorithmic expressions. In Section \ref{sec:operational}, an exact definition
+constructed, whose data structures one can calculate with. In Section \ref{sec:operational}, an exact definition
 and construction of an analytic virtual machine is presented, capable of
 implementing infinitely-differentiable programming spaces and operators acting
 upon them, supporting actions on multiple memory locations at a time. These
@@ -738,40 +717,40 @@ automorphism of the programming algebra $\dP_\infty$,
  \end{proof}       
  The Theorem $\ref{izr:kompo}$ enables an invariant implementation of the operator of program composition in $\dP_n$, expressed as a tensor series through $\eqref{eq:kompo}$ and $\eqref{eq:dComposite}$. 
  
- By fixing the second map $g$ in  
- \begin{equation}\label{eq:opGenKompo}
-\exp(\D_fe^{h\D_g}): \dP\times\dP\to\dP_\infty,
+  By fixing the second map $g$ in  
+  \begin{equation}\label{eq:opGenKompo}
+ \exp(\D_fe^{h\D_g}): \dP\times\dP\to\dP_\infty,
+  \end{equation}
+  the operator
+  \begin{equation}
+   \exp(\D_fe^{h\D_g})(\cdot,g)=g^*\left( e^{h\D} \right)\label{eq:opKompo}
  \end{equation}
- the operator
- \begin{equation}
-  \exp(\D_fe^{h\D_g})(\cdot,g)=g^*\left( e^{h\D} \right)\label{eq:opKompo}
-\end{equation}
- is the pullback through $g$ of the generalized shift
- operator $e^{h\D}$. While by
- fixing the first map $f$ in \eqref{eq:opGenKompo}, the operator
- \begin{equation}
-\exp(\D_fe^{h\D_g})(f,\cdot)=f_*\left( e^{d\D} \right)\label{eq:opKompoForward}
-\end{equation} is the
- push-forward through $f$ of the generalized shift
- operator $e^{h\D}$.
-
- \begin{remark}[Unified AD]\label{trd:reverseForward}
- If a program is written as $P=P_n\circ\ldots P_1$, than applying the operators
- $\exp(\D_fe^{h\D_g})(\cdot,P_i)$ from $i=1$ to $i=n$ and projecting onto the space
- spanned by $\{1,\D\}$ is equivalent to forward mode automatic differentiation
- \cite{PcAD}, while applying the 
- operators $\exp(\D_fe^{h\D_g})(P_{n-i+1},\cdot)$ in reverse order (and
- projecting) is equivalent to reverse mode automatic differentiation
- \cite{ReverseAD}. Both forward 
- \cite{PcAD} and reverse \cite{ReverseAD} mode (generalized to arbitrary order)
- are obtainable using the same operator \eqref{eq:opGenKompo}, by fixing the
- appropriate map $f$ or $g$. This generalizes both concepts under a single operator.
-\end{remark}
-
- \begin{remark}
- The operator \eqref{eq:kompo} can be generalized for the notion of a pullback
- to arbitrary operators. 
+  is the pullback through $g$ of the generalized shift
+  operator $e^{h\D}$. While by
+  fixing the first map $f$ in \eqref{eq:opGenKompo}, the operator
+  \begin{equation}
+ \exp(\D_fe^{h\D_g})(f,\cdot)=f_*\left( e^{h\D} \right)\label{eq:opKompoForward}
+ \end{equation} is the
+  push-forward through $f$ of the generalized shift
+  operator $e^{h\D}$.
+ 
+  \begin{remark}[Unified AD]\label{trd:reverseForward}
+  If a program is written as $P=P_n\circ\ldots P_1$, than applying the operators
+  $\exp(\D_fe^{h\D_g})(\cdot,P_i)$ from $i=1$ to $i=n$ and projecting onto the space
+  spanned by $\{1,\D\}$ is equivalent to forward mode automatic differentiation
+  \cite{PcAD}, while applying the 
+  operators $\exp(\D_fe^{h\D_g})(P_{n-i+1},\cdot)$ in reverse order (and
+  projecting) is equivalent to reverse mode automatic differentiation
+  \cite{ReverseAD}. Both forward 
+  \cite{PcAD} and reverse \cite{ReverseAD} mode (generalized to arbitrary order)
+  are obtainable using the same operator \eqref{eq:opGenKompo}, by fixing the
+  appropriate map $f$ or $g$. This generalizes both concepts under a single operator.
  \end{remark}
+ 
+  \begin{remark}
+  The operator \eqref{eq:kompo} can be generalized for the notion of a pullback
+  to arbitrary operators. 
+  \end{remark}
  
  Thus, through $\eqref{eq:kompo}$ and all its' descendants (exponents), the
  operator $(\ref{eq:opKompo})$ grants invariance to the point in execution of a
@@ -1026,9 +1005,9 @@ Cardinality of the set of domains $\Omega=\{\Omega_i\}$ equals $\lvert\{\Omega_i
 Iterators, that do not change exit conditions within its' body, do not cause branching.
 \end{remark}
 
-This section concerns itself with employing the derived theorems to propose a linear treatment of branchings and avoid the exponential threat of Claim \ref{izr:st.zlepkov} to applications of the theory.
+This section concerns itself with employing the derived theorems to propose a linear treatment of branchings and avoid the exponential threat of Proposition \ref{izr:st.zlepkov} to applications of the theory.
 
-\begin{theorem}
+\begin{theorem}\label{izr:2n+1}
 A program $P\in\dP$ can be equivalently represented with at most $2n+1$
 applications of the operator $e^\D$, on $2n+1$ analytic programs, where
 $n$ is the number of branching points within the program.
@@ -1188,12 +1167,7 @@ we mean
   \VV\oplus \VV\otimes \VV^*$ as weight multi-tensors.
 \end{remark}
 
-Generalizations of recurrent \cite{RecurrentNet}, convolutional \cite{ConvNet} and highway  \cite{HighwayNet} neural networks, and features such as long short term memory \cite{LSTM}, are easily generated by this model, as they are all elements of a differential programming space $\dP_0$.
-
-The concept of general tensor networks allow several generalizations. The
-convolutional filter of a convolutional layer can be seen by itself a small general
-tensor network  not just a simple filter. Such feats are easily accomplished, as
-the presentented operational calculus applies to individual layers $L_i$.  
+Generalizations of recurrent \cite{RecurrentNet}, convolutional \cite{ConvNet} and deep residual \cite{resNet} neural networks, and mechanisms such as long short term memory \cite{LSTM}, are easily generated by this model, as they are all elements of a differential programming space $\dP_0$. 
  
 A general tensor network $\NN$ can be represented by a deeper
 common neural network. This equivalence means, that a general tensor network
@@ -1238,7 +1212,7 @@ The transformed program \eqref{eq:PGN1} equals the original program by Theorem \
 \end{eqnarray}
 is called \emph{neural tensor series of order $N$} for a program $P$ at a point
 $\vv_0$ with activation functions $\Phi$ with final layer
-\begin{equation}
+\begin{equation}\label{eq:NeuralTensorSeries}
 \mathcal{N}_\Phi\vert_{\mathbf{v}_0}P=\Phi_n\circ e^\D_N\vert_{\mathbf{v}_n}P_n\circ\cdots\circ\Phi_0\circ e^\D_N\vert_{\mathbf{v}_0}P_0.
 \end{equation}
 
@@ -1246,8 +1220,8 @@ $\vv_0$ with activation functions $\Phi$ with final layer
 
 
 \begin{remark}
-Neural tensor series transforms a common program to a trainable general tensor network.
-Using the operator $e^ \D_1$ a program can be transformed to a common neural network.
+Neural tensor series transforms a common program to a trainable general tensor network, naturally extending Theorem \ref{izr:2n+1} and the Transformation diagram of Figure \ref{fig:diagram}.
+For example, by setting $N=1$ in \eqref{eq:NeuralTensorSeries} a program can be transformed to a common neural network.
 \end{remark}
 Definition \ref{def:transToTensorNet} has wide applications to different fields.
 In practice if a sub-optimal algorithm providing an approximate
@@ -1263,7 +1237,7 @@ calculus.
 This has direct implications to the study and understanding of
 \emph{differentiable neural computers} \cite{netRam}. Interchanging neural
 processes and programming spaces reveals new directions to explore, as we might
-gain insight on one by identifying it with the other. 
+gain insight on one by identifying it with the other. By this equivalence, the relation between a computer program and a general tensor network is that of a function and its Taylor series enhanced by activations. Thus, they may be appropriately employed to the purpose of analysis in computer science, a path well walked by other fields.
  
 
 \begin{remark}
@@ -1468,8 +1442,8 @@ appropriate derivative, as it measures the rate of change.
    When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific
    layer in the network, with neurons being its variable parameters, the
    Algorithm \ref{alg:appoint} gives a procedure, that acts similarly to how
-   Google's Deep Dream Project \cite{DeepDream} works. 
-However the  Algorithm \ref{alg:appoint} may be applied to any program $T\in\dP_0$ not just neural networks.
+   Google's Deep Dream Project \cite{DeepDream} and Neural Algorithm of Artistic Style \cite{artNet} work, as they are special cases of the method. 
+However the  Algorithm \ref{alg:appoint} may be applied to any program $T\in\dP_0$, not just neural networks.
 
  \section{Conclusions}
 
@@ -1522,7 +1496,10 @@ discrete computation.
  briefly explored in the final section, and will be the authors' next subject of
  study. 
 
-\bibliographystyle{spmpsci}
+ \acks{First author extends his gratitude to Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
+  }
+
+\bibliographystyle{natbib}
 \bibliography{biblio}
 
 \end{document}
