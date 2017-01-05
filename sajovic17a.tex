@@ -138,8 +138,8 @@ The way evaluation of algorithmic expressions differs from evaluation of
 symbolic expressions of standard analysis, lies at the very core of this
 dissonance. The disconnect was partially mitigated by methods of automatic
 differentiation utilized today in machine learning, engineering,
-simulations, etc. \citep[e.g.,][]{AdSurvey}. Yet under the lack of a proper formalism the model collapses \citep[see][]{AD2} when one tries to generalize to such notions as a differentiable program $p_1$ operating on (differentiable) derivatives of another program $p_2$ (where only coding of $p_2$ is required within $p_1$), while retaining the famed expressive freedom. 
-Models allowing for nested differentiation as in \cite{AD1}, still fail in providing algorithms with an algebra enabling study and formulation of programs with analytic equations. Existing models \citep[e.g.,][]{PcAD,ReverseAD} remain nothing more than efficient means to calculating derivatives, void of any meaningful algebraic insight, lacking the true power the vast field of analysis is endowed with.
+simulations, etc. \citep[see][]{AdSurvey}. Yet under the lack of a proper formalism the model collapses \citep[see][]{AD2} when one tries to generalize to such notions as a differentiable program $p_1$ operating on (differentiable) derivatives of another program $p_2$ (where only coding of $p_2$ is required within $p_1$), while retaining the famed expressive freedom. 
+Models allowing for nested differentiation as in \cite{AD1}, still fail in providing algorithms with an algebra enabling study and formulation of programs with analytic equations. Existing models remain nothing more than efficient means to calculating derivatives, void of any meaningful algebraic insight, lacking the true power the vast field of analysis is endowed with.
 
 The aim of this paper is bridging the gap between programming and analysis left
 behind by previous models. By generalizing them, they are shown to be specific
@@ -152,15 +152,15 @@ programming spaces are shown to be a subalgebra, giving rise to symbolic
 manipulations of programs, while attaining construction by algorithmic control
 flow. Operators expanding a program into an infinite tensor series are derived
 in Section \ref{sec:Vrsta}. The operator of program composition is constructed
-in Section \ref{sec:compsition}, generalizing both forward \citep{PcAD} and
-reverse \citep{ReverseAD} mode of automatic differentiation to arbitrary order,
+in Section \ref{sec:compsition}, generalizing both forward \citep[e.g.,][]{PcAD} and
+reverse \citep[e.g.,][]{ReverseAD} mode of automatic differentiation to arbitrary order
 under a single invariant operator. The problem of nested differentiation is
 resolved in Section \ref{sec:orderReduction}.
 
 Theory grants us the ability to choose programs' complexity through
 approximations in the virtual space. The tensor algebra model of virtual memory
 consists of multi-linear maps which are tailor made for efficient implementation
-by GPU parallelism \cite{TensorGPU}. In Section \ref{sec:FTP} functional
+by GPU parallelism \citep{TensorGPU}. In Section \ref{sec:FTP} functional
 transformations of programs in an arbitrary function basis are derived. As
 different hardware is optimized for running with different sets of functions, this
 proves useful with adapting code to fit specific hardware. 
@@ -169,11 +169,11 @@ where we show that analytic virtual machines fully integrate control structures,
 retaining algorithmic control flow. 
  
 Theory grants a generalization from neural networks to general tensor networks in Section \ref{sec:generalTensorNet}, revealing their connection with programs in Section \ref{sec:progAsNet}.
-The historic Taylor series are modernized in Section \ref{sec:transToNet} by deriving \emph{Neural tensor series}, establishing an equivalence between general tensor networks and programming spaces. This has direct implications to the study and understanding of \emph{differentiable neural computers} \cite{netRam} through operational calculus. By this equivalence, transformations of arbitrary programs to general tensor networks are derived. The transformation to a \emph{Neural Tensor series} serves as a great initialization point of a general tensor network to be trained. This can be seen as a process of \emph{boosting} \cite{boosting}, converting a weaker learner to a strong one, which proves fruitful, as currently neural networks give best results to many problems.
+The historic Taylor series are modernized in Section \ref{sec:transToNet} by deriving \emph{Neural tensor series}, establishing an equivalence between general tensor networks and programming spaces. This has direct implications to the study and understanding of \emph{differentiable neural computers} \citep{netRam} through operational calculus. By this equivalence, transformations of arbitrary programs to general tensor networks are derived. The transformation to a \emph{Neural Tensor series} serves as a great initialization point of a general tensor network to be trained. This can be seen as a process of \emph{boosting} \citep{boosting}, converting a weaker learner to a strong one, which proves fruitful, as currently neural networks give best results to many problems.
  All such constructs are trainable (as is their training process itself) and adhere to the operational calculus. This is demonstrated in Section \ref{sec:trainNet}, enabling analytic study through the theory.
 
 Theory offers new insights into programs, as we demonstrate how to probe their inner structure in Section \ref{sec:Analysis}, revealing what actions properties of the domain most react to in Section \ref{sec:studyProperties}. This enables us to alter data by imposing some property it lacks upon it.
-State of the art methods for analyzing neural networks \cite{DeepDream} are generalized for the use on programming spaces in Section \ref{sec:propertyMeasure}, providing a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
+State of the art methods for analyzing neural networks \citep{DeepDream} are generalized for the use on programming spaces in Section \ref{sec:propertyMeasure}, providing a framework for analysis of machine learning architectures and other virtual constructs, as actions on the virtual space. 
 
 \section{Computer Programs as Maps on a Vector Space}
 We will model computer programs as maps on a vector space. If
@@ -546,8 +546,8 @@ $\dP_0\otimes \T(\VV^*)$.
 \end{remark}
 
 An illustrative example of the implementation of an analytic virtual machine is available on
-github \cite{dC++}. Implementation closely follows theorems and derivations of
-this paper and is intended as an educational guide. A paper \cite{dC++Paper} explaining
+GitHub \citep{dC++}. Implementation closely follows theorems and derivations of
+this paper and is intended as an educational guide. A paper \citep{dC++Paper} explaining
 the process of implementation accompanies the source-code.  
 
  \subsection{Tensor Series Expansion}\label{sec:Vrsta}
@@ -655,7 +655,7 @@ automorphism of the programming algebra $\dP_\infty$,
 
  \begin{remark}[Generalized shift operator]\label{rmrk:genShift}
  The operator $e^{h\D}:\dP\times \VV\to \VV\otimes \T(\VV^*)$ evaluated at $h=1$
- is a broad generalization of the shift operator \cite{OpCalc}. The theory
+ is a broad generalization of the shift operator \citep{OpCalc}. The theory
  presented in this section offers more than a mere shift, which will become
  apparent in the coming sections.
  \end{remark}
@@ -680,7 +680,7 @@ automorphism of the programming algebra $\dP_\infty$,
 \end{remark}
 \subsection{Operator of Program Composition}\label{sec:compsition}
  
- In this section both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of
+ In this section both forward \citep[e.g,][]{PcAD} and reverse \citep[e.g.,][]{ReverseAD} mode of
  automatic differentiation are generalized to arbitrary order under a single
  invariant operator in the theory. We demonstrate how to perform calculations on
  operator level before they are applied to a particular 
@@ -741,12 +741,11 @@ automorphism of the programming algebra $\dP_\infty$,
   \begin{remark}[Unified AD]\label{trd:reverseForward}
   If a program is written as $P=P_n\circ\ldots P_1$, than applying the operators
   $\exp(\D_fe^{h\D_g})(\cdot,P_i)$ from $i=1$ to $i=n$ and projecting onto the space
-  spanned by $\{1,\D\}$ is equivalent to forward mode automatic differentiation
-  \cite{PcAD}, while applying the 
+  spanned by $\{1,\D\}$ is equivalent to forward mode automatic differentiation,
+  while applying the 
   operators $\exp(\D_fe^{h\D_g})(P_{n-i+1},\cdot)$ in reverse order (and
-  projecting) is equivalent to reverse mode automatic differentiation
-  \cite{ReverseAD}. Both forward 
-  \cite{PcAD} and reverse \cite{ReverseAD} mode (generalized to arbitrary order)
+  projecting) is equivalent to reverse mode automatic differentiation.
+  Both forward and reverse mode (generalized to arbitrary order)
   are obtainable using the same operator \eqref{eq:opGenKompo}, by fixing the
   appropriate map $f$ or $g$. This generalizes both concepts under a single operator.
  \end{remark}
@@ -759,8 +758,8 @@ automorphism of the programming algebra $\dP_\infty$,
  Thus, through $\eqref{eq:kompo}$ and all its' descendants (exponents), the
  operator $(\ref{eq:opKompo})$ grants invariance to the point in execution of a
  program, which is important when proving algorithm's correctness. This is
- analogous to the principle of general covariance \cite{GeneralCovariance}[See
- section 7.1] in general relativity, the invariance of the form of physical laws
+ analogous to the principle of general covariance \citep[see
+ section 7.1 in a book by][]{GeneralCovariance} in general relativity, the invariance of the form of physical laws
  under arbitrary differentiable coordinate transformations. 
  
  
@@ -854,8 +853,8 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
 \end{equation*}
 \end{corollary}    
  We gained the ability of writing a differentiable program acting on derivatives
- of another program, stressed as crucial (but lacking in most models) by other
- authors \cite{AD1}. Usage of the reduction of order map and other constructs of
+ of another program, stressed as crucial (but lacking in most models) by
+ \cite{AD1}. Usage of the reduction of order map and other constructs of
  this Section are demonstrated in Section \ref{sec:Analysis}. 
    \subsection{Functional Transformations of Programs}\label{sec:FTP}
    
@@ -1132,7 +1131,7 @@ when composing two images of the applied operator, projected to different subspa
 The transformation tensor $T_{F\X}$ is needed to be computed only once and can then on be applied to any program running on said hardware. The same holds true for each branch $p_i$, which can, by Theorem $\ref{izr:komp_homo}$, be freely composed amongst each other.
 
 \begin{remark}\label{clm:paralel}
-Images of the operator $e^\D (P\in\dP_0)$ are elements of $\VV\otimes T(\VV^*)$ by $\eqref{eq:specProg}$, consisting of multi-linear maps. As such, their evaluation and composition ($e^\D(P_1)\circ e^\D(P_2)$) is tailor made for efficient implementation by methods of parallelism \cite{TensorGPU}, with computable complexities.
+Images of the operator $e^\D (P\in\dP_0)$ are elements of $\VV\otimes T(\VV^*)$ by $\eqref{eq:specProg}$, consisting of multi-linear maps. As such, their evaluation and composition ($e^\D(P_1)\circ e^\D(P_2)$) is tailor made for efficient implementation by methods of parallelism \citep[e.g.,][]{TensorGPU}, with computable complexities.
 \end{remark}
 
 \section{Generalized Tensor Networks}\label{sec:generalTensorNet}
@@ -1167,17 +1166,17 @@ we mean
   \VV\oplus \VV\otimes \VV^*$ as weight multi-tensors.
 \end{remark}
 
-Generalizations of recurrent \cite{RecurrentNet}, convolutional \cite{ConvNet} and deep residual \cite{resNet} neural networks, and mechanisms such as long short term memory \cite{LSTM}, are easily generated by this model, as they are all elements of a differential programming space $\dP_0$. 
+Generalizations of recurrent \citep{RecurrentNet}, convolutional \citep{ConvNet} and deep residual \citep{resNet} neural networks, and mechanisms such as long short term memory \citep{LSTM}, are easily generated by this model, as they are all elements of a differential programming space $\dP_0$. 
  
 A general tensor network $\NN$ can be represented by a deeper
 common neural network. This equivalence means, that a general tensor network
 with fewer layers can provide the same results as a deeper common neural
 network, while mitigating the vanishing gradient problem
-\cite{VanishingGradient} that occurs in training due to the depth of the network
+described by \cite{VanishingGradient} that occurs in training due to the depth of the network
 coupled with machine precision. 
 
 \begin{remark}
-Existing architectures like Theano \cite{Theano}, TensorFlow \cite{TensorFlow}
+Existing architectures like Theano by \cite{Theano}, TensorFlow by \cite{TensorFlow}
 and others could be easily adapted to handle general tensor networks.
 \end{remark}
 
@@ -1227,14 +1226,14 @@ Definition \ref{def:transToTensorNet} has wide applications to different fields.
 In practice if a sub-optimal algorithm providing an approximate
 solution is available, the \emph{neural tensor series} serves as a great
 initialization point for further training, leading to a process of
-\emph{boosting} \cite{boosting}(converting a weaker learner to a strong one).
+\emph{boosting} \citep{boosting} converting a weaker learner to a strong one.
 As currently neural networks give best results to many problems, the described
 method is likely to provide improvements to existing methods.
 
 As each general tensor network is a neural tensor series of some program, it
 provides an elegant way of expressing neural computations through operational
 calculus.  
-This has direct implications to the study and understanding of concepts such as \emph{differentiable neural computers} (\cite{netRam}) and \emph{neural programmer-interpreters} (\cite{netRam2}). Interchanging neural
+This has direct implications to the study and understanding of concepts such as \emph{differentiable neural computers} \citep{netRam} and \emph{neural programmer-interpreters} \citep{netRam2}. Interchanging neural
 processes and programming spaces reveals new directions to explore, as we might
 gain insight on one by identifying it with the other. By this equivalence, the relation between a computer program and a general tensor network is that of a function and its Taylor series enhanced by activations. Thus, they may be appropriately employed to the purpose of analysis in computer science, a path well walked by other fields.
  
@@ -1257,7 +1256,7 @@ and $\tilde{P}$ is an element of a differentiable programming space $\dP_\infty$
 
 \begin{remark}
 Any layer $L_i\in\dP_n$ can be composed with an arbitrary element of the
-differentiable programming space $\dP_0$. This allows algorithmic coding of trainable memory managers, generalizing concepts such as long short term memory \cite{LSTM} and easing the implementation of networks capable of reading from and writing to an external memory \cite{netRam}, by freeing semantics of their design process.
+differentiable programming space $\dP_0$. This allows algorithmic coding of trainable memory managers, generalizing concepts such as long short term memory \citep{LSTM} and easing the implementation of networks capable of reading from and writing to an external memory \citep{netRam}, by freeing semantics of their design process.
 \end{remark}
 
 \subsection{Training of General Tensor Networks}\label{sec:trainNet}
@@ -1277,11 +1276,14 @@ Theorem \ref{izr:reductionMap}. Derivatives of specific order are extracted by
 projecting on components of $P_n$, and can be used in any of the well established training methods in the industry. 
 
 \begin{proposition}
-Using the operator $\exp(\D_fe^{h\D_g})$ of Theorem \ref{izr:kompo}, both forward \cite{PcAD} and reverse \cite{ReverseAD} mode automatic differentiation (generalized to arbitrary order) can be implemented on general tensor networks.
+Using the operator $\exp(\D_fe^{h\D_g})$ of Theorem \ref{izr:kompo}, both forward and reverse mode automatic differentiation (generalized to arbitrary order) can be implemented on general tensor networks.
 \end{proposition}
 
 \begin{remark}
-The operational calculus can be applied to the training process $T\in\dP_0$ of a general tensor network itself, as it is an element of a differentiable programming space $\dP_0$. Thus, hyper-parameters of the training process \cite{HyperParams} can be studied, analyzed and trained \cite{hyper}, as to be adapted to the particulars of the problem being solved.
+The operational calculus can be applied to the training process $T\in\dP_0$ of a
+general tensor network itself, as it is an element of a differentiable
+programming space $\dP_0$. Thus, hyper-parameters of the training process can be
+studied \citep[e.g.,][]{HyperParams}, analyzed and trained \citep[e.g.,][]{hyper}, as to be adapted to the particulars of the problem being solved.
 \end{remark}
 
 By Proposition \ref{clm:composedNet}, any training methods enabled by the operational calculus presented in this paper apply to all compositions of general tensor networks $\NN_i$ with arbitrary programs $P\in\dP$. This allows seamless trainable transitions between code formulations, naturally extending the Transformation diagram of Figure \ref{fig:diagram}. 
@@ -1440,9 +1442,10 @@ appropriate derivative, as it measures the rate of change.
    
    When $T\in\dP_0$ represents a neural network, $T_i$ stands for a specific
    layer in the network, with neurons being its variable parameters, the
-   Algorithm \ref{alg:appoint} gives a procedure, that acts similarly to how
-   Google's Deep Dream Project \cite{DeepDream} and Neural Algorithm of Artistic Style \cite{artNet} work, as they are special cases of the method. 
-However the  Algorithm \ref{alg:appoint} may be applied to any program $T\in\dP_0$, not just neural networks.
+   Algorithm \ref{alg:appoint} gives a procedure, that acts similarly to
+   Google's Deep Dream Project \citep[see][]{DeepDream} and Neural Algorithm of
+   Artistic Style by \cite{artNet}, as they are special cases of Algorithm \ref{alg:appoint}. 
+However Algorithm \ref{alg:appoint} may be applied to any program $T\in\dP_0$, not just neural networks.
 
  \section{Conclusions}
 
@@ -1456,11 +1459,11 @@ reinforces the need for a language capable of not only capturing, but also
 constructing digital phenomena, a feat demonstrated by analytic virtual machines
 and operational calculus. 
 
-Inspired by the endeavors of Feynman \cite{Feynman} and Heaviside
-\cite{HeavisideOperational} in physics before us, we applied operational
+Inspired by the endeavors of \cite{Feynman} and
+Heaviside \citep[see][]{HeavisideOperational} in physics before us, we applied operational
 calculus to programming spaces, allowing analytic conclusions through algebraic
 means, easing implementation. It yielded the operator of program composition,
-generalizing both forward \cite{PcAD} and reverse \cite{ReverseAD} mode of
+generalizing both forward and reverse mode of
 automatic differentiation to arbitrary order, under a single operator in the
 theory. Both the use of algebra and operational calculus were demonstrated, as
 calculations and manipulations were performed on the operator level, before the
@@ -1472,7 +1475,7 @@ derived, a useful tool when adapting code to the specifics of a given hardware,
 among other. 
 All such formulations are invariant not only to the choice of a programming
 space, but also to the point in execution of a program, introducing the
-principle of general covariance \cite{GeneralCovariance} to programming.
+principle of general covariance to programming.
 Offerings of this principle were exploited in designing methods on how
 transformations are to be interchangeably applied in practice in Section
 \ref{sec:control}. These methods allow seamless transitions between transformed
@@ -1484,7 +1487,7 @@ Neural Tensor series. A construct most useful when coming to terms with the
 finite horizon beyond which theoretical truths become pragmatic approximations.
 It allows us to treat the idealistic case deprecated by the finite, as an
 initial prediction of a model to be trained.  This has widespread applicability,
-as it can be seen as a process of \emph{boosting} \cite{boosting}, which already
+as it can be seen as a process of \emph{boosting}, which already
 enriched other fields of science.  
 
 As each general tensor network is a Neural tensor series of some program, we
@@ -1494,7 +1497,7 @@ discrete computation.
  Operational calculus provides a rigorous framework for such discussion, as was
  briefly explored in the final section, and will be the authors' next subject of
  study. 
-
+\clearpage
  \acks{First author extends his gratitude to dr. Jure Kališnik for proofreading the proofs, and prof. Borut Robič for general guidance through the academia.
   }
 
