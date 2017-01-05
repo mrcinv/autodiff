@@ -179,7 +179,7 @@ State of the art methods for analyzing neural networks \citep{DeepDream} are gen
 We will model computer programs as maps on a vector space. If
 we only focus on the real valued variables (of type \texttt{float} or
 \texttt{double}),  the state of the virtual memory can be seen as a high
-dimensional vector\footnote{we assume the variables of interest to be of type \texttt{float} for
+dimensional vector\footnote{We assume the variables of interest to be of type \texttt{float} for
   simplicity. Theoretically any field can be used instead of $\RR$.}. 
 A set of all the possible states of the program's memory,
 can be modeled by a finite dimensional real vector space $\VV\equiv \RR^n$. We
@@ -398,7 +398,7 @@ Let us define the following function spaces:
  \end{equation}
 All of these function spaces can be seen as sub spaces of $\F_\infty=\{f:\VV\to \VV\otimes
 T(\VV^*)\}$, since $\VV$ is naturally embedded into $ \VV\otimes T(\VV^*)$. The
-Fréchet derivative defines an operator on the space of smooth maps in $\F_\infty$\footnote{the operator $\D$ may be defined partially for other maps as
+Fréchet derivative defines an operator on the space of smooth maps in $\F_\infty$\footnote{The operator $\D$ may be defined partially for other maps as
    well, but we will handle this case later.}. We denote this operator $\D$. The image of any map
  $P:\VV\to \VV$ by operator $\D$ is its first derivative, while the higher order
  derivatives are just powers of operator $\D$ applied to $P$.
@@ -606,7 +606,7 @@ simple tensor by
 \end{equation}
 Both contractions \eqref{eq:contraction} and \eqref{eq:monomial} are extended
 by linearity to spaces $\VV\otimes \left(\VV^*\right)^{\otimes n}$ and further
-to $\VV\otimes T(\VV^*)$.\footnote{note that the simple order one tensor
+to $\VV\otimes T(\VV^*)$.\footnote{Note that the simple order one tensor
   $\uu\in\VV$ can not be contracted by the vector $\vv$. To be consistent we
   define $\uu\cdot \vv = \uu$ and attach a constant map
   $\vv\mapsto \uu$ to order zero tensor $\uu$. The extension of
@@ -874,7 +874,7 @@ By Theorem \ref{izr:reductionMap}, $n$-differentiable $k$-th derivatives of a pr
    $\eqref{eq:pToPol}$ from the space of programs, to the space of polynomials,
    with unknowns in $\VV^k$, can be constructed using the operator $e^\D$.
    Let $\X=\{p_i\}$ denote a basis of
-   the space of polynomials $\VV\to \VV$ \footnote{one choice would be the monomial basis,
+   the space of polynomials $\VV\to \VV$ \footnote{One choice would be the monomial basis,
    consisting of elements $\e_i\otimes\prod\limits_{\alpha,\forall_j}
    x_{\alpha_j}$, where $\e_i$ span $\VV$, $x_i$ span $\VV^*$ and $\alpha$
    multi-index}. We can interpret $e^\D_n(P\in\dP)$ as a vector of linear
@@ -1328,7 +1328,7 @@ appropriate derivative, as it measures the rate of change.
 
    Let's assume 
    $$T=T_n\circ T_{n-1}\circ\cdots\circ T_1$$
-   for simplicity\footnote{ $T$ could also be piecewise-differentiable as in
+   for simplicity\footnote{The procedure $T$ could also be piecewise-differentiable as in
      $\eqref{eq:zlrprk_splosno}$, by specific $T_i$ containing a control
      structure as is ilustrated in Figure \ref{fig:diagram}}. The part $T_i$ is called a conceptual step in the procedure.
   
@@ -1338,7 +1338,7 @@ appropriate derivative, as it measures the rate of change.
      activity} in the conceptual step $T_i$. The value  
    $$\mathcal{A}_i\circ e^{\D_{T_i}}T(\vv)$$ 
    is the \emph{activity level} of $T_i$ for a given element of the domain
-   $\vv\in \Omega$ taken as the input of $T$\footnote{the operator $e^{\D_{T_i}}$
+   $\vv\in \Omega$ taken as the input of $T$\footnote{The operator $e^{\D_{T_i}}$
      considers only the variable parameters of the sub-procedure $T_i$ as
      variables}.
    
