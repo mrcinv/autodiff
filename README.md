@@ -17,12 +17,11 @@ program's input values.
 We define the operator of differentiation on programming spaces and
 implement higher order derivatives as well as a generalized shift operator in
 terms of its powers. Our approach offers a powerful tool for program
-analysis and approximation as well as a unified approach to automatic
-differentiation covering both forward and reverse mode of arbitrary order under a single operator. Several possible applications to computer science are
+analysis and approximation, and provides deep learning with a formal calculus. Several possible applications to computer science are
 presented, most notably trainable general tensor neural networks that can
 provide a meaningful way of neural network initialization and
 enable generalization of the existing state of the art methods for analyzing neural
-networks to any computer program, and vice versa. 
+networks to any computer program, and vice versa; i.e. connecting deep learning and general program analysis. 
 
 ###Implementation
 
