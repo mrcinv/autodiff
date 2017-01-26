@@ -108,12 +108,11 @@ program's input values.
 We define the operator of differentiation on programming spaces and
 implement higher order derivatives as well as a generalized shift operator in
 terms of its powers. Our approach offers a powerful tool for program
-analysis and approximation as well as a unified approach to automatic
-differentiation covering both forward and reverse mode of arbitrary order under a single operator. Several possible applications to computer science are
+analysis and approximation, and provides deep learning with a formal calculus. Several possible applications to computer science are
 presented, most notably trainable general tensor neural networks that can
 provide a meaningful way of neural network initialization and
 enable generalization of the existing state of the art methods for analyzing neural
-networks to any computer program, and vice versa. 
+networks to any computer program, and vice versa; i.e. connecting deep learning and general program analysis. 
 
 
 \end{abstract}
@@ -382,7 +381,7 @@ We call $\VV_\infty$ the \emph{differentiable virtual memory} of a virtual
 computing machine $(\VV,\F)$.
 \end{definition}
 The term virtual memory is used as it is only possible to embed certain subspaces of $\VV_\infty$ into memory space $\VV$, making it similar to
-virtual memory as a memory management technique.  
+virtual memory as a memory management technique. 
 
 We can extend each program $P:\VV\to \VV$ to the map on
 universal memory space $\VV_\infty$ by setting the first component in the direct sum
